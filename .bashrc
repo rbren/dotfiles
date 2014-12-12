@@ -13,3 +13,6 @@ bind '"\eOB": history-search-forward'
 alias src='source ~/.bashrc';
 
 alias ls='ls -la';
+alias ps='ps aux';
+
+export PATH="$PATH:$HOME/npm/bin";
