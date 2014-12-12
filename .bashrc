@@ -15,4 +15,7 @@ alias src='source ~/.bashrc';
 alias ls='ls -la';
 alias ps='ps aux';
 
+alias bower='bower --save';
+alias npm='npm --save';
+
 export PATH="$PATH:$HOME/npm/bin";
