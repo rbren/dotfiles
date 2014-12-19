@@ -1,5 +1,12 @@
 var HttpClient = require('https');
 
+exports.getEnglishTweets = function(query, callback) {
+  exports.api.search ({
+    'query': query,
+    'language': en,
+  }, callback);
+}
+ 
 exports.getTweetsNearWhiteHouse = function(query, callback) {
   exports.api.search ({
     'query': query,
