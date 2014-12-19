@@ -1,9 +1,11 @@
 var HttpClient = require('https');
 
-exports.getTweetsNearWhiteHouse = function(query, callback) {
+exports.getTweetsNearWhiteHouse = function(query, language, callback) {
   exports.api.search ({
     'query': query,
+    'language': language,
     'geocode': '38.898748,-77.037684,1mi',
+    'language': 'en',
   }, callback);
 }
  
