@@ -16,8 +16,10 @@ alias ls='ls -la';
 alias grep='grep -r';
 alias ps='ps aux';
 
-alias bower='bower --save';
-alias npm='npm --save';
-alias npmd='npm --save-dev';
+alias bowin='bower --save';
+alias npin='npm --save';
+alias npind='npm --save-dev';
 
 export PATH="$PATH:$HOME/npm/bin";
+
+set -o vi
