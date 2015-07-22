@@ -6,6 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 set -o vi
+export EDITOR=vi
 
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
