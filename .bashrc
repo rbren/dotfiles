@@ -20,7 +20,7 @@ function parse_git_color() {
 function parse_git_status () {
   git rev-parse --git-dir &> /dev/null
   git_status="$(git status 2> /dev/null)"
-  remote_pattern="branch is (.*) of"
+  remote_pattern="branch is (.*) by"
   diverge_pattern="branch and (.*) have diverged"
   branch="$(parse_git_branch 2> /dev/null)"
   color=$GREEN
