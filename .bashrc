@@ -24,24 +24,23 @@ function parse_git_status () {
   remote_pattern="# Your branch is (.*) of"
   diverge_pattern="# Your branch and (.*) have diverged"
   branch="$(parse_git_branch 2> /dev/null)"
-  color=$GREEN
+  color=$RED
   direction=""
  
-  if [[ ! ${git_status} =~ "working directory clean" ]]; then
-    color="${RED}"
-  else
-    if [[ ${git_status} =~ ${remote_pattern} ]]; then
-      color="${YELLOW}"
-      if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-        direction="↑"
-      else
-        direction="↓"
-      fi
+  if [[ ${git_status} =~ "working directory clean" ]]; then
+    color="${GREEN}"
+  fi
+  if [[ ${git_status} =~ ${remote_pattern} ]]; then
+    color="${YELLOW}"
+    if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
+      direction="↑"
+    else
+      direction="↓"
     fi
-    if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-      color="${YELLOW}"
-      direction="↕"
-    fi
+  fi
+  if [[ ${git_status} =~ ${diverge_pattern} ]]; then
+    color="${YELLOW}"
+    direction="↕"
   fi
   echo "$color$branch$direction"
 }
