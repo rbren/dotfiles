@@ -28,19 +28,16 @@ function parse_git_status () {
   direction=""
   if [[ ! ${git_status} =~ "working directory clean" ]]; then
     color="${RED}"
-  else
-    if [[ ${git_status} =~ ${remote_pattern} ]]; then
-      color="${YELLOW}"
-      if [[ ${BASH_REMATCH[1]} =~ "ahead" ]]; then
-        direction="↑"
-      else
-        direction="↓"
-      fi
+  fi
+  if [[ ${git_status} =~ ${remote_pattern} ]]; then
+    if [[ ${BASH_REMATCH[1]} =~ "ahead" ]]; then
+      direction="${YELLOW}↑"
+    else
+      direction="${YELLOW}↓"
     fi
-    if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-      color="${YELLOW}"
-      direction="↕"
-    fi
+  fi
+  if [[ ${git_status} =~ ${diverge_pattern} ]]; then
+    direction="${YELLOW}↕"
   fi
   echo "$color$branch$direction"
 }
