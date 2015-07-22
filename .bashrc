@@ -26,11 +26,13 @@ function parse_git_status () {
   branch="$(parse_git_branch 2> /dev/null)"
   color=$RED
   direction=""
- 
+  echo $git_status
   if [[ ${git_status} =~ "working directory clean" ]]; then
+    echo "1"
     color="${GREEN}"
   fi
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
+    echo "2"
     color="${YELLOW}"
     if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
       direction="↑"
