@@ -26,13 +26,10 @@ function parse_git_status () {
   branch="$(parse_git_branch 2> /dev/null)"
   color=$RED
   direction=""
-  echo $git_status
   if [[ ${git_status} =~ "working directory clean" ]]; then
-    echo "1"
     color="${GREEN}"
   fi
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
-    echo "2"
     color="${YELLOW}"
     if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
       direction="↑"
@@ -46,9 +43,11 @@ function parse_git_status () {
   fi
   echo "$color$branch$direction"
 }
-status=$(parse_git_status)
-PS1="$GREEN$NO_COLOR:\w${status}$NO_COLOR\$ "
-
+function set_prompt() {
+  status=$(parse_git_status)
+  PS1="$GREEN$NO_COLOR:\w${status}$NO_COLOR\$ "
+}
+PROMPT_COMMAND=set_prompt
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\eOA": history-search-backward'
