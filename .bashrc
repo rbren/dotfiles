@@ -31,7 +31,7 @@ function parse_git_status () {
   else
     if [[ ${git_status} =~ ${remote_pattern} ]]; then
       color="${YELLOW}"
-      if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
+      if [[ ${BASH_REMATCH[1]} =~ "ahead" ]]; then
         direction="↓"
       else
         direction="↑"
