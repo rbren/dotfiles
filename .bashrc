@@ -20,26 +20,26 @@ function parse_git_color() {
 function parse_git_status () {
   git rev-parse --git-dir &> /dev/null
   git_status="$(git status 2> /dev/null)"
-  branch_pattern="^# On branch ([^${IFS}]*)"
-  remote_pattern="# Your branch is (.*) of"
-  diverge_pattern="# Your branch and (.*) have diverged"
+  remote_pattern="branch is (.*) of"
+  diverge_pattern="branch and (.*) have diverged"
   branch="$(parse_git_branch 2> /dev/null)"
-  color=$RED
+  color=$GREEN
   direction=""
-  if [[ ${git_status} =~ "working directory clean" ]]; then
-    color="${GREEN}"
-  fi
-  if [[ ${git_status} =~ ${remote_pattern} ]]; then
-    color="${YELLOW}"
-    if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-      direction="↑"
-    else
-      direction="↓"
+  if [[ ! ${git_status} =~ "working directory clean" ]]; then
+    color="${RED}"
+  else
+    if [[ ${git_status} =~ ${remote_pattern} ]]; then
+      color="${YELLOW}"
+      if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
+        direction="↑"
+      else
+        direction="↓"
+      fi
     fi
-  fi
-  if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-    color="${YELLOW}"
-    direction="↕"
+    if [[ ${git_status} =~ ${diverge_pattern} ]]; then
+      color="${YELLOW}"
+      direction="↕"
+    fi
   fi
   echo "$color$branch$direction"
 }
