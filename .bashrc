@@ -58,7 +58,6 @@ bind '"\eOB": history-search-forward'
 alias src='source ~/.bashrc';
 
 alias ls='ls -la';
-alias grep='grep -r';
 alias ps='ps aux';
 
 alias bowin='bower --save';
