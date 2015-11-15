@@ -5,10 +5,6 @@ if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
 
-if [ -f ~/.local-bashrc ]; then
-  source ~/.local-bashrc
-fi
-
 set -o vi
 export EDITOR=vi
 
@@ -85,3 +81,9 @@ flip() {
     flip set 0 $CWD
   fi
 }
+
+if [ -f ~/.local-bashrc ]; then
+  source ~/.local-bashrc
+fi
+
+
