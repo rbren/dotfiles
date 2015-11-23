@@ -8,6 +8,9 @@ fi
 set -o vi
 export EDITOR=vi
 
+HISTSIZE=5000
+HISTFILESIZE=10000
+
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
@@ -72,11 +75,9 @@ flip() {
       TODIR=$1
   fi
   if [[ "$1" == "$FLIP_SET" ]]; then
-    echo "set" . $3
     FLIP[$2]=$3
   else
     CWD=`pwd`
-    echo "set cwd" $CWD
     cd ${FLIP[$TODIR]}
     flip set 0 $CWD
   fi
