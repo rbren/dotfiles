@@ -4,6 +4,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
+:set hlsearch
 
 "FROM https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
