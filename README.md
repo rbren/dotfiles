@@ -1,4 +1,4 @@
 bobby-brennan's home directory
 =======
 
-Useful .bashrc and .vimrc setups
+useful .bashrc and .vimrc setups
