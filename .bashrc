@@ -55,6 +55,9 @@ bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
 
 alias src='source ~/.bashrc';
+alias d='docker';
+alias dkill='docker rm $(docker ps -a -q)';
+alias drmi='docker rmi $(docker images -f "dangling=true" -q)';
 
 alias ls='ls -la';
 alias ps='ps aux';
@@ -88,3 +91,5 @@ if [ -f ~/.local-bashrc ]; then
 fi
 
 
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
