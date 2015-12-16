@@ -56,7 +56,8 @@ bind '"\eOB": history-search-forward'
 
 alias src='source ~/.bashrc';
 alias d='docker';
-alias dkill='docker rm $(docker ps -a -q)';
+alias dstop='docker stop $(docker ps -a -q)';
+alias drm='docker rm $(docker ps -a -q)';
 alias drmi='docker rmi $(docker images -f "dangling=true" -q)';
 
 alias ls='ls -la';
