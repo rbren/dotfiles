@@ -11,15 +11,12 @@ export EDITOR=vi
 HISTSIZE=5000
 HISTFILESIZE=10000
 
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
-NO_COLOR="\[\033[0m\]"
+RED="\033[0;31m"
+YELLOW="\033[0;33m"
+GREEN="\033[0;32m"
+NO_COLOR="\033[0m"
 function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-function parse_git_color() {
-  echo "${GREEN}"
 }
 function parse_git_status () {
   git rev-parse --git-dir &> /dev/null
@@ -87,7 +84,11 @@ flip() {
   fi
 }
 
-alias gitcheck='for dir in ~/git/*; do (cd "$dir" && echo && echo && echo "STATUS: $dir" && git status); done'
+gitcheck() {
+  for dir in ~/git/*; do
+    (cd "$dir" && echo -e "$NO_COLOR$(parse_git_status)$NO_COLOR: $dir")
+  done
+}
 
 if [ -f ~/.local-bashrc ]; then
   source ~/.local-bashrc
