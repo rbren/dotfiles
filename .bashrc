@@ -68,7 +68,7 @@ alias npin='npm --save';
 alias npind='npm --save-dev';
 
 export PATH="$PATH:$HOME/npm/bin";
-
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 flip() {
   FLIP_SET='set'
@@ -87,10 +87,9 @@ flip() {
   fi
 }
 
+alias gitcheck='for dir in ~/git/*; do (cd "$dir" && echo && echo && echo "STATUS: $dir" && git status); done'
+
 if [ -f ~/.local-bashrc ]; then
   source ~/.local-bashrc
 fi
 
-
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
