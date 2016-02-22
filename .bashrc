@@ -11,15 +11,12 @@ export EDITOR=vi
 HISTSIZE=5000
 HISTFILESIZE=10000
 
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
-NO_COLOR="\[\033[0m\]"
+RED="\033[0;31m"
+YELLOW="\033[0;33m"
+GREEN="\033[0;32m"
+NO_COLOR="\033[0m"
 function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-function parse_git_color() {
-  echo "${GREEN}"
 }
 function parse_git_status () {
   git rev-parse --git-dir &> /dev/null
@@ -56,7 +53,8 @@ bind '"\eOB": history-search-forward'
 
 alias src='source ~/.bashrc';
 alias d='docker';
-alias dkill='docker rm $(docker ps -a -q)';
+alias dstop='docker stop $(docker ps -a -q)';
+alias drm='docker rm $(docker ps -a -q)';
 alias drmi='docker rmi $(docker images -f "dangling=true" -q)';
 
 alias ls='ls -la';
@@ -67,7 +65,7 @@ alias npin='npm --save';
 alias npind='npm --save-dev';
 
 export PATH="$PATH:$HOME/npm/bin";
-
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 flip() {
   FLIP_SET='set'
@@ -86,10 +84,13 @@ flip() {
   fi
 }
 
+gitcheck() {
+  for dir in ~/git/*; do
+    (cd "$dir" && echo -e "$NO_COLOR$(parse_git_status)$NO_COLOR: $dir")
+  done
+}
+
 if [ -f ~/.local-bashrc ]; then
   source ~/.local-bashrc
 fi
 
-
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

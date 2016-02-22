@@ -6,6 +6,7 @@ set expandtab
 set autoindent
 :set hlsearch
 
+
 "FROM https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
@@ -146,3 +147,8 @@ hi Structure guifg=#72aaca guibg=NONE guisp=NONE gui=NONE ctermfg=110 ctermbg=NO
 hi Underlined guifg=NONE guibg=NONE guisp=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
 hi DiffAdd guifg=#f8f8f8 guibg=#487a1a guisp=#487a1a gui=bold ctermfg=15 ctermbg=2 cterm=bold
 hi TabLine guifg=#797a7b guibg=#212325 guisp=#212325 gui=NONE ctermfg=8 ctermbg=235 cterm=NONE
+
+
+"FROM http://stackoverflow.com/questions/4617059/showing-trailing-spaces-in-vim
+hi ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
