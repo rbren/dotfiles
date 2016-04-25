@@ -8,6 +8,8 @@ fi
 set -o vi
 export EDITOR=vi
 
+git config credential.helper 'cache --timeout=3000'
+
 HISTSIZE=5000
 HISTFILESIZE=10000
 
