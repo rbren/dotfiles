@@ -87,6 +87,10 @@ flip() {
   fi
 }
 
+ghc() {
+  git clone "https://github.com/$1"
+}
+
 gitcheck() {
   for dir in ~/git/*; do
     gitstat=`cd $dir && parse_git_status`
