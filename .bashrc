@@ -60,12 +60,12 @@ alias dstop='docker stop $(docker ps -a -q)';
 alias drm='docker rm $(docker ps -a -q)';
 alias drmi='docker rmi $(docker images -f "dangling=true" -q)';
 
-alias ls='ls -la';
-alias ps='ps aux';
+alias lsl='ls -la';
+alias psa='ps aux';
 
-alias bowin='bower --save';
-alias npin='npm --save';
-alias npind='npm --save-dev';
+alias bowin='bower install --save';
+alias npin='npm install --save';
+alias npind='npm install --save-dev';
 
 export PATH="$PATH:$HOME/npm/bin";
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
