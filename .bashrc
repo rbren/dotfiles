@@ -8,7 +8,7 @@ fi
 set -o vi
 export EDITOR=vi
 
-git config credential.helper 'cache --timeout=3000'
+git config --global credential.helper 'cache --timeout=3000'
 
 HISTSIZE=5000
 HISTFILESIZE=10000
@@ -60,14 +60,14 @@ alias dstop='docker stop $(docker ps -a -q)';
 alias drm='docker rm $(docker ps -a -q)';
 alias drmi='docker rmi $(docker images -f "dangling=true" -q)';
 
-alias ls='ls -la';
-alias ps='ps aux';
+alias lsl='ls -la';
+alias psa='ps aux';
 
 alias diskdirs='du --max-depth=1 -c -h'
 
-alias bowin='bower --save';
-alias npin='npm --save';
-alias npind='npm --save-dev';
+alias bowin='bower install --save';
+alias npin='npm install --save';
+alias npind='npm install --save-dev';
 
 export PATH="$PATH:$HOME/npm/bin";
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
