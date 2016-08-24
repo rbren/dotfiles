@@ -63,6 +63,8 @@ alias drmi='docker rmi $(docker images -f "dangling=true" -q)';
 alias ls='ls -la';
 alias ps='ps aux';
 
+alias diskdirs='du --max-depth=1 -c -h'
+
 alias bowin='bower --save';
 alias npin='npm --save';
 alias npind='npm --save-dev';
