@@ -6,7 +6,6 @@ set expandtab
 set autoindent
 :set hlsearch
 
-
 "FROM https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
