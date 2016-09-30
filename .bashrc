@@ -72,6 +72,7 @@ alias npind='npm install --save-dev';
 
 export PATH="$PATH:$HOME/npm/bin";
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH=~/.npm-global/bin:$PATH
 
 flip() {
   FLIP_SET='set'
