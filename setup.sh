@@ -15,3 +15,4 @@ cd ~/.vim/bundle
 git clone git://github.com/digitaltoad/vim-pug.git
 git clone https://github.com/Quramy/vim-js-pretty-template
 git clone https://github.com/plasticboy/vim-markdown.git
+git clone https://github.com/leafgarland/typescript-vim.git
