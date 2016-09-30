@@ -2,6 +2,8 @@ sudo apt-get update
 sudo apt-get install -y build-essential git python3 python3-pip
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
 
 mkdir git
 git clone https://github.com/bobby-brennan/homedir && cd homedir
