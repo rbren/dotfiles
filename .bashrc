@@ -47,7 +47,7 @@ function parse_git_status () {
 }
 function set_prompt() {
   status=$(parse_git_status)
-  PS1="$GREEN$NO_COLOR:\w${status}$NO_COLOR\$ "
+  PS1="$PROMPT_PREFIX$GREEN$NO_COLOR:\w${status}$NO_COLOR\$ "
 }
 PROMPT_COMMAND=set_prompt
 bind '"\e[A": history-search-backward'
