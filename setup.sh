@@ -5,11 +5,6 @@ sudo apt-get install -y nodejs
 mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
 
-mkdir git
-git clone https://github.com/bobby-brennan/homedir && cd homedir
-cp ./.bashrc ~/
-cp ./.vimrc ~/
-
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 cd ~/.vim/bundle
 git clone git://github.com/digitaltoad/vim-pug.git
