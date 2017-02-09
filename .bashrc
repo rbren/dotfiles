@@ -71,7 +71,9 @@ alias npin='npm install --save';
 alias npind='npm install --save-dev';
 
 export PATH="$PATH:$HOME/npm/bin";
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/Library/Haskell/bin";
+export PATH="$PATH:$HOME/.cabal/bin";
+export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=~/.npm-global/bin:$PATH
 
 flip() {
