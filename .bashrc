@@ -74,6 +74,7 @@ export PATH="$PATH:$HOME/npm/bin";
 export PATH="$PATH:$HOME/Library/Haskell/bin";
 export PATH="$PATH:$HOME/.cabal/bin";
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.local/bin"
 export PATH=~/.npm-global/bin:$PATH
 
 # For nvm
