@@ -27,10 +27,11 @@ function parse_git_status () {
   git_status="$(git status 2> /dev/null)"
   remote_pattern="branch is (.*) by"
   diverge_pattern="branch and (.*) have diverged"
+  status_pattern="working (.*) clean"
   branch="$(parse_git_branch 2> /dev/null)"
   color=$GREEN
   direction=""
-  if [[ ! ${git_status} =~ "working directory clean" ]]; then
+  if [[ ! ${git_status} =~ ${status_pattern} ]]; then
     color="${RED}"
   fi
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
