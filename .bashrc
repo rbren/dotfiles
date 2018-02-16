@@ -58,11 +58,13 @@ bind '"\eOB": history-search-forward'
 alias src='source ~/.bashrc';
 alias d='docker';
 alias dstop='docker stop $(docker ps -a -q)';
-alias drm='docker rm $(docker ps -a -q)';
-alias drmi='docker rmi $(docker images -f "dangling=true" -q)';
+alias drm='sudo docker rm $(docker ps -a -q)';
+alias drmi='sudo docker rmi $(docker images -f "dangling=true" -q)';
+alias dockerclean='sudo docker ps -aq --no-trunc | xargs sudo docker rm || echo 1; sudo docker images -q --filter dangling=true | xargs sudo docker rmi'
 
 alias lsl='ls -la';
 alias psa='ps aux';
+alias seek='grep --color -re';
 
 alias diskdirs='du --max-depth=1 -c -h'
 
@@ -70,12 +72,12 @@ alias bowin='bower install --save';
 alias npin='npm install --save';
 alias npind='npm install --save-dev';
 
-export PATH="$PATH:$HOME/npm/bin";
 export PATH="$PATH:$HOME/Library/Haskell/bin";
 export PATH="$PATH:$HOME/.cabal/bin";
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH=~/.npm-global/bin:$PATH
+export PATH="$PATH:$HOME/anaconda3/bin"
+export PATH="$PATH:`npm config get prefix`"
 
 # For nvm
 export NVM_DIR="$HOME/.nvm"
