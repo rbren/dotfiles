@@ -4,7 +4,7 @@ sudo apt-get install -y build-essential git python3 python3-pip php5-cli
 git config --global user.name "Bobby Brennan"
 git config --global user.email bobby.brennan@gmail.com
 
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
