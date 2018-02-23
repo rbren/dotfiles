@@ -78,7 +78,8 @@ export PATH="$PATH:$HOME/.cabal/bin";
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/anaconda3/bin"
-export PATH="$PATH:`npm config get prefix`"
+export PATH="$PATH:$HOME/anaconda2/bin"
+export PATH="$PATH:`npm config get prefix`/bin"
 
 # For nvm
 export NVM_DIR="$HOME/.nvm"
