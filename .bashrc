@@ -58,9 +58,9 @@ bind '"\eOB": history-search-forward'
 
 alias src='source ~/.bashrc';
 alias d='docker';
-alias dstop='docker stop $(docker ps -a -q)';
-alias drm='sudo docker rm $(docker ps -a -q)';
-alias drmi='sudo docker rmi $(docker images -f "dangling=true" -q)';
+alias dockerstop='sudo docker stop $(sudo docker ps -a -q)';
+alias dockerrm='sudo docker rm $(sudo docker ps -a -q)';
+alias dockerrmi='sudo docker rmi $(sudo docker images -f "dangling=true" -q)';
 alias dockerclean='sudo docker ps -aq --no-trunc | xargs sudo docker rm || echo 1; sudo docker images -q --filter dangling=true | xargs sudo docker rmi'
 
 alias lsl='ls -la';
