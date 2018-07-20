@@ -66,7 +66,7 @@ alias dockercleanimg='sudo docker images -q --filter dangling=true | xargs sudo 
 alias dockercleanvol='sudo docker volume ls -qf dangling=true | xargs -r sudo docker volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
 
-alias lsl='ls -la';
+alias lsl='ls -lah';
 alias psa='ps aux';
 alias seek='grep --color -re';
 
