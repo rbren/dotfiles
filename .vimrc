@@ -6,6 +6,9 @@ set expandtab
 set autoindent
 :set hlsearch
 
+"underscores are work breakpoints
+:set iskeyword-=_
+
 "FROM https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
