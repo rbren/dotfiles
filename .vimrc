@@ -4,7 +4,14 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
+
 :set hlsearch
+
+nmap <silent> <C-Up> :wincmd k<CR>
+nmap <silent> <C-Down> :wincmd j<CR>
+nmap <silent> <C-Left> :wincmd h<CR>
+nmap <silent> <C-Right> :wincmd l<CR>
+nmap <silent> <C-h> :wincmd H<CR>
 
 "underscores are work breakpoints
 :set iskeyword-=_
