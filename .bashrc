@@ -127,3 +127,4 @@ if [ -f ~/.local-bashrc ]; then
   source ~/.local-bashrc
 fi
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
