@@ -13,6 +13,12 @@ nmap <silent> <C-Left> :wincmd h<CR>
 nmap <silent> <C-Right> :wincmd l<CR>
 nmap <silent> <C-h> :wincmd H<CR>
 
+"autocmd InsertEnter * set cursorline
+"autocmd InsertLeave * set nocursorline
+
+
+au FileType python setl sw=4 sts=4 et
+
 "underscores are work breakpoints
 :set iskeyword-=_
 
