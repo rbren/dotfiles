@@ -1,5 +1,5 @@
 sudo apt-get update
-sudo apt-get install -y build-essential git python3 python3-pip python2.7 python-pip php5-cli
+sudo apt-get install -y build-essential git python3 python3-pip python2.7 python-pip php5-cli tmux
 
 git config --global user.name "Bobby Brennan"
 git config --global user.email bobby.brennan@gmail.com
