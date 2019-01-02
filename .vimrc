@@ -6,6 +6,7 @@ set expandtab
 set autoindent
 
 :set hlsearch
+highlight Search guibg='Purple' guifg='NONE'
 
 nmap <silent> <C-Up> :wincmd k<CR>
 nmap <silent> <C-Down> :wincmd j<CR>
@@ -100,7 +101,6 @@ hi cssclassname guifg=#72aaca guibg=NONE guisp=NONE gui=NONE ctermfg=110 ctermbg
 
 hi pythonBuiltin guifg=#5f87d7 guibg=NONE guisp=NONE gui=NONE ctermfg=68 ctermbg=NONE cterm=NONE
 
-"hi IncSearch -- no settings --
 hi WildMenu guifg=#1c1c1c guibg=#ffff99 guisp=#ffff99 gui=NONE ctermfg=234 ctermbg=228 cterm=NONE
 "hi SignColumn -- no settings --
 hi SpecialComment guifg=#f8f8f8 guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
@@ -122,6 +122,7 @@ hi Label guifg=#f6f6f6 guibg=NONE guisp=NONE gui=NONE ctermfg=255 ctermbg=NONE c
 "hi CTagsImport -- no settings --
 hi PMenuSel guifg=#ffffff guibg=#3498DB guisp=#3498DB gui=bold ctermfg=15 ctermbg=74 cterm=bold
 hi Search guifg=#16191c guibg=#fffebe guisp=#fffebe gui=NONE ctermfg=234 ctermbg=229 cterm=NONE
+hi IncSearch guifg=#cccccc guibg=#cccccc guisp=#cccccc gui=NONE ctermfg=15 ctermbg=74 cterm=NONE
 "hi CTagsGlobalVariable -- no settings --
 hi Delimiter guifg=#f8f8f8 guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
 "hi SpellRare -- no settings --
