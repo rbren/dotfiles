@@ -5,7 +5,7 @@ cp .vimrc ~/
 cp .tmux.conf ~/
 
 sudo apt-get update
-sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 tmux
+sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 golang-go tmux
 
 curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs
@@ -18,6 +18,12 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 sudo apt update
 sudo apt install -y docker-ce
+
+# Install kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl/
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
 
 git config --global user.name "Bobby Brennan"
 git config --global user.email bobby.brennan@gmail.com
