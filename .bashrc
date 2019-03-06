@@ -62,13 +62,14 @@ bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
 
 alias src='source ~/.bashrc';
-alias d='docker';
-alias dockerstop='sudo docker stop $(sudo docker ps -a -q)';
-alias dockerrm='sudo docker rm $(sudo docker ps -a -q)';
-alias dockerrmi='sudo docker rmi $(sudo docker images -f "dangling=true" -q)';
-alias dockercleanproc='sudo docker ps -aq --no-trunc | xargs sudo docker rm'
-alias dockercleanimg='sudo docker images -q --filter dangling=true | xargs sudo docker rmi'
-alias dockercleanvol='sudo docker volume ls -qf dangling=true | xargs -r sudo docker volume rm'
+alias k='kubectl';
+alias d='sudo docker';
+alias dockerstop='d stop $(d ps -a -q)';
+alias dockerrm='d rm $(d ps -a -q)';
+alias dockerrmi='d rmi $(d images -f "dangling=true" -q)';
+alias dockercleanproc='d ps -aq --no-trunc | xargs d rm'
+alias dockercleanimg='d images -q --filter dangling=true | xargs d rmi'
+alias dockercleanvol='d volume ls -qf dangling=true | xargs -r d volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
 
 alias lsl='ls -lah';
