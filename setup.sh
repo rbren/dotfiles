@@ -3,13 +3,19 @@ set -e
 sudo apt-get update
 sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 tmux
 
+sudo apt-get install -y nodejs
+mkdir -p ~/.npm-global
+npm config set prefix '~/.npm-global'
+
+# Install docker: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+sudo apt install -y docker-ce
+
 git config --global user.name "Bobby Brennan"
 git config --global user.email bobby.brennan@gmail.com
-
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y nodejs
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 cd ~/.vim/bundle
