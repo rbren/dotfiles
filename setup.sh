@@ -1,8 +1,13 @@
 set -e
 
+cp .bashrc ~/
+cp .vimrc ~/
+cp .tmux.conf ~/
+
 sudo apt-get update
 sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 tmux
 
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs
 mkdir -p ~/.npm-global
 npm config set prefix '~/.npm-global'
@@ -23,3 +28,5 @@ git clone git://github.com/digitaltoad/vim-pug.git
 git clone https://github.com/Quramy/vim-js-pretty-template
 git clone https://github.com/plasticboy/vim-markdown.git
 git clone https://github.com/leafgarland/typescript-vim.git
+
+source ~/.bashrc
