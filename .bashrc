@@ -82,6 +82,10 @@ alias bowin='bower install --save';
 alias npin='npm install --save';
 alias npind='npm install --save-dev';
 
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/git/go
+
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH="$PATH:$HOME/Library/Haskell/bin";
 export PATH="$PATH:$HOME/.cabal/bin";
 export PATH="$PATH:$HOME/.rvm/bin"
