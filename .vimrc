@@ -19,6 +19,7 @@ nmap <silent> <C-h> :wincmd H<CR>
 
 
 au FileType python setl sw=4 sts=4 et
+au FileType go setl autoindent noexpandtab tabstop=4 shiftwidth=4
 
 "underscores are work breakpoints
 :set iskeyword-=_
