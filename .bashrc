@@ -53,7 +53,7 @@ function parse_git_status () {
 function set_prompt() {
   status=$(parse_git_status)
   ip=$(curl -s http://whatismyip.akamai.com/)
-  PS1="${YELLOW}$PROMPT_PREFIX${NO_COLOR} ${ip} \w${status}$NO_COLOR\$ "
+  PS1="${YELLOW}$PROMPT_PREFIX${NO_COLOR} ${ip} \w${status}$NO_COLOR\n\$ "
 }
 PROMPT_COMMAND=set_prompt
 bind '"\e[A": history-search-backward'
@@ -62,7 +62,8 @@ bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
 
 alias src='source ~/.bashrc';
-alias d='docker';
+alias d='sudo docker';
+alias k='kubectl';
 alias dockerstop='sudo docker stop $(sudo docker ps -a -q)';
 alias dockerrm='sudo docker rm $(sudo docker ps -a -q)';
 alias dockerrmi='sudo docker rmi $(sudo docker images -f "dangling=true" -q)';
