@@ -14,10 +14,24 @@ git config --global credential.helper 'cache --timeout=3000'
 HISTSIZE=5000
 HISTFILESIZE=10000
 
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
-NO_COLOR="\[\033[0m\]"
+export COLOR_NC='\e[0m' # No Color
+export COLOR_WHITE='\e[1;37m'
+export COLOR_BLACK='\e[0;30m'
+export COLOR_BLUE='\e[0;34m'
+export COLOR_LIGHT_BLUE='\e[1;34m'
+export COLOR_GREEN='\e[0;32m'
+export COLOR_LIGHT_GREEN='\e[1;32m'
+export COLOR_CYAN='\e[0;36m'
+export COLOR_LIGHT_CYAN='\e[1;36m'
+export COLOR_RED='\e[0;31m'
+export COLOR_LIGHT_RED='\e[1;31m'
+export COLOR_PURPLE='\e[0;35m'
+export COLOR_LIGHT_PURPLE='\e[1;35m'
+export COLOR_BROWN='\e[0;33m'
+export COLOR_YELLOW='\e[1;33m'
+export COLOR_GOLD='\e[0;33m'
+export COLOR_GRAY='\e[0;30m'
+export COLOR_LIGHT_GRAY='\e[0;37m'
 
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
     tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
@@ -33,27 +47,33 @@ function parse_git_status () {
   diverge_pattern="branch and (.*) have diverged"
   status_pattern="working (.*) clean"
   branch="$(parse_git_branch 2> /dev/null)"
-  color=$GREEN
+  color=$COLOR_GREEN
   direction=""
   if [[ ! ${git_status} =~ ${status_pattern} ]]; then
-    color="${RED}"
+    color="${COLOR_RED}"
   fi
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
     if [[ ${BASH_REMATCH[1]} =~ "ahead" ]]; then
-      direction="${YELLOW}↑"
+      direction="${COLOR_YELLOW}↑"
     else
-      direction="${YELLOW}↓"
+      direction="${COLOR_YELLOW}↓"
     fi
   fi
   if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-    direction="${YELLOW}↕"
+    direction="${COLOR_YELLOW}↕"
   fi
   echo "$color$branch$direction"
 }
 function set_prompt() {
   status=$(parse_git_status)
   ip=$(curl -s http://whatismyip.akamai.com/)
-  PS1="${YELLOW}$PROMPT_PREFIX${NO_COLOR} ${ip} \w${status}$NO_COLOR\n\$ "
+
+  prefix="${COLOR_GOLD}${PROMPT_PREFIX}${COLOR_NC}"
+  if [ -n "$PROMPT_PREFIX" ]; then
+    prefix="$prefix "
+  fi
+  prefix="${prefix}${COLOR_CYAN}${ip}${COLOR_NC}"
+  PS1="$prefix \w${status}$COLOR_NC\n\$ "
 }
 PROMPT_COMMAND=set_prompt
 bind '"\e[A": history-search-backward'
@@ -122,7 +142,7 @@ ghc() {
 gitcheck() {
   for dir in ~/git/*; do
     gitstat=`cd $dir && parse_git_status`
-    gitstat=$NO_COLOR$gitstat$NO_COLOR
+    gitstat=$COLOR_NC$gitstat$COLOR_NC
     gitstat=${gitstat//\\[/}
     gitstat=${gitstat//\\]/}
     (cd "$dir" && echo -e "$gitstat: $dir")
