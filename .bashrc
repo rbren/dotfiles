@@ -53,7 +53,7 @@ function parse_git_status () {
 function set_prompt() {
   status=$(parse_git_status)
   ip=$(curl -s http://whatismyip.akamai.com/)
-  PS1="${YELLOW}$PROMPT_PREFIX${NO_COLOR} ${ip} \w${status}$NO_COLOR\$ "
+  PS1="${YELLOW}$PROMPT_PREFIX${NO_COLOR} ${ip} \w${status}$NO_COLOR\n\$ "
 }
 PROMPT_COMMAND=set_prompt
 bind '"\e[A": history-search-backward'
