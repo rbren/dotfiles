@@ -73,8 +73,15 @@ function set_prompt() {
     prefix="$prefix "
   fi
   prefix="${prefix}${COLOR_CYAN}${ip}${COLOR_NC}"
-  PS1="$prefix \w${status}$COLOR_NC\n\$ "
+  pentagon=""
+  if [ -n "$INVENTORY" ]; then
+    pentagon=" {$PROJECT - $INVENTORY}"
+  fi
+  PS1="$prefix \w${status}${pentagon}$COLOR_NC\n\$ "
 }
+
+export PENTAGON_WORKON_PS1="${PS1}${VENV_PS1}($PROJECT)"
+
 PROMPT_COMMAND=set_prompt
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
