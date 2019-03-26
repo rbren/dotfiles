@@ -65,6 +65,11 @@ function parse_git_status () {
   echo "$color$branch$direction"
 }
 function set_prompt() {
+  exit_code=$?
+  os_color=$COLOR_GREEN
+  if [ $exit_code -ne 0 ]; then
+    os_color=$COLOR_RED
+  fi
   status=$(parse_git_status)
   ip=$(curl -s http://whatismyip.akamai.com/)
 
@@ -75,9 +80,10 @@ function set_prompt() {
   prefix="${prefix}${COLOR_CYAN}${ip}${COLOR_NC}"
   pentagon=""
   if [ -n "$INVENTORY" ]; then
-    pentagon=" {$PROJECT - $INVENTORY}"
+    pentagon=" ${COLOR_PURPLE}{$PROJECT - $INVENTORY}"
   fi
-  PS1="$prefix \w${status}${pentagon}$COLOR_NC\n\$ "
+  os=$'\uf31b'
+  PS1="$os_color$os $prefix \w${status}${pentagon}$COLOR_NC\n\$ "
 }
 
 export PENTAGON_WORKON_PS1="${PS1}${VENV_PS1}($PROJECT)"
@@ -161,3 +167,4 @@ if [ -f ~/.local-bashrc ]; then
 fi
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
