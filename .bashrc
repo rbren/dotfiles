@@ -1,8 +1,5 @@
 # .bashrc
 
-# Note: required font in nerd-font.ttf, or
-# https://nerdfonts.com/fonts/Symbols-2048-em Nerd Font Complete.ttf
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
@@ -16,6 +13,8 @@ git config --global credential.helper 'cache --timeout=3000'
 
 HISTSIZE=5000
 HISTFILESIZE=10000
+
+export IP_ADDRESS=$(curl -s http://whatismyip.akamai.com/)
 
 export COLOR_NC='\e[0m' # No Color
 export COLOR_WHITE='\e[1;37m'
@@ -74,13 +73,12 @@ function set_prompt() {
     os_color=$COLOR_RED
   fi
   status=$(parse_git_status)
-  ip=$(curl -s http://whatismyip.akamai.com/)
 
   prefix="${COLOR_GOLD}${PROMPT_PREFIX}${COLOR_NC}"
   if [ -n "$PROMPT_PREFIX" ]; then
     prefix="$prefix "
   fi
-  prefix="${prefix}${COLOR_CYAN}${ip}${COLOR_NC}"
+  prefix="${prefix}${COLOR_CYAN}${IP_ADDRESS}${COLOR_NC}"
   pentagon=""
   if [ -n "$INVENTORY" ]; then
     pentagon=" ${COLOR_PURPLE}{$PROJECT - $INVENTORY}"
