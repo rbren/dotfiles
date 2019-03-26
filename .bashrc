@@ -1,5 +1,8 @@
 # .bashrc
 
+# Note: required font in nerd-font.ttf, or
+# https://nerdfonts.com/fonts/Symbols-2048-em Nerd Font Complete.ttf
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
