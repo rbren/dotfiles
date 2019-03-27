@@ -69,7 +69,7 @@ function parse_git_status () {
 function set_prompt() {
   exit_code=$?
   os_color=$COLOR_GREEN
-  if [ $exit_code -ne 0 ]; then
+  if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
     os_color=$COLOR_RED
   fi
   status=$(parse_git_status)
