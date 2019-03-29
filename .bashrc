@@ -69,11 +69,7 @@ function parse_git_status () {
 }
 function set_prompt() {
   exit_code=$?
-  os_color=$COLOR_GREEN
-  if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
-    os_color=$COLOR_RED
-  fi
-  status=$(parse_git_status)
+  git_status=$(parse_git_status)
 
   prefix="${COLOR_GOLD}${PROMPT_PREFIX}${COLOR_NC}"
   if [ -n "$PROMPT_PREFIX" ]; then
@@ -85,7 +81,13 @@ function set_prompt() {
     pentagon=" ${COLOR_PURPLE}{$PROJECT - $INVENTORY}"
   fi
   os=$'\uf31b'
-  PS1="$os_color$os $prefix \w${status}${pentagon}$COLOR_NC\n\$ "
+  #indicator=$os TODO: unicode screws up tmux
+  indicator=^
+  indicator_color=$COLOR_GREEN
+  if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
+    indicator_color=$COLOR_RED
+  fi
+  PS1="$indicator_color$indicator $prefix \w${git_status}${pentagon}$COLOR_NC\n\$ "
   history -a
 }
 
