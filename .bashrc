@@ -13,6 +13,7 @@ git config --global credential.helper 'cache --timeout=3000'
 
 HISTSIZE=5000
 HISTFILESIZE=10000
+shopt -s histappend
 
 export IP_ADDRESS=$(curl -s http://whatismyip.akamai.com/)
 
@@ -85,6 +86,7 @@ function set_prompt() {
   fi
   os=$'\uf31b'
   PS1="$os_color$os $prefix \w${status}${pentagon}$COLOR_NC\n\$ "
+  history -a
 }
 
 export PENTAGON_WORKON_PS1="${PS1}${VENV_PS1}($PROJECT)"
