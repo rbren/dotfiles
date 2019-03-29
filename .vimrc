@@ -19,7 +19,14 @@ nmap <silent> <C-h> :wincmd H<CR>
 
 
 au FileType python setl sw=4 sts=4 et
-au FileType go setl autoindent noexpandtab tabstop=4 shiftwidth=4
+au FileType go setl autoindent noexpandtab tabstop=8 softtabstop=0 shiftwidth=4 smarttab
+
+"Disable arrow keys to force use of hjkl
+nnoremap <Left> :echo "No Left for you!"<CR>
+nnoremap <Right> :echo "No Right for you!"<CR>
+nnoremap <Up> :echo "No Up for you!"<CR>
+nnoremap <Down> :echo "No Down for you!"<CR>
+
 
 "underscores are work breakpoints
 :set iskeyword-=_
