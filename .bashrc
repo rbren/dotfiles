@@ -153,6 +153,10 @@ flip() {
   fi
 }
 
+watchhn() {
+  while true; do clear; date;echo;hn top; sleep 360; done
+}
+
 ghc() {
   git clone "https://github.com/$1"
 }
