@@ -44,6 +44,14 @@ function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 function parse_git_status () {
+  if [ ! -d ".git" ]; then
+    return 0
+  fi
+  last_fetch=$(stat -c %Y .git/FETCH_HEAD)
+  time_now=$(date +%s)
+  if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
+    git fetch
+  fi
   git rev-parse --git-dir &> /dev/null
   git_status="$(git status 2> /dev/null)"
   remote_pattern="branch is (.*) by"
