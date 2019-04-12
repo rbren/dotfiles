@@ -107,8 +107,10 @@ bind '"\e[B": history-search-forward'
 bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
 
+alias vi='vim';
 alias src='source ~/.bashrc';
 alias k='kubectl';
+alias wk='watch kubectl';
 alias d='sudo docker';
 alias dockerstop='d stop $(d ps -a -q)';
 alias dockerrm='d rm $(d ps -a -q)';
