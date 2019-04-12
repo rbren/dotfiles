@@ -110,7 +110,7 @@ bind '"\eOB": history-search-forward'
 alias vi='vim';
 alias src='source ~/.bashrc';
 alias k='kubectl';
-alias wk='watch kubectl';
+alias kw='watch kubectl';
 alias d='sudo docker';
 alias dockerstop='d stop $(d ps -a -q)';
 alias dockerrm='d rm $(d ps -a -q)';
@@ -127,8 +127,8 @@ function dpush() {
       BUILDDIR=$2
   fi
   d build -t $1 $BUILDDIR
-  d tag $1 quay.io/robertbrennan/$1
-  d push quay.io/robertbrennan/$1
+  d tag $1 quay.io/reactiveops/$1
+  d push quay.io/reactiveops/$1
 }
 
 alias lsl='ls -lah --color=auto';
