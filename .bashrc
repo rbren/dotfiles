@@ -50,7 +50,7 @@ function parse_git_status () {
   last_fetch=$(stat -c %Y .git/FETCH_HEAD)
   time_now=$(date +%s)
   if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
-    git fetch
+    GIT_TERMINAL_PROMPT=0 git fetch
   fi
   git rev-parse --git-dir &> /dev/null
   git_status="$(git status 2> /dev/null)"
@@ -117,6 +117,17 @@ alias dockercleanproc='d ps -aq --no-trunc | xargs d rm'
 alias dockercleanimg='d images -q --filter dangling=true | xargs d rmi'
 alias dockercleanvol='d volume ls -qf dangling=true | xargs -r d volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
+function dpush() {
+  if [ $# -eq 1 ]
+    then
+      BUILDDIR="."
+    else
+      BUILDDIR=$2
+  fi
+  d build -t $1 $BUILDDIR
+  d tag $1 quay.io/robertbrennan/$1
+  d push quay.io/robertbrennan/$1
+}
 
 alias lsl='ls -lah --color=auto';
 alias psa='ps aux';
