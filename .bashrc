@@ -120,6 +120,7 @@ alias dockercleanimg='d images -q --filter dangling=true | xargs d rmi'
 alias dockercleanvol='d volume ls -qf dangling=true | xargs -r d volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
 function dpush() {
+  set -e
   if [ $# -eq 1 ]
     then
       BUILDDIR="."
@@ -152,6 +153,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/anaconda3/bin"
 export PATH="$PATH:$HOME/anaconda2/bin"
 export PATH="$PATH:`npm config get prefix`/bin"
+export PATH="$PATH:$HOME/.linuxbrew/bin/:/home/linuxbrew/.linuxbrew/bin/"
 
 # For nvm
 export NVM_DIR="$HOME/.nvm"
