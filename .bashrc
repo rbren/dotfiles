@@ -64,13 +64,13 @@ function parse_git_status () {
   fi
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
     if [[ ${BASH_REMATCH[1]} =~ "ahead" ]]; then
-      direction="${COLOR_YELLOW}↑"
+      direction="${COLOR_BLUE}↑"
     else
       direction="${COLOR_YELLOW}↓"
     fi
   fi
   if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-    direction="${COLOR_YELLOW}↕"
+    direction="${COLOR_RED}↕"
   fi
   echo "$color$branch$direction"
 }
