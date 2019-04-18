@@ -111,6 +111,7 @@ alias vi='vim';
 alias src='source ~/.bashrc';
 alias k='kubectl';
 alias kw='watch kubectl';
+alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
 alias d='sudo docker';
 alias dockerstop='d stop $(d ps -a -q)';
 alias dockerrm='d rm $(d ps -a -q)';
@@ -119,6 +120,7 @@ alias dockercleanproc='d ps -aq --no-trunc | xargs d rm'
 alias dockercleanimg='d images -q --filter dangling=true | xargs d rmi'
 alias dockercleanvol='d volume ls -qf dangling=true | xargs -r d volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
+
 function dpush() {
   set -e
   if [ $# -eq 1 ]
