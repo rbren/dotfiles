@@ -44,13 +44,12 @@ function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 function parse_git_status () {
-  if [ ! -d ".git" ]; then
-    return 0
-  fi
-  last_fetch=$(stat -c %Y .git/FETCH_HEAD)
-  time_now=$(date +%s)
-  if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
-    GIT_TERMINAL_PROMPT=0 git fetch
+  if [ -d ".git" ]; then
+    last_fetch=$(stat -c %Y .git/FETCH_HEAD)
+    time_now=$(date +%s)
+    if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
+      GIT_TERMINAL_PROMPT=0 git fetch
+    fi
   fi
   git rev-parse --git-dir &> /dev/null
   git_status="$(git status 2> /dev/null)"
@@ -95,7 +94,8 @@ function set_prompt() {
   if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
     indicator_color=$COLOR_RED
   fi
-  PS1="$indicator_color$indicator $prefix \w${git_status}${pentagon}$COLOR_NC\n\$ "
+  FULL_PROMPT="$indicator_color$indicator $prefix \w${git_status}${pentagon}$COLOR_NC\n\$ "
+  PS1=$FULL_PROMPT
   history -a
 }
 
