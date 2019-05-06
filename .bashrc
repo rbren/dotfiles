@@ -4,6 +4,9 @@
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
+if [ -f /home/ubuntu/.pentagon/config ]; then
+        . /home/ubuntu/.pentagon/config
+fi
 
 
 set -o vi
@@ -201,4 +204,3 @@ if [ -f ~/.local-bashrc ]; then
 fi
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
