@@ -120,9 +120,9 @@ alias d='sudo docker';
 alias dockerstop='d stop $(d ps -a -q)';
 alias dockerrm='d rm $(d ps -a -q)';
 alias dockerrmi='d rmi $(d images -f "dangling=true" -q)';
-alias dockercleanproc='d ps -aq --no-trunc | xargs d rm'
-alias dockercleanimg='d images -q --filter dangling=true | xargs d rmi'
-alias dockercleanvol='d volume ls -qf dangling=true | xargs -r d volume rm'
+alias dockercleanproc='d ps -aq --no-trunc | xargs sudo docker rm'
+alias dockercleanimg='d images -q --filter dangling=true | xargs sudo docker rmi'
+alias dockercleanvol='d volume ls -qf dangling=true | xargs -r sudo docker volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
 
 function dpush() {
