@@ -18,6 +18,7 @@ nmap <silent> <C-h> :wincmd H<CR>
 "autocmd InsertLeave * set nocursorline
 
 
+setl sw=2 sts=2 et
 au FileType python setl sw=4 sts=4 et
 au FileType go setl autoindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab
 au FileType go hi Conceal guibg=NONE ctermbg=NONE ctermfg=DarkGrey
@@ -25,6 +26,7 @@ au FileType go autocmd BufWinEnter * setl conceallevel=2 concealcursor=nv
 au FileType go autocmd BufWinEnter * syn match LeadingSpace /\(^ *\)\@<= / containedin=ALL conceal cchar=>
 au FileType go autocmd BufReadPre * setl conceallevel=2 concealcursor=nv
 au FileType go autocmd BufReadPre * syn match LeadingSpace /\(^ *\)\@<= / containedin=ALL conceal cchar=>
+let g:vim_markdown_folding_disabled = 1
 
 "Disable arrow keys to force use of hjkl
 nnoremap <Left> :echo "No Left for you!"<CR>
