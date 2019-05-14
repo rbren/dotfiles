@@ -103,6 +103,7 @@ function set_prompt() {
 }
 
 export PENTAGON_WORKON_PS1="${PS1}${VENV_PS1}($PROJECT)"
+alias cc='cuddlectl'
 
 PROMPT_COMMAND=set_prompt
 bind '"\e[A": history-search-backward'
