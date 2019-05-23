@@ -59,15 +59,17 @@ function parse_git_status () {
   branch="$(parse_git_branch 2> /dev/null)"
   if [[ -n "$(git remote -v)" ]]; then
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
-    behind="$(echo $branch_status | sed '$s/\s\+.*//')"
+    behind_master="$(echo $branch_status | sed '$s/\s\+.*//')"
   else
-    behind="0"
+    behind_master="0"
   fi
   if [[ -n "$(git ls-remote origin $branch)" ]]; then
     branch_status="$(git rev-list --left-right --count origin/$branch...$branch)"
-    ahead="$(echo $branch_status | sed '$s/.*\s\+//')"
+    behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
+    ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
   else
-    ahead="0"
+    ahead_branch="0"
+    behind_branch="0"
   fi
   git_status="$(git status 2> /dev/null)"
   status_pattern="working (.*) clean"
@@ -77,11 +79,15 @@ function parse_git_status () {
     color="${COLOR_GREEN}"
   fi
   direction=""
-  if [[ ${behind} -eq 0 && ${ahead} -eq 0 ]]; then
+  if [[ ${behind_master} -eq 0 && ${ahead_branch} -eq 0 ]]; then
 	direction=""
-  elif [[ ${behind} -eq 0 && ${ahead} -ne 0 ]]; then
-	direction="${COLOR_LIGHT_BLUE}↑"
-  elif [[ ${behind} -ne 0 && ${ahead} -eq 0 ]]; then
+  elif [[ ${behind_master} -eq 0 && ${ahead_branch} -ne 0 ]]; then
+    if [[ ${behind_branch} -eq 0 ]]; then
+      direction="${COLOR_LIGHT_BLUE}↑"
+    else
+      direction="${COLOR_RED}↑"
+    fi
+  elif [[ ${behind_master} -ne 0 && ${ahead_branch} -eq 0 ]]; then
 	direction="${COLOR_YELLOW}↓"
   else
 	direction="${COLOR_RED}↕"
