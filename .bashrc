@@ -59,8 +59,15 @@ function parse_git_status () {
   branch="$(parse_git_branch 2> /dev/null)"
   if [[ -n "$(git remote -v)" ]]; then
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
+    behind="$(echo $branch_status | sed '$s/\s\+.*//')"
   else
-    branch_status="0 0"
+    behind="0"
+  fi
+  if [[ -n "$(git ls-remote origin $branch)" ]]; then
+    branch_status="$(git rev-list --left-right --count origin/$branch...$branch)"
+    ahead="$(echo $branch_status | sed '$s/.*\s\+//')"
+  else
+    ahead="0"
   fi
   git_status="$(git status 2> /dev/null)"
   status_pattern="working (.*) clean"
@@ -70,9 +77,6 @@ function parse_git_status () {
     color="${COLOR_GREEN}"
   fi
   direction=""
-  ahead="$(echo $branch_status | sed '$s/.*\s\+//')"
-  behind="$(echo $branch_status | sed '$s/\s\+.*//')"
-  status_parts=($branch_status)
   if [[ ${behind} -eq 0 && ${ahead} -eq 0 ]]; then
 	direction=""
   elif [[ ${behind} -eq 0 && ${ahead} -ne 0 ]]; then
