@@ -44,38 +44,41 @@ if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
 fi
 
 function parse_git_branch () {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 function parse_git_status () {
-  if [ -d ".git" ]; then
-    last_fetch=$(stat -c %Y .git/FETCH_HEAD)
-    time_now=$(date +%s)
-    if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
-      GIT_TERMINAL_PROMPT=0 git fetch
-    fi
+  if ! [ -d ".git" ]; then
+    return
+  fi
+  last_fetch=$(stat -c %Y .git/FETCH_HEAD)
+  time_now=$(date +%s)
+  if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
+    GIT_TERMINAL_PROMPT=0 git fetch
   fi
   git rev-parse --git-dir &> /dev/null
-  git_status="$(git status 2> /dev/null)"
-  remote_pattern="branch is (.*) by"
-  diverge_pattern="branch and (.*) have diverged"
-  status_pattern="working (.*) clean"
   branch="$(parse_git_branch 2> /dev/null)"
-  color=$COLOR_GREEN
-  direction=""
+  branch_status="$(git rev-list --left-right --count origin/master...$branch)"
+  git_status="$(git status 2> /dev/null)"
+  status_pattern="working (.*) clean"
   if [[ ! ${git_status} =~ ${status_pattern} ]]; then
     color="${COLOR_RED}"
+  else
+    color="${COLOR_GREEN}"
   fi
-  if [[ ${git_status} =~ ${remote_pattern} ]]; then
-    if [[ ${BASH_REMATCH[1]} =~ "ahead" ]]; then
-      direction="${COLOR_LIGHT_BLUE}↑"
-    else
-      direction="${COLOR_YELLOW}↓"
-    fi
+  direction=""
+  ahead="$(echo $branch_status | sed '$s/.*\s\+//')"
+  behind="$(echo $branch_status | sed '$s/\s\+.*//')"
+  status_parts=($branch_status)
+  if [[ ${behind} -eq 0 && ${ahead} -eq 0 ]]; then
+	direction=""
+  elif [[ ${behind} -eq 0 && ${ahead} -ne 0 ]]; then
+	direction="${COLOR_LIGHT_BLUE}↑"
+  elif [[ ${behind} -ne 0 && ${ahead} -eq 0 ]]; then
+	direction="${COLOR_YELLOW}↓"
+  else
+	direction="${COLOR_RED}↕"
   fi
-  if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-    direction="${COLOR_RED}↕"
-  fi
-  echo "$color$branch$direction"
+  echo "$color($branch)$direction"
 }
 function set_prompt() {
   exit_code=$?
