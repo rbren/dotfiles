@@ -71,8 +71,8 @@ function parse_git_status () {
     echo "$color($branch)${COLOR_YELLOW}?"
     return
   fi
-  if [[ -n "$(git ls-remote origin $branch)" ]]; then
-    branch_status="$(git rev-list --left-right --count origin/$branch...$branch)"
+  if [[ -n "$(GIT_TERMINAL_PROMPT=0 git ls-remote origin $branch)" ]]; then
+    branch_status="$(GIT_TERMINAL_PROMPT=0 git rev-list --left-right --count origin/$branch...$branch)"
     behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
     ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
   else
@@ -89,7 +89,11 @@ function parse_git_status () {
       direction="${COLOR_RED}↑"
     fi
   elif [[ ${behind_master} -ne 0 && ${ahead_branch} -eq 0 ]]; then
-	direction="${COLOR_YELLOW}↓"
+    if [[ ${branch} == "master" ]]; then
+      direction="${COLOR_YELLOW}↓"
+    else
+      direction="${COLOR_RED}↓"
+    fi
   else
 	direction="${COLOR_RED}↕"
   fi
