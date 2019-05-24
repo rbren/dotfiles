@@ -57,11 +57,19 @@ function parse_git_status () {
   fi
   git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
+  git_status="$(git status 2> /dev/null)"
+  status_pattern="working (.*) clean"
+  if [[ ! ${git_status} =~ ${status_pattern} ]]; then
+    color="${COLOR_RED}"
+  else
+    color="${COLOR_GREEN}"
+  fi
   if [[ -n "$(git remote -v)" ]]; then
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
     behind_master="$(echo $branch_status | sed '$s/\s\+.*//')"
   else
-    behind_master="0"
+    echo "$color($branch)${COLOR_YELLOW}?"
+    return
   fi
   if [[ -n "$(git ls-remote origin $branch)" ]]; then
     branch_status="$(git rev-list --left-right --count origin/$branch...$branch)"
@@ -70,13 +78,6 @@ function parse_git_status () {
   else
     ahead_branch="0"
     behind_branch="0"
-  fi
-  git_status="$(git status 2> /dev/null)"
-  status_pattern="working (.*) clean"
-  if [[ ! ${git_status} =~ ${status_pattern} ]]; then
-    color="${COLOR_RED}"
-  else
-    color="${COLOR_GREEN}"
   fi
   direction=""
   if [[ ${behind_master} -eq 0 && ${ahead_branch} -eq 0 ]]; then
