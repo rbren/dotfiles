@@ -14,9 +14,6 @@ nmap <silent> <C-Left> :wincmd h<CR>
 nmap <silent> <C-Right> :wincmd l<CR>
 nmap <silent> <C-h> :wincmd H<CR>
 
-"autocmd InsertEnter * set cursorline
-"autocmd InsertLeave * set nocursorline
-
 
 setl sw=2 sts=2 et
 au FileType python setl sw=4 sts=4 et
@@ -33,6 +30,42 @@ nnoremap <Left> :echo "No Left for you!"<CR>
 nnoremap <Right> :echo "No Right for you!"<CR>
 nnoremap <Up> :echo "No Up for you!"<CR>
 nnoremap <Down> :echo "No Down for you!"<CR>
+
+" From: https://aonemd.github.io/blog/minimal-vim
+"more characters will be sent to the screen for redrawing
+:set ttyfast
+"time waited for key press(es) to complete. It makes for a faster key response
+:set ttimeout
+:set ttimeoutlen=50
+"make backspace behave properly in insert mode
+:set backspace=indent,eol,start
+"display incomplete commands
+:set showcmd
+"a better menu in command mode
+:set wildmenu
+:set wildmode=longest:full,full
+"disable soft wrap for lines
+:set nowrap
+"always display the status line
+:set laststatus=2
+"display line numbers on the left side
+:set number
+"show relative lines below and above current line
+:set relativenumber
+"display text width column
+:set colorcolumn=101
+"new splits will be at the bottom or to the right side of the screen
+:set splitbelow
+:set splitright
+"always set autoindenting on
+:set autoindent
+"incremental search
+:set incsearch
+"highlight search
+:set hlsearch
+"searches are case insensitive unless they contain at least one capital letter
+:set ignorecase
+:set smartcase
 
 
 "underscores are work breakpoints
@@ -71,6 +104,7 @@ endif
 set t_Co=256
 let g:colors_name = "flattown"
 
+" Styles
 hi Cursor guifg=#262626 guibg=#d7ffff guisp=#d7ffff gui=NONE ctermfg=235 ctermbg=195 cterm=NONE
 hi Ignore guifg=#60666b guibg=NONE guisp=NONE gui=NONE ctermfg=242 ctermbg=NONE cterm=NONE
 hi VertSplit guifg=#444444 guibg=#444444 guisp=#444444 gui=NONE ctermfg=238 ctermbg=238 cterm=NONE
