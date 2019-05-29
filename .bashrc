@@ -153,6 +153,7 @@ alias d='sudo docker';
 alias dockerstop='d stop $(d ps -a -q)';
 alias dockerrm='d rm $(d ps -a -q)';
 alias dockerrmi='d rmi $(d images -f "dangling=true" -q)';
+alias dockerrmif="d rmi $(d images -q)";
 alias dockercleanproc='d ps -aq --no-trunc | xargs sudo docker rm'
 alias dockercleanimg='d images -q --filter dangling=true | xargs sudo docker rmi'
 alias dockercleanvol='d volume ls -qf dangling=true | xargs -r sudo docker volume rm'
@@ -175,7 +176,7 @@ alias lsl='ls -lah --color=auto';
 alias psa='ps aux';
 alias seek='grep --color -re';
 
-alias diskdirs='du --max-depth=1 -c -h'
+alias diskdirs='du --max-depth=1 -c -h | sort -h'
 
 alias bowin='bower install --save';
 alias npin='npm install --save';
