@@ -119,7 +119,18 @@ function set_prompt() {
   if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
     indicator_color=$COLOR_RED
   fi
-  FULL_PROMPT="$indicator_color$indicator $prefix \w${git_status}${pentagon}$COLOR_NC\n\$ "
+
+  CUR_DIR=`pwd`
+  GO_DIR="$GOPATH/src/github.com/reactiveops"
+  if [[ $CUR_DIR == $GO_DIR* ]]; then
+    CUR_DIR=${CUR_DIR#"$GO_DIR"}
+    CUR_DIR="~GO$CUR_DIR"
+  fi
+  if [[ $CUR_DIR == $HOME* ]]; then
+    CUR_DIR=${CUR_DIR#"$HOME"}
+    CUR_DIR="~$CUR_DIR"
+  fi
+  FULL_PROMPT="$indicator_color$indicator $prefix ${CUR_DIR}${git_status}${pentagon}$COLOR_NC\n\$ "
   PS1=$FULL_PROMPT
   history -a
 }
