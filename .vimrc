@@ -38,7 +38,7 @@ nnoremap <Down> :echo "No Down for you!"<CR>
 :set ttimeout
 :set ttimeoutlen=50
 "make backspace behave properly in insert mode
-:set backspace=indent,eol,start
+":set backspace=indent,eol,start
 "display incomplete commands
 :set showcmd
 "a better menu in command mode
@@ -60,12 +60,16 @@ nnoremap <Down> :echo "No Down for you!"<CR>
 "always set autoindenting on
 :set autoindent
 "incremental search
-:set incsearch
+":set incsearch
 "highlight search
 :set hlsearch
 "searches are case insensitive unless they contain at least one capital letter
 :set ignorecase
 :set smartcase
+
+command! StartCopy :set norelativenumber | :set nonumber
+command! EndCopy :set relativenumber | :set number
+
 
 
 "underscores are work breakpoints
