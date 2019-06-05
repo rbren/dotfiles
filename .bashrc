@@ -76,7 +76,7 @@ function parse_git_status () {
     behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
     ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
   else
-    ahead_branch="0"
+    ahead_branch="1"
     behind_branch="0"
   fi
   direction=""
