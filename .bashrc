@@ -73,12 +73,12 @@ function parse_git_status () {
   fi
   if [[ -n "$(GIT_TERMINAL_PROMPT=0 git ls-remote origin $branch)" ]]; then
     branch_status="$(GIT_TERMINAL_PROMPT=0 git rev-list --left-right --count origin/$branch...$branch)"
-    behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
-    ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
   else
-    ahead_branch="1"
-    behind_branch="0"
+    branch_status="$(GIT_TERMINAL_PROMPT=0 git rev-list --left-right --count master...$branch)"
   fi
+
+  behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
+  ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
   direction=""
   if [[ ${behind_master} -eq 0 && ${ahead_branch} -eq 0 ]]; then
 	direction=""
