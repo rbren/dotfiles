@@ -43,6 +43,10 @@ if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
     tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
 fi
 
+function quiet_git() {
+  GIT_TERMINAL_PROMPT=0 git "$@" 2> /dev/null
+}
+
 function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
@@ -52,8 +56,12 @@ function parse_git_status () {
   fi
   last_fetch=$(stat -c %Y .git/FETCH_HEAD)
   time_now=$(date +%s)
-  if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
-    GIT_TERMINAL_PROMPT=0 git fetch
+  login_indicator="${COLOR_GREEN}@"
+  creds=$(echo '' | git credential-cache get)
+  if [[ -z "${creds}" ]]; then
+    login_indicator="${COLOR_RED}@"
+  elif [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
+    quiet_git fetch
   fi
   git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
@@ -64,17 +72,21 @@ function parse_git_status () {
   else
     color="${COLOR_GREEN}"
   fi
-  if [[ -n "$(git remote -v)" ]]; then
+  if [[ ${branch} =~ "no branch" ]]; then
+    echo "$color($branch)${COLOR_YELLOW}~${login_indicator}"
+    return
+  elif [[ -n "$(git remote -v)" ]]; then
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
     behind_master="$(echo $branch_status | sed '$s/\s\+.*//')"
   else
-    echo "$color($branch)${COLOR_YELLOW}?"
+    echo "$color($branch)${COLOR_YELLOW}?${login_indicator}"
     return
   fi
-  if [[ -n "$(GIT_TERMINAL_PROMPT=0 git ls-remote origin $branch)" ]]; then
-    branch_status="$(GIT_TERMINAL_PROMPT=0 git rev-list --left-right --count origin/$branch...$branch)"
+  if [[ -n "$(quiet_git ls-remote origin $branch)" ]]; then
+    branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
   else
-    branch_status="$(GIT_TERMINAL_PROMPT=0 git rev-list --left-right --count master...$branch)"
+    #branch_status="$(quiet_git rev-list --left-right --count origin/master...$branch)"
+    branch_status="0 0"
   fi
 
   behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
@@ -97,7 +109,7 @@ function parse_git_status () {
   else
 	direction="${COLOR_RED}↕"
   fi
-  echo "$color($branch)$direction"
+  echo "$color($branch)$direction${login_indicator}"
 }
 function set_prompt() {
   exit_code=$?
