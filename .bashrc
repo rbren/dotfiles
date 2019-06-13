@@ -68,48 +68,39 @@ function parse_git_status () {
   git_status="$(git status 2> /dev/null)"
   status_pattern="working (.*) clean"
   if [[ ! ${git_status} =~ ${status_pattern} ]]; then
-    color="${COLOR_RED}"
+    branch_color="${COLOR_RED}"
   else
-    color="${COLOR_GREEN}"
+    branch_color="${COLOR_GREEN}"
   fi
-  if [[ ${branch} =~ "no branch" ]]; then
-    echo "$color($branch)${COLOR_YELLOW}~${login_indicator}"
-    return
-  elif [[ -n "$(git remote -v)" ]]; then
+  if [[ ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$creds" ]]; then
+    status_indicator="${COLOR_YELLOW}?"
+  else
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
     behind_master="$(echo $branch_status | sed '$s/\s\+.*//')"
-  else
-    echo "$color($branch)${COLOR_YELLOW}?${login_indicator}"
-    return
-  fi
-  if [[ -n "$(quiet_git ls-remote origin $branch)" ]]; then
-    branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
-  else
-    #branch_status="$(quiet_git rev-list --left-right --count origin/master...$branch)"
-    branch_status="0 0"
-  fi
+    if [[ -n "$(quiet_git ls-remote origin $branch)" ]]; then
+      branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
+    fi
 
-  behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
-  ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
-  direction=""
-  if [[ ${behind_master} -eq 0 && ${ahead_branch} -eq 0 ]]; then
-	direction=""
-  elif [[ ${behind_master} -eq 0 && ${ahead_branch} -ne 0 ]]; then
-    if [[ ${behind_branch} -eq 0 ]]; then
-      direction="${COLOR_LIGHT_BLUE}↑"
+    behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
+    ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
+
+    if [[ ${behind_master} -ne 0 ]]; then
+      if [[ ${branch} == "master" ]]; then
+        status_indicator="${COLOR_YELLOW}↓"
+      else
+        status_indicator="${COLOR_RED}↓"
+      fi
+    elif [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
+      status_indicator="${COLOR_RED}↕"
+    elif [[ ${behind_branch} -ne 0 ]]; then
+      status_indicator="${COLOR_LIGHT_BLUE}↓"
+    elif [[ ${ahead_branch} -ne 0 ]]; then
+      status_indicator="${COLOR_LIGHT_BLUE}↑"
     else
-      direction="${COLOR_RED}↑"
+      status_indicator="${COLOR_GREEN}✓"
     fi
-  elif [[ ${behind_master} -ne 0 && ${ahead_branch} -eq 0 ]]; then
-    if [[ ${branch} == "master" ]]; then
-      direction="${COLOR_YELLOW}↓"
-    else
-      direction="${COLOR_RED}↓"
-    fi
-  else
-	direction="${COLOR_RED}↕"
   fi
-  echo "$color($branch)$direction${login_indicator}"
+  echo "$branch_color($branch)${status_indicator}${login_indicator}"
 }
 function set_prompt() {
   exit_code=$?
