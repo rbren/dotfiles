@@ -64,8 +64,8 @@ nnoremap <Down> :echo "No Down for you!"<CR>
 "highlight search
 :set hlsearch
 "searches are case insensitive unless they contain at least one capital letter
-:set ignorecase
-:set smartcase
+":set ignorecase
+":set smartcase
 
 command! StartCopy :set norelativenumber | :set nonumber
 command! EndCopy :set relativenumber | :set number
