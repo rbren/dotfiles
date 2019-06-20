@@ -72,30 +72,32 @@ function parse_git_status () {
   else
     branch_color="${COLOR_GREEN}"
   fi
-  if [[ ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$creds" ]]; then
+  if [[ ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$(quiet_git ls-remote origin master)" ]]; then
     status_indicator="${COLOR_YELLOW}?"
   else
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
     behind_master="$(echo $branch_status | sed '$s/\s\+.*//')"
+    branch_exists="0"
     if [[ -n "$(quiet_git ls-remote origin $branch)" ]]; then
       branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
+      branch_exists="1"
     fi
 
     behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
     ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
 
-    if [[ ${behind_master} -ne 0 ]]; then
-      if [[ ${branch} == "master" ]]; then
-        status_indicator="${COLOR_YELLOW}↓"
-      else
-        status_indicator="${COLOR_RED}↓"
-      fi
+    if [[ ${behind_master} -ne 0 && ${branch} != "master" ]]; then
+      status_indicator="${COLOR_RED}↓"
     elif [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
       status_indicator="${COLOR_RED}↕"
     elif [[ ${behind_branch} -ne 0 ]]; then
       status_indicator="${COLOR_LIGHT_BLUE}↓"
     elif [[ ${ahead_branch} -ne 0 ]]; then
-      status_indicator="${COLOR_LIGHT_BLUE}↑"
+      if [[ ${branch_exists} -eq 1 ]]; then
+        status_indicator="${COLOR_LIGHT_BLUE}↑"
+      else
+        status_indicator="${COLOR_YELLOW}↑"
+      fi
     else
       status_indicator="${COLOR_GREEN}✓"
     fi
