@@ -54,14 +54,16 @@ function parse_git_status () {
   if ! [ -d ".git" ]; then
     return
   fi
-  last_fetch=$(stat -c %Y .git/FETCH_HEAD)
-  time_now=$(date +%s)
   login_indicator="${COLOR_GREEN}@"
   creds=$(echo '' | git credential-cache get)
   if [[ -z "${creds}" ]]; then
     login_indicator="${COLOR_RED}@"
-  elif [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
-    quiet_git fetch
+  elif [[ -f .git/FETCH_HEAD ]]; then
+    last_fetch=$(stat -c %Y .git/FETCH_HEAD)
+    time_now=$(date +%s)
+    if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
+      quiet_git fetch
+    fi
   fi
   git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
