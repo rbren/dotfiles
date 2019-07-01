@@ -24,6 +24,7 @@ au FileType go autocmd BufWinEnter * syn match LeadingSpace /\(^ *\)\@<= / conta
 au FileType go autocmd BufReadPre * setl conceallevel=2 concealcursor=nv
 au FileType go autocmd BufReadPre * syn match LeadingSpace /\(^ *\)\@<= / containedin=ALL conceal cchar=>
 let g:vim_markdown_folding_disabled = 1
+let g:go_fmt_fail_silently = 1
 
 "Disable arrow keys to force use of hjkl
 nnoremap <Left> :echo "No Left for you!"<CR>
