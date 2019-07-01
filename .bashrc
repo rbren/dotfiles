@@ -152,6 +152,9 @@ bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
 
 alias vi='vim';
+alias gitc='git commit -a -m'
+alias gita='git commit -a --amend --no-edit'
+alias gitfp='git push -u origin +$(parse_git_branch 2> /dev/null)'
 alias src='source ~/.bashrc';
 alias k='kubectl';
 alias kw='watch kubectl';
