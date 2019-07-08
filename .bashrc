@@ -164,6 +164,11 @@ alias dockercleanimg='d images -q --filter dangling=true | xargs sudo docker rmi
 alias dockercleanvol='d volume ls -qf dangling=true | xargs -r sudo docker volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
 
+function gitup () {
+  branch="$(parse_git_branch 2> /dev/null)"
+  git checkout master && git pull && git checkout $branch && git rebase master
+}
+
 function dpush() {
   set -e
   if [ $# -eq 1 ]
