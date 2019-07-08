@@ -58,9 +58,8 @@ function parse_git_status () {
   creds=$(echo '' | git credential-cache get)
   if [[ -z "${creds}" ]]; then
     login_indicator="${COLOR_RED}@"
-  else
-    quiet_git fetch
   fi
+  quiet_git fetch
   git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
   git_status="$(git status 2> /dev/null)"
