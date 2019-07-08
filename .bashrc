@@ -58,12 +58,8 @@ function parse_git_status () {
   creds=$(echo '' | git credential-cache get)
   if [[ -z "${creds}" ]]; then
     login_indicator="${COLOR_RED}@"
-  elif [[ -f .git/FETCH_HEAD ]]; then
-    last_fetch=$(stat -c %Y .git/FETCH_HEAD)
-    time_now=$(date +%s)
-    if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
-      quiet_git fetch
-    fi
+  else
+    quiet_git fetch
   fi
   git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
