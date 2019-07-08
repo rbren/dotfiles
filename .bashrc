@@ -78,15 +78,15 @@ function parse_git_status () {
     status_indicator="${COLOR_YELLOW}?"
   else
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
-    behind_master="$(echo $branch_status | sed '$s/\s\+.*//')"
+    behind_master="$(echo $branch_status | sed '$s/  *.*//')"
     branch_exists="0"
     if [[ -n "$(quiet_git ls-remote origin $branch)" ]]; then
       branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
       branch_exists="1"
     fi
 
-    behind_branch="$(echo $branch_status | sed '$s/\s\+.*//')"
-    ahead_branch="$(echo $branch_status | sed '$s/.*\s\+//')"
+    behind_branch="$(echo $branch_status | sed '$s/  *.*//')"
+    ahead_branch="$(echo $branch_status | sed '$s/.*  *//')"
 
     if [[ ${behind_master} -ne 0 && ${branch} != "master" ]]; then
       status_indicator="${COLOR_RED}↓"
