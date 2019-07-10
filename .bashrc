@@ -182,7 +182,11 @@ function dpush() {
   d push quay.io/reactiveops/$1
 }
 
-alias lsl='ls -lah --color=auto';
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias lsl='ls -lahG';
+else
+  alias lsl='ls -lah --color=auto';
+fi
 alias psa='ps aux';
 alias seek='grep --color -re';
 
