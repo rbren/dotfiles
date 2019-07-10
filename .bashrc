@@ -58,9 +58,8 @@ function parse_git_status () {
   creds=$(echo '' | git credential-cache get)
   if [[ -z "${creds}" ]]; then
     login_indicator="${COLOR_RED}@"
-  else
-    quiet_git fetch
   fi
+  quiet_git fetch
   git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
   git_status="$(git status 2> /dev/null)"
@@ -164,6 +163,11 @@ alias dockercleanproc='d ps -aq --no-trunc | xargs sudo docker rm'
 alias dockercleanimg='d images -q --filter dangling=true | xargs sudo docker rmi'
 alias dockercleanvol='d volume ls -qf dangling=true | xargs -r sudo docker volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
+
+function gitup () {
+  branch="$(parse_git_branch 2> /dev/null)"
+  git checkout master && git pull && git checkout $branch && git rebase master
+}
 
 function dpush() {
   set -e
