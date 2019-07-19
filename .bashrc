@@ -116,9 +116,10 @@ function set_prompt() {
   fi
   os=$'\uf31b'
   #indicator=$os TODO: unicode screws up tmux
-  indicator=^
+  indicator=✅
   indicator_color=$COLOR_GREEN
   if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
+    indicator=$exit_code
     indicator_color=$COLOR_RED
   fi
 
@@ -204,6 +205,7 @@ export PATH="$PATH:$HOME/anaconda3/bin"
 export PATH="$PATH:$HOME/anaconda2/bin"
 export PATH="$PATH:`npm config get prefix`/bin"
 export PATH="$PATH:$HOME/.linuxbrew/bin/:/home/linuxbrew/.linuxbrew/bin/"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # For nvm
 export NVM_DIR="$HOME/.nvm"
