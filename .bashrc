@@ -116,7 +116,7 @@ function set_prompt() {
   fi
   os=$'\uf31b'
   #indicator=$os TODO: unicode screws up tmux
-  indicator=✅
+  indicator=👍
   indicator_color=$COLOR_GREEN
   if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
     indicator=$exit_code
