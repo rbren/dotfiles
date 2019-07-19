@@ -183,7 +183,11 @@ function dpush() {
   d push quay.io/reactiveops/$1
 }
 
-alias lsl='ls -lah --color=auto';
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias lsl='ls -lahG';
+else
+  alias lsl='ls -lah --color=auto';
+fi
 alias psa='ps aux';
 alias seek='grep --color -re';
 
@@ -196,7 +200,6 @@ alias npind='npm install --save-dev';
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/git/go
 
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH="$PATH:$HOME/Library/Haskell/bin";
 export PATH="$PATH:$HOME/.cabal/bin";
 export PATH="$PATH:$HOME/.rvm/bin"
@@ -206,6 +209,7 @@ export PATH="$PATH:$HOME/anaconda2/bin"
 export PATH="$PATH:`npm config get prefix`/bin"
 export PATH="$PATH:$HOME/.linuxbrew/bin/:/home/linuxbrew/.linuxbrew/bin/"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # For nvm
 export NVM_DIR="$HOME/.nvm"
