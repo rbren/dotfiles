@@ -119,7 +119,7 @@ function set_prompt() {
   indicator=👍
   indicator_color=$COLOR_GREEN
   if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
-    indicator=$exit_code
+    indicator="👎 $exit_code"
     indicator_color=$COLOR_RED
   fi
 
@@ -139,6 +139,7 @@ function set_prompt() {
 }
 
 export PENTAGON_WORKON_PS1="${PS1}${VENV_PS1}($PROJECT)"
+export NO_CD="True"
 alias cc='cuddlectl'
 
 PROMPT_COMMAND=set_prompt
@@ -150,6 +151,7 @@ bind '"\eOB": history-search-forward'
 alias vi='vim';
 alias gitc='git commit -a -m'
 alias gita='git commit -a --amend --no-edit'
+alias gitop='git push -u origin  $(parse_git_branch 2> /dev/null)'
 alias gitfp='git push -u origin +$(parse_git_branch 2> /dev/null)'
 alias src='source ~/.bashrc';
 alias k='kubectl';
