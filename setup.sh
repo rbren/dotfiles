@@ -4,6 +4,11 @@ cp .bashrc ~/
 cp .vimrc ~/
 cp .tmux.conf ~/
 
+crontab -l > ./cron-tmp
+cat ./cron >> ./cron-tmp
+crontab ./cron-tmp
+rm ./cron-tmp
+
 sudo apt-get update
 sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 golang-go tmux
 

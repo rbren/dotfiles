@@ -1,0 +1,2 @@
+# prune docker at midnight
+0 0 * * * sudo docker system prune -af  --filter "until=$((7*24))h"
