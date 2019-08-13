@@ -42,5 +42,6 @@ git clone https://github.com/leafgarland/typescript-vim.git
 git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
 git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
+git clone git@github.com:zivyangll/git-blame.vim.git ~/.vim/bundle/git-blame.vim
 
 source ~/.bashrc

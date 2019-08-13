@@ -71,7 +71,8 @@ nnoremap <Down> :echo "No Down for you!"<CR>
 command! StartCopy :set norelativenumber | :set nonumber
 command! EndCopy :set relativenumber | :set number
 
-
+"show blame via https://github.com/zivyangll/git-blame.vim
+autocmd CursorMoved <buffer> call gitblame#echo()
 
 "underscores are work breakpoints
 :set iskeyword-=_
@@ -80,7 +81,7 @@ command! EndCopy :set relativenumber | :set number
 call pathogen#infect()
 call pathogen#helptags()
 
-" Enable filetype plugins 
+" Enable filetype plugins
 filetype plugin on
 
 "FROM http://leafo.net/lessphp/vim/
