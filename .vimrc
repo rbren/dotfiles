@@ -72,7 +72,7 @@ command! StartCopy :set norelativenumber | :set nonumber
 command! EndCopy :set relativenumber | :set number
 
 "show blame via https://github.com/zivyangll/git-blame.vim
-autocmd CursorMoved <buffer> call gitblame#echo()
+autocmd CursorHold <buffer> call gitblame#echo()
 
 "underscores are work breakpoints
 :set iskeyword-=_
