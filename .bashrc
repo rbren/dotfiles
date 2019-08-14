@@ -124,7 +124,7 @@ function set_prompt() {
   fi
 
   CUR_DIR=`pwd`
-  GO_DIR="$GOPATH/src/github.com/reactiveops"
+  GO_DIR="$GOPATH/src/github.com/fairwindsops"
   if [[ $CUR_DIR == $GO_DIR* ]]; then
     CUR_DIR=${CUR_DIR#"$GO_DIR"}
     CUR_DIR="~GO$CUR_DIR"
@@ -139,6 +139,7 @@ function set_prompt() {
 }
 
 export PENTAGON_WORKON_PS1="${PS1}${VENV_PS1}($PROJECT)"
+export CUDDLEFISH_PROJECTS_DIR="$HOME/workspace/projects"
 export NO_CD="True"
 alias cc='cuddlectl'
 
