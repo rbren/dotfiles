@@ -188,6 +188,10 @@ function dpush() {
   d push quay.io/reactiveops/$1
 }
 
+function replaceall() {
+  find "${1}" -type f -exec sed -i -e "${2}" {} \;
+}
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias lsl='ls -lahG';
 else
