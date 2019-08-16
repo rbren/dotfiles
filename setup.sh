@@ -4,7 +4,7 @@ cp .bashrc ~/
 cp .vimrc ~/
 cp .tmux.conf ~/
 
-crontab -l > ./cron-tmp
+crontab -l > ./cron-tmp || true
 cat ./cron >> ./cron-tmp
 crontab ./cron-tmp
 rm ./cron-tmp
@@ -42,6 +42,6 @@ git clone https://github.com/leafgarland/typescript-vim.git
 git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
 git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
-git clone git@github.com:zivyangll/git-blame.vim.git ~/.vim/bundle/git-blame.vim
+git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 
 source ~/.bashrc
