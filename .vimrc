@@ -72,7 +72,28 @@ command! StartCopy :set norelativenumber | :set nonumber
 command! EndCopy :set relativenumber | :set number
 
 "show blame via https://github.com/zivyangll/git-blame.vim
-autocmd CursorHold <buffer> :try|call gitblame#echo()|endtry
+:function Myblame()
+    let blank = ' '
+    let file = expand('%')
+    let line = line('.')
+    let gb = gitblame#commit_summary(file, line)
+    if has_key(gb, 'error')
+        " ignore error
+        let echoMsg = ''
+    else
+        let echoMsg = '['.gb['commit_hash'][0:8].'] '.gb['summary'] .blank .gb['author_mail'] .blank .gb['author'] .blank .'('.gb['author_time'].')'
+    endif
+    if (g:GBlameVirtualTextEnable)
+       let ns = nvim_create_namespace('gitBlame'.b:GBlameVirtualTextCounter)
+       let b:GBlameVirtualTextCounter = (b:GBlameVirtualTextCounter + 1)%50
+       let line = line('.')
+       let buffer = bufnr('')
+       call nvim_buf_set_virtual_text(buffer, ns, line-1, [[g:GBlameVirtualTextPrefix.echoMsg, 'GBlameMSG']], {})
+       call timer_start(g:GBlameVirtualTextDelay, { tid -> nvim_buf_clear_namespace(buffer, ns, 0, -1)})
+    endif
+    echo echoMsg
+endfunction
+autocmd CursorHold <buffer> call Myblame()
 
 "underscores are work breakpoints
 :set iskeyword-=_
