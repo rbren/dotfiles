@@ -23,12 +23,17 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 sudo apt update
 sudo apt install -y docker-ce
+sudo usermod -aG docker $USER
+newgrp docker
 
 # Install kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
+
+# Install helm
+sudo snap install helm --classic
 
 git config --global user.name "Bobby Brennan"
 git config --global user.email bobby.brennan@gmail.com
