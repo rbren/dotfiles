@@ -112,7 +112,7 @@ function set_prompt() {
   prefix="${prefix}${COLOR_CYAN}${IP_ADDRESS}${COLOR_NC}"
   pentagon=""
   if [ -n "$INVENTORY" ]; then
-    pentagon=" ${COLOR_PURPLE}{$PROJECT - $INVENTORY}"
+    pentagon=" ${COLOR_PURPLE}`k config current-context`"
   fi
   os=$'\uf31b'
   #indicator=$os TODO: unicode screws up tmux
