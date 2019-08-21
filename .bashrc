@@ -114,10 +114,7 @@ function set_prompt() {
     prefix="$prefix "
   fi
   prefix="${prefix}${COLOR_CYAN}${IP_ADDRESS}${COLOR_NC}"
-  pentagon=""
-  if [ -n "$INVENTORY" ]; then
-    pentagon=" ${COLOR_PURPLE}`k config current-context`"
-  fi
+  k8s=" ${COLOR_PURPLE}`k config current-context`"
   os=$'\uf31b'
   #indicator=$os TODO: unicode screws up tmux
   indicator=👍
@@ -137,7 +134,7 @@ function set_prompt() {
     CUR_DIR=${CUR_DIR#"$HOME"}
     CUR_DIR="~$CUR_DIR"
   fi
-  FULL_PROMPT="$indicator_color$indicator $prefix ${CUR_DIR}${git_status}${pentagon}$COLOR_NC\n\$ "
+  FULL_PROMPT="$indicator_color$indicator $prefix ${CUR_DIR}${git_status}${k8s}$COLOR_NC\n\$ "
   PS1=$FULL_PROMPT
   history -a
 }
