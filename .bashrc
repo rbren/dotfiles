@@ -59,7 +59,6 @@ function parse_git_status () {
   if [[ -z "${creds}" ]]; then
     login_indicator="${COLOR_RED}@"
   fi
-  quiet_git fetch
   git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
   git_status="$(git status 2> /dev/null)"
@@ -69,13 +68,18 @@ function parse_git_status () {
   else
     branch_color="${COLOR_GREEN}"
   fi
-  if [[ ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$(quiet_git ls-remote origin master)" ]]; then
+  last_fetch=$(stat -c %Y .git/FETCH_HEAD)
+  time_now=$(date +%s)
+  if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
+    quiet_git fetch
+  fi
+  if [[ ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
     status_indicator="${COLOR_YELLOW}?"
   else
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
     behind_master="$(echo $branch_status | sed '$s/  *.*//')"
     branch_exists="0"
-    if [[ -n "$(quiet_git ls-remote origin $branch)" ]]; then
+    if [[ -n "$(quiet_git git branch --format='%(upstream)' --list $branch)" ]]; then
       branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
       branch_exists="1"
     fi
