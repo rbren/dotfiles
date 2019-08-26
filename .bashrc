@@ -114,7 +114,7 @@ function set_prompt() {
     prefix="$prefix "
   fi
   prefix="${prefix}${COLOR_CYAN}${IP_ADDRESS}${COLOR_NC}"
-  k8s=" ${COLOR_PURPLE}`k config current-context`"
+  k8s=" ${COLOR_PURPLE}`k config current-context` `kubectl config view --minify --output 'jsonpath={..namespace}'`"
   os=$'\uf31b'
   #indicator=$os TODO: unicode screws up tmux
   indicator=👍
