@@ -4,8 +4,8 @@
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
-if [ -f /home/ubuntu/.pentagon/config ]; then
-        . /home/ubuntu/.pentagon/config
+if [ -f /home/ubuntu/.cuddlefish/config ]; then
+        . /home/ubuntu/.cuddlefish/config
 fi
 
 
@@ -158,7 +158,7 @@ alias gitfp='git push -u origin +$(parse_git_branch 2> /dev/null)'
 alias src='source ~/.bashrc';
 alias k='kubectl';
 alias kw='watch kubectl';
-alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
+alias kns='kubectl config set-context --current --namespace '
 alias d='sudo docker';
 alias dockerstop='d stop $(d ps -a -q)';
 alias dockerrm='d rm $(d ps -a -q)';
@@ -248,6 +248,10 @@ watchhn() {
 
 ghc() {
   git clone "https://github.com/$1"
+}
+
+akc() {
+   AWS_MFA_SERIAL="arn:aws:iam::139186857668:mfa/robertbrennan" KUBECONFIG=/home/ubuntu/workspace/projects/reactiveops.com/reactiveops.com-infrastructure/kubeconfig-developer aws-vault exec ro-identity kubectl "$@"
 }
 
 gitcheck() {
