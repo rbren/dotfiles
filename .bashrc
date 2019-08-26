@@ -79,7 +79,7 @@ function parse_git_status () {
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
     behind_master="$(echo $branch_status | sed '$s/  *.*//')"
     branch_exists="0"
-    if [[ -n "$(quiet_git git branch --format='%(upstream)' --list $branch)" ]]; then
+    if [[ -n "$(quiet_git branch --format='%(upstream)' --list $branch)" ]]; then
       branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
       branch_exists="1"
     fi
