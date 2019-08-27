@@ -35,7 +35,7 @@ sudo apt-get install -y kubectl
 # Install helm
 sudo snap install helm --classic
 
-git config --global user.name "Bobby Brennan"
+git config --global user.name "Robert Brennan"
 git config --global user.email bobby.brennan@gmail.com
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
