@@ -25,6 +25,7 @@ au FileType go autocmd BufReadPre * setl conceallevel=2 concealcursor=nv
 au FileType go autocmd BufReadPre * syn match LeadingSpace /\(^ *\)\@<= / containedin=ALL conceal cchar=>
 let g:vim_markdown_folding_disabled = 1
 let g:go_fmt_fail_silently = 1
+set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 
 "Disable arrow keys to force use of hjkl
 nnoremap <Left> :echo "No Left for you!"<CR>
@@ -67,6 +68,9 @@ nnoremap <Down> :echo "No Down for you!"<CR>
 "searches are case insensitive unless they contain at least one capital letter
 ":set ignorecase
 ":set smartcase
+
+:set foldmethod=indent
+:set foldlevel=99
 
 command! StartCopy :set norelativenumber | :set nonumber
 command! EndCopy :set relativenumber | :set number
