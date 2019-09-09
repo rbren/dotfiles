@@ -170,6 +170,8 @@ alias dockerpurgeimg='d images -q | xargs sudo docker rmi -f'
 alias dockercleanvol='d volume ls -qf dangling=true | xargs -r sudo docker volume rm'
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
 alias dockerpristine='dockercleanproc ; dockerpurgeimg ; dockercleanvol'
+alias randstr='head /dev/urandom | tr -dc A-Za-z0-9 | head -c '
+alias golintall='go list ./... | grep -v vendor | xargs -L 1 golint -set_exit_status'
 
 function gitup () {
   branch="$(parse_git_branch 2> /dev/null)"
@@ -261,7 +263,9 @@ awsadm() {
    aws-vault exec ro-admin -- "$@"
 }
 awsid() {
-   AWS_MFA_SERIAL="arn:aws:iam::139186857668:mfa/robertbrennan" KUBECONFIG=/home/ubuntu/workspace/projects/reactiveops.com/reactiveops.com-infrastructure/kubeconfig-developer aws-vault exec ro-identity -- "$@"
+   AWS_MFA_SERIAL="arn:aws:iam::139186857668:mfa/robertbrennan" \
+   KUBECONFIG=/home/ubuntu/workspace/projects/reactiveops.com/reactiveops.com-infrastructure/kubeconfig-developer \
+   aws-vault exec ro-identity -- "$@"
 }
 awsidk() {
   awsid kubectl "$@"
