@@ -14,7 +14,6 @@ nmap <silent> <C-Left> :wincmd h<CR>
 nmap <silent> <C-Right> :wincmd l<CR>
 nmap <silent> <C-h> :wincmd H<CR>
 
-
 setl sw=2 sts=2 et
 au FileType python setl sw=4 sts=4 et
 au FileType go setl autoindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab
@@ -72,8 +71,8 @@ nnoremap <Down> :echo "No Down for you!"<CR>
 :set foldmethod=indent
 :set foldlevel=99
 
-command! StartCopy :set norelativenumber | :set nonumber
-command! EndCopy :set relativenumber | :set number
+command! StartCopy :set norelativenumber | :set nonumber | :set wrap
+command! EndCopy :set relativenumber | :set number | :set nowrap
 
 "show blame via https://github.com/zivyangll/git-blame.vim
 :function Myblame()

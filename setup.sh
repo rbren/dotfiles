@@ -3,6 +3,8 @@ set -e
 cp .bashrc ~/
 cp .vimrc ~/
 cp .tmux.conf ~/
+mkdir -p ~/.config/nvim
+cp init.vim ~/.config/nvim/
 
 crontab -l > ./cron-tmp || true
 cat ./cron >> ./cron-tmp
