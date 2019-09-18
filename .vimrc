@@ -60,8 +60,8 @@ nnoremap <Down> :echo "No Down for you!"<CR>
 :set splitright
 "always set autoindenting on
 :set autoindent
-"incremental search
-":set incsearch
+"no incremental search
+:set noincsearch
 "highlight search
 :set hlsearch
 "searches are case insensitive unless they contain at least one capital letter
