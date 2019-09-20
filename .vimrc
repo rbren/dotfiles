@@ -96,7 +96,8 @@ command! EndCopy :set relativenumber | :set number | :set nowrap
     endif
     echo echoMsg
 endfunction
-autocmd CursorHold <buffer> call Myblame()
+" Disabling this because it's annonying
+"autocmd CursorHold <buffer> call Myblame()
 
 "underscores are work breakpoints
 :set iskeyword-=_
