@@ -260,7 +260,7 @@ watchhn() {
 }
 
 ghc() {
-  git clone "https://github.com/$1"
+  git clone "ssh://git@github.com/$1"
 }
 
 awsadm() {
