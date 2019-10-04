@@ -114,7 +114,7 @@ function set_prompt() {
     prefix="$prefix "
   fi
   prefix="${prefix}${COLOR_CYAN}${IP_ADDRESS}${COLOR_NC}"
-  if k config current-context &> /dev/null ; then
+  if kubectl config current-context &> /dev/null ; then
     k8s=" ${COLOR_PURPLE}`k config current-context` `kubectl config view --minify --output 'jsonpath={..namespace}'`"
   else
     k8s=""
