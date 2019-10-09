@@ -54,11 +54,6 @@ function parse_git_status () {
   if ! [ -d ".git" ]; then
     return
   fi
-  login_indicator="${COLOR_GREEN}@"
-  creds=$(echo '' | git credential-cache get)
-  if [[ -z "${creds}" ]]; then
-    login_indicator="${COLOR_RED}@"
-  fi
   git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
   git_status="$(git status 2> /dev/null)"
@@ -103,7 +98,7 @@ function parse_git_status () {
       status_indicator="${COLOR_GREEN}✓"
     fi
   fi
-  echo "$branch_color($branch)${status_indicator}${login_indicator}"
+  echo "$branch_color $branch ${status_indicator}${login_indicator}"
 }
 function set_prompt() {
   exit_code=$?
