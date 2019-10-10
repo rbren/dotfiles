@@ -134,8 +134,9 @@ function set_prompt() {
     CUR_DIR="~$CUR_DIR"
   fi
   weather=`setweather`
-  FULL_PROMPT="$indicator_color$indicator $weather  $prefix ${CUR_DIR}${git_status}${k8s}$COLOR_NC\n\$ "
+  FULL_PROMPT="$indicator_color$indicator $weather  $prefix ${COLOR_PURPLE}${CUR_DIR}${git_status}${k8s}$COLOR_LIGHT_BLUE\n\$ "
   PS1=$FULL_PROMPT
+  trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
 }
 
