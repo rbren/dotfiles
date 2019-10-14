@@ -14,6 +14,11 @@ rm ./cron-tmp
 sudo apt-get update
 sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 golang-go tmux
 
+echo "installing NeoVim"
+curl -LO "https://github.com/neovim/neovim/releases/download/v0.4.2/nvim.appimage"
+chmod +x nvim.appimage
+sudo mv nvim.appimage /usr/bin/
+
 echo "installing NodeJS"
 curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs
@@ -55,4 +60,5 @@ git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
 git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 
-source ~/.bashrc
+cd
+echo "run source ~/.bashrc to finish setup"
