@@ -134,7 +134,7 @@ function set_prompt() {
     CUR_DIR="~$CUR_DIR"
   fi
   weather=`setweather`
-  FULL_PROMPT="$indicator_color$indicator $weather  $prefix ${COLOR_PURPLE}${CUR_DIR}${git_status}${k8s}$COLOR_LIGHT_BLUE\n\$ "
+  FULL_PROMPT="$indicator_color$indicator $weather $prefix ${COLOR_PURPLE}${CUR_DIR}${git_status}${k8s}$COLOR_LIGHT_BLUE\n\$ "
   PS1=$FULL_PROMPT
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
@@ -214,7 +214,7 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/git/go
 
 pathadd() {
-    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    if [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
     fi
 }
