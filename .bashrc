@@ -8,6 +8,8 @@ if [ -f /home/ubuntu/.cuddlefish/config ]; then
         . /home/ubuntu/.cuddlefish/config
 fi
 
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/github
 
 set -o vi
 export EDITOR=vi
@@ -309,3 +311,6 @@ fi
 
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# https://direnv.net/docs/hook.html
+eval "$(direnv hook bash)"

@@ -12,7 +12,7 @@ crontab ./cron-tmp
 rm ./cron-tmp
 
 sudo apt-get update
-sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 tmux
+sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 tmux direnv
 
 wget https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz
 sudo tar -xvf go1.13.1.linux-amd64.tar.gz
