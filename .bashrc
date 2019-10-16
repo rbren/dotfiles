@@ -106,11 +106,6 @@ function set_prompt() {
   exit_code=$?
   git_status=$(parse_git_status)
 
-  prefix="${COLOR_GOLD}${PROMPT_PREFIX}${COLOR_NC}"
-  if [ -n "$PROMPT_PREFIX" ]; then
-    prefix="$prefix "
-  fi
-  prefix="${prefix}${COLOR_CYAN}${IP_ADDRESS}${COLOR_NC}"
   if kubectl config current-context &> /dev/null ; then
     k8s=" ${COLOR_PURPLE}`k config current-context` `kubectl config view --minify --output 'jsonpath={..namespace}'`"
   else
@@ -135,8 +130,8 @@ function set_prompt() {
     CUR_DIR=${CUR_DIR#"$HOME"}
     CUR_DIR="~$CUR_DIR"
   fi
-  weather=`setweather`
-  FULL_PROMPT="$indicator_color$indicator $weather $prefix ${COLOR_PURPLE}${CUR_DIR}${git_status}${k8s}$COLOR_LIGHT_BLUE\n\$ "
+  setweather >> /dev/null # putting this in tmux instead of prompt, but refresh here
+  FULL_PROMPT="$indicator_color$indicator ${COLOR_PURPLE}${CUR_DIR}${git_status}${k8s}$COLOR_LIGHT_BLUE\n\$ "
   PS1=$FULL_PROMPT
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
@@ -303,6 +298,10 @@ setweather() {
     weathermoji > ~/.weather
   fi
   cat ~/.weather
+}
+
+percentmemoryfree() {
+  free | grep Mem | awk '{print $3/$2 * 100.0}'
 }
 
 if [ -f ~/.local-bashrc ]; then
