@@ -1,6 +1,7 @@
 set -e
 
 cp .bashrc ~/
+cp -r bashrc.d ~/
 cp .vimrc ~/
 cp .tmux.conf ~/
 mkdir -p ~/.config/nvim
