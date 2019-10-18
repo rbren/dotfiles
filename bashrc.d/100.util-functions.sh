@@ -7,8 +7,10 @@ function prettyjson() {
   mv /tmp/temp.json $1
 }
 
-function percentmemoryfree() {
+function percentmemoryused() {
   free | grep Mem | awk '{print $3/$2 * 100.0}'
 }
 
-
+function percentcpuused() {
+  top -bn2 -d1 | grep "Cpu(s)" |  tail -1 | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}'
+}
