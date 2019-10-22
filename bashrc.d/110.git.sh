@@ -45,7 +45,7 @@ function parse_git_status () {
   if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
     quiet_git fetch
   fi
-  if [[ ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
+  if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
     status_indicator="${COLOR_YELLOW}?"
   else
     branch_status="$(git rev-list --left-right --count origin/master...$branch)"
