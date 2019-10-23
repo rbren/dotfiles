@@ -1,5 +1,10 @@
 git config --global credential.helper 'cache --timeout=3000'
 
+alias gitc='git commit -a -m'
+alias gita='git commit -a --amend --no-edit'
+alias gitop='git push -u origin  $(parse_git_branch 2> /dev/null)'
+alias gitfp='git push -u origin +$(parse_git_branch 2> /dev/null)'
+
 function quiet_git() {
   GIT_TERMINAL_PROMPT=0 git "$@" 2> /dev/null
 }
