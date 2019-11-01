@@ -45,7 +45,7 @@ function parse_git_status () {
   else
     branch_color="${COLOR_GREEN}"
   fi
-  last_fetch=$(stat -c %Y .git/FETCH_HEAD)
+  last_fetch=$(unistat .git/FETCH_HEAD)
   time_now=$(date +%s)
   if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
     quiet_git fetch

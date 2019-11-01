@@ -14,3 +14,11 @@ function percentmemoryused() {
 function percentcpuused() {
   top -bn2 -d1 | grep "Cpu(s)" |  tail -1 | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}'
 }
+
+function unistat() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    date -jf "%m/%d/%Y %H:%M:%S" "`GetFileInfo -m $1`" +"%s"
+  else
+    stat -c %Y $1
+  fi
+}
