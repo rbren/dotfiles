@@ -12,7 +12,7 @@ alias seek='grep --color -re';
 alias diskdirs='du --max-depth=1 -c -h | sort -h'
 alias vi='nvim';
 alias src='source ~/.bashrc';
-alias resrc='rm -r ~/bashrc.d && cp -r ~/git/homedir/bashrc.d ~/ && cp ~/git/homedir/.bashrc ~/ && source ~/.bashrc'
+alias resrc='rm -r ~/bashrc.d && cp -r ~/git/homedir/bashrc.d ~/bashrc.d && cp ~/git/homedir/.bashrc ~/'
 
 alias bowin='bower install --save';
 alias npin='npm install --save';
