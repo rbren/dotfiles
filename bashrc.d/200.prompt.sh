@@ -2,8 +2,9 @@ function set_prompt() {
   exit_code=$?
   git_status=$(parse_git_status)
 
-  if kubectl config current-context &> /dev/null ; then
-    k8s=" ${COLOR_PURPLE}`k config current-context` `kubectl config view --minify --output 'jsonpath={..namespace}'`"
+  ctx=`k config current-context &> /dev/null`
+  if [ $? -eq 0 ] ; then
+    k8s=" ${COLOR_PURPLE} $ctx `kubectl config view --minify --output 'jsonpath={..namespace}'`"
   else
     k8s=""
   fi
