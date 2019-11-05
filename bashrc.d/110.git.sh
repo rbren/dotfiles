@@ -80,5 +80,5 @@ function parse_git_status () {
       status_indicator="${COLOR_GREEN}✓"
     fi
   fi
-  echo "$branch_color $branch ${status_indicator}${login_indicator}"
+  echo "$branch_color$branch ${status_indicator}"
 }
