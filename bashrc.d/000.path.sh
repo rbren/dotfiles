@@ -18,4 +18,4 @@ pathadd "`npm config get prefix`/bin"
 pathadd "$HOME/.linuxbrew/bin/:/home/linuxbrew/.linuxbrew/bin/"
 pathadd "$GOPATH/bin"
 pathadd "$GOROOT/bin"
-
+pathadd "$HOME/gems/bin"
