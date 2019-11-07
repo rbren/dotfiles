@@ -7,7 +7,7 @@ function klogs() {
 }
 
 function parse_k8s_status() {
-  ctx=`k config current-context &> /dev/null`
+  ctx=`kubectl config current-context 2> /dev/null`
   if [ $? -eq 0 ] ; then
     echo "$ctx `kubectl config view --minify --output 'jsonpath={..namespace}'`"
   fi

@@ -1,4 +1,5 @@
 export IP_ADDRESS=$(curl -s http://whatismyip.akamai.com/ --max-time 5)
+
 export COLOR_NC='\e[0m' # No Color
 export COLOR_WHITE='\e[1;37m'
 export COLOR_BLACK='\e[0;30m'

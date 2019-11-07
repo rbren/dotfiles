@@ -23,7 +23,7 @@ function set_prompt() {
     CUR_DIR="~$CUR_DIR"
   fi
   setweather >> /dev/null # putting this in tmux instead of prompt, but refresh here
-  FULL_PROMPT="$indicator_color$indicator ${COLOR_PURPLE}${CUR_DIR} ${git_status}${COLOR_PURPLE}${k8s_status}$COLOR_LIGHT_BLUE|\n\$ "
+  FULL_PROMPT="$indicator_color$indicator ${COLOR_PURPLE}${CUR_DIR} ${git_status} ${COLOR_LIGHT_RED}${k8s_status}$COLOR_LIGHT_BLUE\n\$ "
   PS1=$FULL_PROMPT
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
