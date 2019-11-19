@@ -67,4 +67,4 @@ git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-ai
 git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 
 cd
-echo "run source ~/.bashrc to finish setup"
+echo "\n\n\nto finish setup:\nnewgrp docker\nsource ~/.bashrc\n\n"
