@@ -22,7 +22,7 @@ sudo mv go /usr/local
 echo "installing NeoVim"
 curl -LO "https://github.com/neovim/neovim/releases/download/v0.4.2/nvim.appimage"
 chmod +x nvim.appimage
-sudo mv nvim.appimage /usr/bin/
+sudo mv nvim.appimage /usr/bin/nvim
 
 echo "installing NodeJS"
 curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
