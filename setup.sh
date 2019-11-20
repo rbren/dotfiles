@@ -13,11 +13,12 @@ crontab ./cron-tmp
 rm ./cron-tmp
 
 sudo apt-get update
-sudo apt-get install -y curl build-essential git python3 python3-pip python2.7 python-pip php7.0 tmux direnv
+sudo apt-get install -y vim curl build-essential git python3 python3-pip python2.7 python-pip php7.0 tmux direnv
 
 wget https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz
 sudo tar -xvf go1.13.1.linux-amd64.tar.gz
 sudo mv go /usr/local
+rm go1.13.1.linux-amd64.tar.gz
 
 echo "installing NeoVim"
 curl -LO "https://github.com/neovim/neovim/releases/download/v0.4.2/nvim.appimage"
