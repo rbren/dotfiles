@@ -49,7 +49,11 @@ sudo apt-get install -y kubectl
 
 # Install helm
 echo "installing helm"
-sudo snap install helm --classic
+curl -L "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" > helm.tar.gz
+tar -xvf helm.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin/
+sudo mv linux-amd64/tiller /usr/local/bin/
+rm -rf linux-amd64
 
 git config --global user.name "Robert Brennan"
 git config --global user.email bobby.brennan@gmail.com
