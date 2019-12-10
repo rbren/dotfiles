@@ -4,9 +4,6 @@ pathadd() {
     fi
 }
 
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/git/go
-
 pathadd "${KREW_ROOT:-$HOME/.krew}/bin"
 pathadd "$HOME/Library/Haskell/bin"
 pathadd "$HOME/.cabal/bin"

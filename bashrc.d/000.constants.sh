@@ -1,5 +1,9 @@
 export IP_ADDRESS=$(curl -s http://whatismyip.akamai.com/ --max-time 5)
 
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/git/go
+export GO_MAIN_DIR="$GOPATH/src/github.com/fairwindsops"
+
 export COLOR_NC='\e[0m' # No Color
 export COLOR_WHITE='\e[1;37m'
 export COLOR_BLACK='\e[0;30m'

@@ -13,9 +13,8 @@ function set_prompt() {
   fi
 
   CUR_DIR=`pwd`
-  GO_DIR="$GOPATH/src/github.com/fairwindsops"
-  if [[ $CUR_DIR == $GO_DIR* ]]; then
-    CUR_DIR=${CUR_DIR#"$GO_DIR"}
+  if [[ $CUR_DIR == $GO_MAIN_DIR* ]]; then
+    CUR_DIR=${CUR_DIR#"$GO_MAIN_DIR"}
     CUR_DIR="~GO$CUR_DIR"
   fi
   if [[ $CUR_DIR == $HOME* ]]; then
