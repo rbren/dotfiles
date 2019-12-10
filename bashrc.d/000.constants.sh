@@ -23,4 +23,8 @@ export COLOR_GOLD='\e[0;33m'
 export COLOR_GRAY='\e[0;30m'
 export COLOR_LIGHT_GRAY='\e[0;37m'
 
+export KUBE_PS1_SYMBOL_ENABLE=false
+export KUBE_PS1_PREFIX=""
+export KUBE_PS1_SUFFIX=""
+export KUBE_PS1_CTX_COLOR=cyan
 
