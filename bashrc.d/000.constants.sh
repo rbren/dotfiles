@@ -28,3 +28,4 @@ export KUBE_PS1_PREFIX=""
 export KUBE_PS1_SUFFIX=""
 export KUBE_PS1_CTX_COLOR=cyan
 
+export PROMPT_COMMAND="grab_exit_code;_kube_ps1_update_cache;set_prompt"

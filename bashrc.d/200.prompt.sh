@@ -1,13 +1,17 @@
+function grab_exit_code() {
+  last_exit_code="$?"
+}
+
 function set_prompt() {
-  exit_code=$?
+  echo "exited $last_exit_code"
   git_status=$(parse_git_status)
 
   os=$'\uf31b'
   #indicator=$os TODO: unicode screws up tmux
   indicator=👍
   indicator_color=$COLOR_GREEN
-  if [ $exit_code -ne 0 ] && [ $exit_code -ne 130 ]; then
-    indicator="👎 $exit_code"
+  if [ $last_exit_code -ne 0 ] && [ $last_exit_code -ne 130 ]; then
+    indicator="👎 $last_exit_code"
     indicator_color=$COLOR_RED
   fi
 
@@ -28,5 +32,4 @@ function set_prompt() {
   history -a
 }
 
-PROMPT_COMMAND=set_prompt
 
