@@ -3,7 +3,6 @@ function grab_exit_code() {
 }
 
 function set_prompt() {
-  echo "exited $last_exit_code"
   git_status=$(parse_git_status)
 
   os=$'\uf31b'
