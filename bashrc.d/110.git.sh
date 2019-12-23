@@ -50,7 +50,8 @@ function parse_git_status () {
   fi
   last_fetch=$(unistat .git/FETCH_HEAD)
   time_now=$(date +%s)
-  if [[ $((time_now - 60)) -gt $((last_fetch)) ]]; then
+  timeout=60
+  if [[ $((time_now - timeout)) -gt $((last_fetch)) ]]; then
     quiet_git fetch
   fi
   if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
@@ -67,12 +68,12 @@ function parse_git_status () {
     behind_branch="$(echo $branch_status | sed '$s/  *.*//')"
     ahead_branch="$(echo $branch_status | sed '$s/.*  *//')"
 
-    if [[ ${behind_master} -ne 0 && ${branch} != "master" ]]; then
-      status_indicator="${COLOR_RED}↓"
-    elif [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
+    if [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
       status_indicator="${COLOR_RED}↕"
     elif [[ ${behind_branch} -ne 0 ]]; then
       status_indicator="${COLOR_LIGHT_BLUE}↓"
+    elif [[ ${behind_master} -ne 0 && ${branch} != "master" ]]; then
+      status_indicator="${COLOR_RED}↓"
     elif [[ ${ahead_branch} -ne 0 ]]; then
       if [[ ${branch_exists} -eq 1 ]]; then
         status_indicator="${COLOR_LIGHT_BLUE}↑"
