@@ -1,8 +1,8 @@
 weather() {
-  curl -s https://wttr.in/${1:-boston};
+  curl -s https://wttr.in/${1:-boston} --max-time 5;
 };
 weathermoji() {
-  curl -s "https://wttr.in/${1:-boston}?format=%c&period=60";
+  curl -s "https://wttr.in/${1:-boston}?format=%c&period=60" --max-time 5;
 };
 setweather() {
   last_fetch=$(unistat ~/.weather)
