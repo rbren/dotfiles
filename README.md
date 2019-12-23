@@ -6,7 +6,6 @@ Useful setups for
 * vim
 * tmux
 
-
 ## Moving to a new machine
 > These are instructions for future me
 * Clone this repo
@@ -15,3 +14,4 @@ Useful setups for
 * Copy your `~/.aws/credentials`
 * Copy your `~/.ssh/github` and `~/.ssh/github.pub`
 
+test
