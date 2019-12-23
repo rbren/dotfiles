@@ -6,6 +6,7 @@ Useful setups for
 * vim
 * tmux
 
+
 ## Moving to a new machine
 > These are instructions for future me
 * Clone this repo
