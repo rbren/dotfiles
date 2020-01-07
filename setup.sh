@@ -57,6 +57,7 @@ curl -L "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" > helm.tar.gz
 tar -xvf helm.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/
 sudo mv linux-amd64/tiller /usr/local/bin/
+rm helm.tar.gz
 rm -rf linux-amd64
 
 git config --global user.name "Robert Brennan"
