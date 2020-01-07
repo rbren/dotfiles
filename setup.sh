@@ -76,4 +76,11 @@ git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-ai
 git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 
 cd
-echo "\n\n\nto finish setup:\nnewgrp docker\nsource ~/.bashrc\n\n"
+echo "\n\n\n"
+echo "to finish setup:"
+echo " * copy your AWS creds over"
+echo " * copy your github SSH key over"
+echo " * run:"
+echo "    newgrp docker"
+echo "    source ~/.bashrc"
+echo "\n\n\n"
