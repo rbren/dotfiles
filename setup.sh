@@ -52,11 +52,12 @@ sudo apt-get update
 sudo apt-get install -y kubectl
 
 # Install helm
-echo "installing helm"
-curl -L "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" > helm.tar.gz
+echo "installing helm 3"
+#curl -L "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" > helm.tar.gz
+curl -L "https://get.helm.sh/helm-v3.0.2-linux-amd64.tar.gz" > helm.tar.gz
 tar -xvf helm.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/
-sudo mv linux-amd64/tiller /usr/local/bin/
+#sudo mv linux-amd64/tiller /usr/local/bin/
 rm helm.tar.gz
 rm -rf linux-amd64
 
