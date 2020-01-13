@@ -10,7 +10,7 @@ function set_prompt() {
   indicator=👍
   indicator_color=$COLOR_GREEN
   if [ $last_exit_code -ne 0 ] && [ $last_exit_code -ne 130 ]; then
-    indicator="👎 $last_exit_code"
+    indicator="😡 $last_exit_code"
     indicator_color=$COLOR_RED
   fi
 
