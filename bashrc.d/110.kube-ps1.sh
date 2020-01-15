@@ -70,7 +70,8 @@ _kube_ps1_init() {
       _KUBE_PS1_CLOSE_ESC=$'\002'
       _KUBE_PS1_DEFAULT_BG=$'\033[49m'
       _KUBE_PS1_DEFAULT_FG=$'\033[39m'
-      [[ $PROMPT_COMMAND =~ _kube_ps1_update_cache ]] || PROMPT_COMMAND="_kube_ps1_update_cache;${PROMPT_COMMAND:-:}"
+      # rbren: disabled, since we run this command in set_prompt
+      #[[ $PROMPT_COMMAND =~ _kube_ps1_update_cache ]] || PROMPT_COMMAND="_kube_ps1_update_cache;${PROMPT_COMMAND:-:}"
       ;;
   esac
 }

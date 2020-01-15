@@ -1,9 +1,11 @@
 function grab_exit_code() {
+  start_time=$(date -u +%s%N)
   last_exit_code="$?"
 }
 
 function set_prompt() {
   git_status=$(parse_git_status)
+  _kube_ps1_update_cache
 
   os=$'\uf31b'
   #indicator=$os TODO: unicode screws up tmux
@@ -24,11 +26,12 @@ function set_prompt() {
     CUR_DIR="~$CUR_DIR"
   fi
   setweather >> /dev/null # putting this in tmux instead of prompt, but refresh here
-  source ~/bashrc.d/110.kube-ps1.sh
-  FULL_PROMPT="$indicator_color$indicator ${COLOR_PURPLE}${CUR_DIR} ${git_status} $COLOR_NC$(kube_ps1) $COLOR_LIGHT_BLUE\n\$ "
-  PS1=$FULL_PROMPT
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
+  end_time=$(date -u +%s%N)
+  duration=$(((end_time - start_time) / 1000000))
+  FULL_PROMPT="$indicator_color$indicator ${COLOR_PURPLE}${CUR_DIR} ${git_status} $COLOR_NC$(kube_ps1) $COLOR_LIGHT_BLUE <$duration>\n\$ "
+  PS1=$FULL_PROMPT
 }
 
 
