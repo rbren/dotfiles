@@ -1,6 +1,10 @@
 function grab_exit_code() {
-  start_time=$(date -u +%s%N)
   last_exit_code="$?"
+  now=$(date -u +%s)
+  last_execution_time=$(HISTTIMEFORMAT='%s '; history 1)
+  last_execution_time=$(awk '{print $2}' <<<"$last_execution_time");
+  last_execution_duration=$(( now - last_execution_time ))
+  prompt_start_time=$(date -u +%s%N)
 }
 
 function set_prompt() {
@@ -29,8 +33,8 @@ function set_prompt() {
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
   end_time=$(date -u +%s%N)
-  duration=$(((end_time - start_time) / 1000000))
-  FULL_PROMPT="$indicator_color$indicator ${COLOR_PURPLE}${CUR_DIR} ${git_status} $COLOR_NC$(kube_ps1) $COLOR_LIGHT_BLUE <$duration>\n\$ "
+  duration=$(((end_time - prompt_start_time) / 1000000))
+  FULL_PROMPT="$indicator_color$indicator [${last_execution_duration}s] ${COLOR_PURPLE}${CUR_DIR} ${git_status} $COLOR_NC$(kube_ps1) $COLOR_LIGHT_BLUE\n\$ "
   PS1=$FULL_PROMPT
 }
 
