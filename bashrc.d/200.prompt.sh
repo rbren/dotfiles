@@ -32,14 +32,14 @@ function set_prompt() {
   setweather >> /dev/null # putting this in tmux instead of prompt, but refresh here
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
-  end_time=$(date -u +%s%N)
-  duration=$(((end_time - prompt_start_time) / 1000000))
   FULL_PROMPT="$indicator_color$indicator [${last_execution_duration}s] [${duration}ms]"
   if [ ! -z $KUBECONFIG ]; then
     FULL_PROMPT="$FULL_PROMPT $(kube_ps1)"
   fi
   FULL_PROMPT="$FULL_PROMPT ${COLOR_PURPLE}${CUR_DIR} ${git_status} $COLOR_LIGHT_BLUE\n\$ "
   PS1=$FULL_PROMPT
+  end_time=$(date -u +%s%N)
+  duration=$(((end_time - prompt_start_time) / 1000000))
 }
 
 
