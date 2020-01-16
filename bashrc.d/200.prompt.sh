@@ -34,7 +34,7 @@ function set_prompt() {
   history -a
   end_time=$(date -u +%s%N)
   duration=$(((end_time - prompt_start_time) / 1000000))
-  FULL_PROMPT="$indicator_color$indicator [${last_execution_duration}s]"
+  FULL_PROMPT="$indicator_color$indicator [${last_execution_duration}s] [${duration}ms]"
   if [ ! -z $KUBECONFIG ]; then
     FULL_PROMPT="$FULL_PROMPT $(kube_ps1)"
   fi

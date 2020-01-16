@@ -1,3 +1,4 @@
+export GIT_STATUS_DEBUG=0
 git config --global credential.helper 'cache --timeout=3000'
 
 alias gitc='git commit -a -m'
@@ -9,6 +10,9 @@ function gitbd() {
 }
 
 function quiet_git() {
+  if [ $GIT_STATUS_DEBUG -eq 1 ]; then
+    echo -e "$1  \t$(date -u +%s.%N)" >> ~/git-status-debug.txt
+  fi
   GIT_TERMINAL_PROMPT=0 git "$@" 2> /dev/null
 }
 
@@ -39,9 +43,12 @@ function parse_git_status () {
   if ! [ -d ".git" ]; then
     return
   fi
-  git rev-parse --git-dir &> /dev/null
+  if [ $GIT_STATUS_DEBUG -eq 1 ]; then
+    echo -e "\n" >> ~/git-status-debug.txt
+  fi
+  quiet_git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
-  git_status="$(git status 2> /dev/null)"
+  git_status="$(quiet_git status 2> /dev/null)"
   status_pattern="working (.*) clean"
   if [[ ! ${git_status} =~ ${status_pattern} ]]; then
     branch_color="${COLOR_RED}"
@@ -54,15 +61,16 @@ function parse_git_status () {
   if [[ $((time_now - timeout)) -gt $((last_fetch)) ]]; then
     quiet_git fetch
   fi
-  if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
+  if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
     status_indicator="${COLOR_YELLOW}?"
   else
-    branch_status="$(git rev-list --left-right --count origin/master...$branch)"
     behind_master="$(echo $branch_status | sed '$s/  *.*//')"
     branch_exists="0"
     if [[ -n "$(quiet_git branch --format='%(upstream)' --list $branch)" ]]; then
       branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
       branch_exists="1"
+    else
+      branch_status="$(quiet_git rev-list --left-right --count origin/master...$branch)"
     fi
 
     behind_branch="$(echo $branch_status | sed '$s/  *.*//')"
