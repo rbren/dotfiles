@@ -34,7 +34,11 @@ function set_prompt() {
   history -a
   end_time=$(date -u +%s%N)
   duration=$(((end_time - prompt_start_time) / 1000000))
-  FULL_PROMPT="$indicator_color$indicator [${last_execution_duration}s] ${COLOR_PURPLE}${CUR_DIR} ${git_status} $COLOR_NC$(kube_ps1) $COLOR_LIGHT_BLUE\n\$ "
+  FULL_PROMPT="$indicator_color$indicator [${last_execution_duration}s]"
+  if [ ! -z $KUBECONFIG ]; then
+    FULL_PROMPT="$FULL_PROMPT $(kube_ps1)"
+  fi
+  FULL_PROMPT="$FULL_PROMPT ${COLOR_PURPLE}${CUR_DIR} ${git_status} $COLOR_LIGHT_BLUE\n\$ "
   PS1=$FULL_PROMPT
 }
 
