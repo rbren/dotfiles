@@ -9,10 +9,14 @@ function gitbd() {
   git branch -D `git branch | grep -E $1`
 }
 
-function quiet_git() {
+function gitdebug() {
   if [ $GIT_STATUS_DEBUG -eq 1 ]; then
-    echo -e "$1  \t$(date -u +%s.%N)" >> ~/git-status-debug.txt
+    echo -e "$1  \t$(date -u +%s.%N)" >> ~/ps1-status-debug.txt
   fi
+}
+
+function quiet_git() {
+  gitdebug $1
   GIT_TERMINAL_PROMPT=0 git "$@" 2> /dev/null
 }
 
@@ -43,36 +47,33 @@ function parse_git_status () {
   if ! [ -d ".git" ]; then
     return
   fi
-  if [ $GIT_STATUS_DEBUG -eq 1 ]; then
-    echo -e "\n" >> ~/git-status-debug.txt
-  fi
+  gitdebug "\nstart  "
   quiet_git rev-parse --git-dir &> /dev/null
-  branch="$(parse_git_branch 2> /dev/null)"
-  git_status="$(quiet_git status 2> /dev/null)"
-  status_pattern="working (.*) clean"
-  if [[ ! ${git_status} =~ ${status_pattern} ]]; then
+  gitdebug "gps1    "
+  GIT_PS1_SHOWDIRTYSTATE=true GIT_PS1_SHOWUNTRACKEDFILES=true gps1=$(__git_ps1)
+  branch=$(echo $gps1 | sed -e 's/(\([^[:space:]]\+\)\([[:space:]].*\)\?)/\1/')
+  if [[ ${gps1} =~ "*" ]] || [[ ${gps1} =~ "%" ]]; then
     branch_color="${COLOR_RED}"
   else
     branch_color="${COLOR_GREEN}"
   fi
+  gitdebug "unistat"
   last_fetch=$(unistat .git/FETCH_HEAD)
   time_now=$(date +%s)
   timeout=60
   if [[ $((time_now - timeout)) -gt $((last_fetch)) ]]; then
     quiet_git fetch
   fi
+  gitdebug "bstatus"
   if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
     status_indicator="${COLOR_YELLOW}?"
   else
     branch_exists="0"
-    branch_status=""
-    behind_master=""
+    branch_status="$(quiet_git rev-list --left-right --count origin/master...$branch)"
+    behind_master="$(echo $branch_status | sed '$s/  *.*//')"
     if [[ -n "$(quiet_git branch --format='%(upstream)' --list $branch)" ]]; then
       branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
       branch_exists="1"
-    else
-      branch_status="$(quiet_git rev-list --left-right --count origin/master...$branch)"
-      behind_master="$(echo $branch_status | sed '$s/  *.*//')"
     fi
 
     behind_branch="$(echo $branch_status | sed '$s/  *.*//')"
