@@ -11,8 +11,8 @@ if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
 
-if [ -f /home/ubuntu/.cuddlefish/config ]; then
-        . /home/ubuntu/.cuddlefish/config
+if [ -f ~/.cuddlefish/config ]; then
+        . ~/.cuddlefish/config
 fi
 
 for FN in $HOME/bashrc.d/*.sh ; do
