@@ -61,6 +61,10 @@ sudo mv linux-amd64/helm /usr/local/bin/
 rm helm.tar.gz
 rm -rf linux-amd64
 
+echo "installing jq and yq"
+sudo apt-get install jq
+sudo snap install yq
+
 git config --global user.name "Robert Brennan"
 git config --global user.email bobby.brennan@gmail.com
 
