@@ -30,7 +30,7 @@ function gitup () {
 }
 
 function ghc() {
-  git clone "ssh://git@github.com/$1"
+  git clone "ssh://git@github.com/$1" $2
 }
 
 function gitcheck() {
