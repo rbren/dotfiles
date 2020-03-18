@@ -13,7 +13,7 @@ crontab ./cron-tmp
 rm ./cron-tmp
 
 sudo apt-get update
-sudo apt-get install -y vim curl build-essential git python3 python3-pip python2.7 python-pip php7.0 tmux direnv
+sudo apt-get install -y vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv
 
 echo "installing AWS CLI"
 pip3 install awscli --upgrade --user
@@ -80,12 +80,20 @@ git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
 git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 
+echo "installing Fairwinds tooling"
+curl -L "https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip" > tf.zip
+unzip tf.zip
+sudo mv terraform /usr/local/bin/
+rm tf.zip
+sudo pip3 install virtualenv
+npm install -g bash-task-runner
+
 cd
-echo "\n\n\n"
+echo -e "\n\n\n"
 echo "to finish setup:"
 echo " * copy your AWS creds over"
 echo " * copy your github SSH key over"
 echo " * run:"
 echo "    newgrp docker"
 echo "    source ~/.bashrc"
-echo "\n\n\n"
+echo -e "\n\n\n"
