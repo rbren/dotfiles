@@ -5,6 +5,14 @@ alias kport='kubectl port-forward --address 0.0.0.0'
 alias klog='stern --output raw'
 alias kkind='export KUBECONFIG=/home/ubuntu/.kube/kind-config-kind'
 
+function kctx() {
+  if [ -z $1 ]; then
+    kubectl config get-contexts
+  else
+    kubectl config use-context $1
+  fi
+}
+
 function klogs() {
   kubectl logs -f $(kubectl get pods | awk "/$1/ {print \$1;exit}")
 }
