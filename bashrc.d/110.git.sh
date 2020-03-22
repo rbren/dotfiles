@@ -50,12 +50,16 @@ function parse_git_status () {
   gitdebug "\nstart  "
   quiet_git rev-parse --git-dir &> /dev/null
   gitdebug "gps1    "
-  GIT_PS1_SHOWDIRTYSTATE=true GIT_PS1_SHOWUNTRACKEDFILES=true gps1=$(__git_ps1)
-  branch=$(echo $gps1 | sed -e 's/(\([^[:space:]]\+\)\([[:space:]].*\)\?)/\1/')
-  if [[ ${gps1} =~ "*" ]] || [[ ${gps1} =~ "%" ]]; then
+  branch="$(parse_git_branch 2> /dev/null)"
+  git_status="$(quiet_git status 2> /dev/null)"
+  dirty_status="Changes not staged"
+  clean_status="working (.*) clean"
+  if [[ ${git_status} =~ ${clean_status} ]]; then
+    branch_color="$(tput setaf $TPUT_GREEN)"
+  elif [[ ${git_status} =~ ${dirty_status} ]]; then
     branch_color="$(tput setaf $TPUT_RED)"
   else
-    branch_color="$(tput setaf $TPUT_GREEN)"
+    branch_color="$(tput setaf $TPUT_YELLOW)"
   fi
   gitdebug "unistat"
   last_fetch=$(unistat .git/FETCH_HEAD)
