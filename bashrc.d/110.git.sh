@@ -53,9 +53,9 @@ function parse_git_status () {
   GIT_PS1_SHOWDIRTYSTATE=true GIT_PS1_SHOWUNTRACKEDFILES=true gps1=$(__git_ps1)
   branch=$(echo $gps1 | sed -e 's/(\([^[:space:]]\+\)\([[:space:]].*\)\?)/\1/')
   if [[ ${gps1} =~ "*" ]] || [[ ${gps1} =~ "%" ]]; then
-    branch_color="${COLOR_RED}"
+    branch_color="$(tput setaf $TPUT_RED)"
   else
-    branch_color="${COLOR_GREEN}"
+    branch_color="$(tput setaf $TPUT_GREEN)"
   fi
   gitdebug "unistat"
   last_fetch=$(unistat .git/FETCH_HEAD)
@@ -66,7 +66,7 @@ function parse_git_status () {
   fi
   gitdebug "bstatus"
   if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
-    status_indicator="${COLOR_YELLOW}?"
+    status_indicator="$(tput setaf $TPUT_YELLOW)?"
   else
     branch_exists="0"
     branch_status="$(quiet_git rev-list --left-right --count origin/master...$branch)"
@@ -80,19 +80,19 @@ function parse_git_status () {
     ahead_branch="$(echo $branch_status | sed '$s/.*  *//')"
 
     if [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
-      status_indicator="${COLOR_RED}↕"
+      status_indicator="$(tput setaf $TPUT_RED)↕"
     elif [[ ${behind_branch} -ne 0 ]]; then
-      status_indicator="${COLOR_LIGHT_BLUE}↓"
+      status_indicator="$(tput setaf $TPUT_BLUE)↓"
     elif [[ ${behind_master} -ne 0 && ${branch} != "master" ]]; then
-      status_indicator="${COLOR_RED}↓"
+      status_indicator="$(tput setaf $TPUT_RED)↓"
     elif [[ ${ahead_branch} -ne 0 ]]; then
       if [[ ${branch_exists} -eq 1 ]]; then
-        status_indicator="${COLOR_LIGHT_BLUE}↑"
+        status_indicator="$(tput setaf $TPUT_BLUE)↑"
       else
-        status_indicator="${COLOR_YELLOW}↑"
+        status_indicator="$(tput setaf $TPUT_YELLOW)↑"
       fi
     else
-      status_indicator="${COLOR_GREEN}✓"
+      status_indicator="$(tput setaf $TPUT_GREEN)✓"
     fi
   fi
   echo "$branch_color$branch ${status_indicator}"

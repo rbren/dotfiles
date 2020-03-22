@@ -23,6 +23,24 @@ export COLOR_GOLD='\e[0;33m'
 export COLOR_GRAY='\e[0;30m'
 export COLOR_LIGHT_GRAY='\e[0;37m'
 
+export COLOR_BG_BLACK='\033[40m'
+export COLOR_BG_RED='\033[41m'
+export COLOR_BG_GREEN='\033[42m'
+export COLOR_BG_YELLOW='\033[43m'
+export COLOR_BG_BLUE='\033[44m'
+export COLOR_BG_PURPLE='\033[45m'
+export COLOR_BG_CYAN='\033[46m'
+export COLOR_BG_WHITE='\033[47m'
+
+export TPUT_BLACK="0"
+export TPUT_RED="1"
+export TPUT_GREEN="2"
+export TPUT_YELLOW="3"
+export TPUT_BLUE="4"
+export TPUT_MAGENTA="5"
+export TPUT_CYAN="6"
+export TPUT_WHITE="7"
+
 export KUBE_PS1_SYMBOL_ENABLE=false
 export KUBE_PS1_PREFIX=""
 export KUBE_PS1_SUFFIX=""

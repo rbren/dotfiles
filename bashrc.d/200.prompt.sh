@@ -14,10 +14,8 @@ function set_prompt() {
   os=$'\uf31b'
   #indicator=$os TODO: unicode screws up tmux
   indicator=👍
-  indicator_color=$COLOR_GREEN
   if [ $last_exit_code -ne 0 ] && [ $last_exit_code -ne 130 ]; then
     indicator="😡 $last_exit_code"
-    indicator_color=$COLOR_RED
   fi
 
   CUR_DIR=`pwd`
@@ -32,10 +30,10 @@ function set_prompt() {
   setweather >> /dev/null # putting this in tmux instead of prompt, but refresh here
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
-  FULL_PROMPT="$indicator_color$indicator [${last_execution_duration}s] [${duration}ms]"
+  FULL_PROMPT="$indicator $(tput setaf $TPUT_GREEN)[${last_execution_duration}s] [${duration}ms]"
   FULL_PROMPT="$FULL_PROMPT $(kube_ps1)"
-  FULL_PROMPT="$FULL_PROMPT ${COLOR_PURPLE}${CUR_DIR} ${git_status} $COLOR_LIGHT_BLUE\n\$ "
-  PS1=$FULL_PROMPT
+  FULL_PROMPT="$FULL_PROMPT $(tput setaf $TPUT_MAGENTA)${CUR_DIR} ${git_status} $(tput sgr0)$(tput bold)$(tput setaf $TPUT_BLUE)\n\$ "
+  PS1="$(tput setab $TPUT_BLACK)$(tput bold)$FULL_PROMPT"
   end_time=$(date -u +%s%N)
   duration=$(((end_time - prompt_start_time) / 1000000))
 }
