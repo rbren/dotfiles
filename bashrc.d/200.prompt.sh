@@ -30,12 +30,15 @@ function set_prompt() {
   setweather >> /dev/null # putting this in tmux instead of prompt, but refresh here
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
-  FULL_PROMPT="$indicator $(tput setaf $TPUT_GREEN)[${last_execution_duration}s] [${duration}ms]"
+  end_time=$(date -u +%s%N)
+  prompt_duration=$(((end_time - prompt_start_time) / 1000000))
+  FULL_PROMPT="$indicator $(tput setaf $TPUT_GREEN)[${last_execution_duration}s]"
+  if [ $GIT_STATUS_DEBUG -eq 1 ]; then
+    FULL_PROMPT="$FULL_PROMPT [${prompt_duration}ms]"
+  fi
   FULL_PROMPT="$FULL_PROMPT $(kube_ps1)"
   FULL_PROMPT="$FULL_PROMPT $(tput setaf $TPUT_MAGENTA)${CUR_DIR} ${git_status} $(tput sgr0)$(tput bold)$(tput setaf $TPUT_BLUE)\n\$ "
   PS1="$(tput setab $TPUT_BLACK)$(tput bold)$FULL_PROMPT"
-  end_time=$(date -u +%s%N)
-  duration=$(((end_time - prompt_start_time) / 1000000))
 }
 
 
