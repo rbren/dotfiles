@@ -32,6 +32,7 @@ export COLOR_BG_PURPLE='\033[45m'
 export COLOR_BG_CYAN='\033[46m'
 export COLOR_BG_WHITE='\033[47m'
 
+export TPUT_COLORS=$(printf '\e[0m\e[48;5;%dm  %03d  ' {0..255}; printf '\e[0m \n')
 export TPUT_BLACK="0"
 export TPUT_RED="1"
 export TPUT_GREEN="2"
@@ -40,6 +41,7 @@ export TPUT_BLUE="4"
 export TPUT_MAGENTA="5"
 export TPUT_CYAN="6"
 export TPUT_WHITE="7"
+export TPUT_GRAY="242"
 
 export KUBE_PS1_SYMBOL_ENABLE=false
 export KUBE_PS1_PREFIX=""

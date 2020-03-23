@@ -22,3 +22,11 @@ function unistat() {
     stat -c %Y $1
   fi
 }
+
+function tput_colors() {
+  for ((i=0; i<=256; i++)) do
+    printf -v col '\e[48;5;%dm' $i
+    printf -v msg '  <%03d>  ' $i
+    echo -n "$col$msg"
+  done
+}
