@@ -38,12 +38,11 @@ function set_prompt() {
   fi
   FULL_PROMPT="$FULL_PROMPT $(kube_ps1)"
   FULL_PROMPT="$FULL_PROMPT $(tput setaf $TPUT_MAGENTA)${CUR_DIR} ${git_status}"
-  no_colors=$(echo -e "$FULL_PROMPT" | sed "s/$(echo -e "\e")[^m]*m//g");
+  no_colors=$(echo -e "$FULL_PROMPT" | sed "s/$(echo -e "\x1B")[^m]*m//g");
   prompt_len=${#no_colors}
   total_len=$(tput cols)
   # FIXME: why the extra 8 chars?
   SPACES=$(printf "=%.0s" $(seq $prompt_len $(( total_len + 8 ))))
   PS1="$(tput setab $TPUT_BLACK)$(tput bold)$FULL_PROMPT $(tput setaf $TPUT_GRAY)${SPACES}$(tput sgr0)$(tput bold)$(tput setaf $TPUT_BLUE)\n\$ "
 }
-
 
