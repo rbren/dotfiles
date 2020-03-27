@@ -30,3 +30,12 @@ function tput_colors() {
     echo -n "$col$msg"
   done
 }
+
+function nanodate() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "$(date -u +%s)000000000"
+  else
+    date -u +%s%N
+  fi
+
+}

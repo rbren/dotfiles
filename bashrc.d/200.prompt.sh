@@ -4,7 +4,7 @@ function grab_exit_code() {
   last_execution_time=$(HISTTIMEFORMAT='%s '; history 1)
   last_execution_time=$(awk '{print $2}' <<<"$last_execution_time");
   last_execution_duration=$(( now - last_execution_time ))
-  prompt_start_time=$(date -u +%s%N)
+  prompt_start_time=$(nanodate)
 }
 
 function set_prompt() {
@@ -30,7 +30,7 @@ function set_prompt() {
   setweather >> /dev/null # putting this in tmux instead of prompt, but refresh here
   trap '[[ -t 1 ]] && tput sgr0' DEBUG
   history -a
-  end_time=$(date -u +%s%N)
+  end_time=$(nanodate)
   prompt_duration=$(((end_time - prompt_start_time) / 1000000))
   FULL_PROMPT="$indicator $(tput setaf $TPUT_GREEN)[${last_execution_duration}s]"
   if [ $GIT_STATUS_DEBUG -eq 1 ]; then
