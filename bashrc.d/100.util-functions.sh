@@ -39,3 +39,14 @@ function nanodate() {
   fi
 
 }
+
+function showpath() {
+  OIFS=$IFS
+  IFS=':'
+  path=$PATH
+  for x in $path
+  do
+      echo "$x"
+  done
+  IFS=$OIFS
+}
