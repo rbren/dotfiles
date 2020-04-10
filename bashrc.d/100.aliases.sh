@@ -8,7 +8,7 @@ else
   alias lsl='ls -lah --color=auto';
 fi
 alias psa='ps aux';
-alias seek='grep --color -re';
+alias seek='grep --color -re | cut -c 1-250';
 alias diskdirs='du --max-depth=1 -c -h | sort -h'
 alias vi='nvim';
 alias src='source ~/.bashrc';
