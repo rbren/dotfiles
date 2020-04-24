@@ -50,3 +50,8 @@ function showpath() {
   done
   IFS=$OIFS
 }
+
+function seek() {
+  grep --color=always -re "${1}" "${2}" | cut -c 1-250
+}
+
