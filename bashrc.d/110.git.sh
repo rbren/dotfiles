@@ -83,12 +83,12 @@ function parse_git_status () {
     behind_branch="$(echo $branch_status | sed '$s/  *.*//')"
     ahead_branch="$(echo $branch_status | sed '$s/.*  *//')"
 
-    if [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
+    if [[ ${behind_master} -ne 0 && ${branch} != "master" ]]; then
+      status_indicator="$(tput setaf $TPUT_RED)↓"
+    elif [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
       status_indicator="$(tput setaf $TPUT_RED)↕"
     elif [[ ${behind_branch} -ne 0 ]]; then
       status_indicator="$(tput setaf $TPUT_BLUE)↓"
-    elif [[ ${behind_master} -ne 0 && ${branch} != "master" ]]; then
-      status_indicator="$(tput setaf $TPUT_RED)↓"
     elif [[ ${ahead_branch} -ne 0 ]]; then
       if [[ ${branch_exists} -eq 1 ]]; then
         status_indicator="$(tput setaf $TPUT_BLUE)↑"
