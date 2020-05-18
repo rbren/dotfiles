@@ -66,7 +66,7 @@ sudo apt-get install jq
 sudo snap install yq
 
 git config --global user.name "Robert Brennan"
-git config --global user.email bobby.brennan@gmail.com
+git config --global user.email contact@rbren.io
 
 echo "installing vim bundles"
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
