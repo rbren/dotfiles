@@ -88,6 +88,7 @@ sudo mv terraform /usr/local/bin/
 rm tf.zip
 sudo pip3 install virtualenv
 npm install -g bash-task-runner
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
 
 cd
 echo -e "\n\n\n"
