@@ -45,21 +45,29 @@ sudo apt install -y docker-ce
 sudo usermod -aG docker $USER
 
 echo "installing kubectl"
-# Install kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
 
-# Install helm
-echo "installing helm 3"
-#curl -L "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" > helm.tar.gz
+echo "installing helm"
 curl -L "https://get.helm.sh/helm-v3.0.2-linux-amd64.tar.gz" > helm.tar.gz
 tar -xvf helm.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/
-#sudo mv linux-amd64/tiller /usr/local/bin/
 rm helm.tar.gz
 rm -rf linux-amd64
+
+curl -L "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" > helm.tar.gz
+tar -xvf helm.tar.gz
+sudo mv linux-amd64/tiller /usr/local/bin/
+sudo mv linux-amd64/helm /usr/local/bin/helm2
+rm helm.tar.gz
+rm -rf linux-amd64
+
+echo "installing KIND"
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/
 
 echo "installing jq and yq"
 sudo apt-get install -y jq
