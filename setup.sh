@@ -90,13 +90,26 @@ git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 cd ~/git/homedir
 
 echo "installing Fairwinds tooling"
+
+# terraform
 curl -L "https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip" > tf.zip
 unzip tf.zip
 sudo mv terraform /usr/local/bin/
 rm tf.zip
+
+#venv
 sudo pip3 install virtualenv
+
+# runner
 npm install -g bash-task-runner
+
+# asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
+
+# reckoner
+curl -L "https://github.com/FairwindsOps/reckoner/releases/download/v3.2.1/reckoner-linux-amd64" > reckoner
+chmod +x reckoner
+sudo mv reckoner /usr/local/bin/
 
 cd
 echo -e "\n\n\n"
