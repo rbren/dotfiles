@@ -36,13 +36,24 @@ function set_prompt() {
   if [ $GIT_STATUS_DEBUG -eq 1 ]; then
     FULL_PROMPT="$FULL_PROMPT [${prompt_duration}ms]"
   fi
+
+  # FIXME: why the 3 chars?
+  prompt_len_offset=3
+  shell_depth=$(( $SHLVL - 2 ))
+  if [ $shell_depth -gt 0 ]; then
+    shells=$(printf "🐚%.0s" $(seq 1 $shell_depth))
+    shells=" $shells"
+    prompt_len_offset=$(( prompt_len_offset + $shell_depth ))
+  else
+    shells=""
+  fi
+
   FULL_PROMPT="$FULL_PROMPT $(kube_ps1)"
-  FULL_PROMPT="$FULL_PROMPT $(tput setaf $TPUT_MAGENTA)${CUR_DIR} ${git_status}"
+  FULL_PROMPT="$FULL_PROMPT $(tput setaf $TPUT_MAGENTA)${CUR_DIR} ${git_status}${shells}"
   no_colors=$(echo -e "$FULL_PROMPT" | sed "s/$(echo -e "\x1B")[^m]*m//g");
   prompt_len=${#no_colors}
   total_len=$(tput cols)
-  # FIXME: why the 3 chars?
-  SPACES=$(printf "=%.0s" $(seq $prompt_len $(( total_len - 3 ))))
+  SPACES=$(printf "=%.0s" $(seq $prompt_len $(( total_len - prompt_len_offset ))))
   PS1="$(tput setab $TPUT_BLACK)$(tput bold)$FULL_PROMPT $(tput setaf $TPUT_GRAY)${SPACES}$(tput sgr0)$(tput bold)$(tput setaf $TPUT_BLUE)\n\$ "
 }
 
