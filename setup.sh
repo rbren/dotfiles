@@ -13,7 +13,7 @@ crontab ./cron-tmp
 rm ./cron-tmp
 
 sudo apt-get update
-sudo apt-get install -y vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv
+sudo apt-get install -y vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv unzip
 
 echo "installing AWS CLI"
 pip3 install awscli --upgrade --user
@@ -45,24 +45,32 @@ sudo apt install -y docker-ce
 sudo usermod -aG docker $USER
 
 echo "installing kubectl"
-# Install kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
 
-# Install helm
-echo "installing helm 3"
-#curl -L "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" > helm.tar.gz
+echo "installing helm"
 curl -L "https://get.helm.sh/helm-v3.0.2-linux-amd64.tar.gz" > helm.tar.gz
 tar -xvf helm.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/
-#sudo mv linux-amd64/tiller /usr/local/bin/
 rm helm.tar.gz
 rm -rf linux-amd64
 
+curl -L "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" > helm.tar.gz
+tar -xvf helm.tar.gz
+sudo mv linux-amd64/tiller /usr/local/bin/
+sudo mv linux-amd64/helm /usr/local/bin/helm2
+rm helm.tar.gz
+rm -rf linux-amd64
+
+echo "installing KIND"
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/
+
 echo "installing jq and yq"
-sudo apt-get install jq
+sudo apt-get install -y jq
 sudo snap install yq
 
 git config --global user.name "Robert Brennan"
@@ -79,6 +87,7 @@ git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
 git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
 git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
+cd ~/git/homedir
 
 echo "installing Fairwinds tooling"
 curl -L "https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip" > tf.zip
@@ -87,6 +96,7 @@ sudo mv terraform /usr/local/bin/
 rm tf.zip
 sudo pip3 install virtualenv
 npm install -g bash-task-runner
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
 
 cd
 echo -e "\n\n\n"
