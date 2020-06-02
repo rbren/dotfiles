@@ -10,4 +10,3 @@ alias dockercleanvol='d volume ls -qf dangling=true | xargs -r sudo docker volum
 alias dockerclean='dockercleanproc ; dockercleanimg ; dockercleanvol'
 alias dockerpristine='dockercleanproc ; dockerpurgeimg ; dockercleanvol'
 
-
