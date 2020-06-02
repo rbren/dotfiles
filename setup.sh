@@ -111,6 +111,11 @@ curl -L "https://github.com/FairwindsOps/reckoner/releases/download/v3.2.1/recko
 chmod +x reckoner
 sudo mv reckoner /usr/local/bin/
 
+# aws-vault
+curl -L "https://github.com/99designs/aws-vault/releases/download/v5.4.4/aws-vault-linux-amd64" > aws-vault
+chmod +x aws-vault
+sudo mv aws-vault /usr/local/bin/
+
 cd
 echo -e "\n\n\n"
 echo "to finish setup:"
