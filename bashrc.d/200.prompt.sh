@@ -7,7 +7,12 @@ function grab_exit_code() {
   prompt_start_time=$(nanodate)
 }
 
+function ctrl_c() {
+  echo "tried to exit"
+}
+
 function set_prompt() {
+  trap ctrl_c INT
   git_status=$(parse_git_status)
   _kube_ps1_update_cache
 
@@ -55,5 +60,6 @@ function set_prompt() {
   total_len=$(tput cols)
   SPACES=$(printf "=%.0s" $(seq $prompt_len $(( total_len - prompt_len_offset ))))
   PS1="$(tput setab $TPUT_BLACK)$(tput bold)$FULL_PROMPT $(tput setaf $TPUT_GRAY)${SPACES}$(tput sgr0)$(tput bold)$(tput setaf $TPUT_BLUE)\n\$ "
+  trap - INT
 }
 
