@@ -1,5 +1,7 @@
 export IP_ADDRESS=$(curl -s http://whatismyip.akamai.com/ --max-time 5)
 
+export IGNOREEOF=42
+
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/git/go
 export GO_MAIN_DIR="$GOPATH/src/github.com/fairwindsops"
