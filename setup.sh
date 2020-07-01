@@ -116,6 +116,11 @@ curl -L "https://github.com/99designs/aws-vault/releases/download/v5.4.4/aws-vau
 chmod +x aws-vault
 sudo mv aws-vault /usr/local/bin/
 
+# SOPS
+curl -L "https://github.com/mozilla/sops/releases/download/v3.5.0/sops-v3.5.0.linux" > sops
+chmod +x sops
+sudo mv sops /usr/local/bin/
+
 cd
 echo -e "\n\n\n"
 echo "to finish setup:"
