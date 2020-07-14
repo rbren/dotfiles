@@ -5,8 +5,25 @@ alias gitc='git commit -a -m'
 alias gita='git commit -a --amend --no-edit'
 alias gitop='git push -u origin  $(parse_git_branch 2> /dev/null)'
 alias gitfp='git push -u origin +$(parse_git_branch 2> /dev/null)'
+
 function gitbd() {
   git branch -D `git branch | grep -E $1`
+}
+
+function gitcleanbranch() {
+  current_branch=parse_git_branch
+  while read -r line ; do
+    if [[ $line == $current_branch ]]; then
+      continue
+    fi
+
+    set +e
+    git branch -D $line 2> /dev/null
+    if [ $? -eq 0 ]; then
+      echo "deleted $line"
+    fi
+    set -e
+  done < <(git remote prune origin --dry-run | grep "would prune" | sed -e 's/.* \[would prune\] origin\///')
 }
 
 function gitdebug() {
