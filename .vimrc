@@ -107,7 +107,17 @@ call pathogen#infect()
 call pathogen#helptags()
 
 " Enable filetype plugins
-filetype plugin on
+syntax on
+filetype plugin indent on
+
+" https://github.com/preservim/nerdtree
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"command! -nargs=1 -complete=file | wincmd p
+autocmd VimEnter * wincmd l
+
+" https://github.com/Shougo/deoplete.nvim
+let g:deoplete#enable_at_startup = 1
 
 "FROM http://leafo.net/lessphp/vim/
 au BufNewFile,BufRead *.less set filetype=less
