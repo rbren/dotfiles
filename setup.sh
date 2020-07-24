@@ -15,6 +15,9 @@ rm ./cron-tmp
 sudo apt-get update
 sudo apt-get install -y vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv unzip
 
+echo "installing Homebrew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
 echo "installing AWS CLI"
 pip3 install awscli --upgrade --user
 
@@ -89,6 +92,8 @@ git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-ai
 git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 git clone https://github.com/preservim/nerdtree.git ~/.vim/bundle/nerdtree
 git clone https://github.com/shougo/deoplete.nvim ~/.vim/bundle/deoplete
+git clone https://github.com/roxma/nvim-yarp ~/.vim/bundle/nvim-yarp # for deoplete
+git clone https://github.com/roxma/vim-hug-neovim-rpc ~/.vim/bundle/vim-hug-neovim-rpc # for deoplete
 cd ~/git/homedir
 
 echo "installing Fairwinds tooling"
