@@ -55,6 +55,7 @@ function set_prompt() {
 
   FULL_PROMPT="$FULL_PROMPT $(kube_ps1)"
   FULL_PROMPT="$FULL_PROMPT $(tput setaf $TPUT_MAGENTA)${CUR_DIR} ${git_status}${shells}"
+
   no_colors=$(echo -e "$FULL_PROMPT" | sed "s/$(echo -e "\x1B")[^m]*m//g");
   prompt_len=${#no_colors}
   total_len=$(tput cols)
