@@ -105,10 +105,10 @@ function parse_git_status () {
     elif [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
       status_indicator="$(tput setaf $TPUT_RED)↕"
     elif [[ ${behind_branch} -ne 0 ]]; then
-      status_indicator="$(tput setaf $TPUT_BLUE)↓"
+      status_indicator="$(tput setaf $TPUT_CYAN)↓"
     elif [[ ${ahead_branch} -ne 0 ]]; then
       if [[ ${branch_exists} -eq 1 ]]; then
-        status_indicator="$(tput setaf $TPUT_BLUE)↑"
+        status_indicator="$(tput setaf $TPUT_CYAN)↑"
       else
         status_indicator="$(tput setaf $TPUT_YELLOW)↑"
       fi
