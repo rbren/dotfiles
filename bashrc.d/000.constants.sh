@@ -44,6 +44,7 @@ export TPUT_MAGENTA="5"
 export TPUT_CYAN="6"
 export TPUT_WHITE="7"
 export TPUT_GRAY="242"
+export TPUT_LIGHT_BLUE="38"
 
 export KUBE_PS1_SYMBOL_ENABLE=false
 export KUBE_PS1_PREFIX=""

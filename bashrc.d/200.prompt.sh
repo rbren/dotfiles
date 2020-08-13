@@ -59,7 +59,9 @@ function set_prompt() {
   prompt_len=${#no_colors}
   total_len=$(tput cols)
   SPACES=$(printf "=%.0s" $(seq $prompt_len $(( total_len - prompt_len_offset ))))
-  PS1="$(tput setab $TPUT_BLACK)$(tput bold)$FULL_PROMPT $(tput setaf $TPUT_GRAY)${SPACES}$(tput sgr0)$(tput bold)$(tput setaf $TPUT_BLUE)\n\$ "
+  PS1="$(tput setab $TPUT_BLACK)$(tput bold)$FULL_PROMPT"
+  PS1="$PS1 $(tput setaf $TPUT_GRAY)${SPACES}"
+  PS1="$PS1$(tput sgr0)$(tput bold)$(tput setaf $TPUT_LIGHT_BLUE)\n\$ "
   trap - INT
 }
 
