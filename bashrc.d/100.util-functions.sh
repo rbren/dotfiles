@@ -25,9 +25,12 @@ function unistat() {
 
 function tput_colors() {
   for ((i=0; i<=256; i++)) do
-    printf -v col '\e[48;5;%dm' $i
     printf -v msg '  <%03d>  ' $i
-    echo -n "$col$msg"
+    echo -n "$(tput setab $i)$msg"
+  done
+  for ((i=0; i<=256; i++)) do
+    printf -v msg '  <%03d>  ' $i
+    echo -n "$(tput setab 0)$(tput setaf $i)$msg"
   done
 }
 
