@@ -1,6 +1,7 @@
 export GIT_STATUS_DEBUG=0
 git config --global credential.helper 'cache --timeout=3000'
 
+alias gitm='git commit -m'
 alias gitc='git commit -a -m'
 alias gita='git commit -a --amend --no-edit'
 alias gitop='git push -u origin  $(parse_git_branch 2> /dev/null)'
