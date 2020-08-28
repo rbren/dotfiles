@@ -1,7 +1,7 @@
 function grab_exit_code() {
   last_exit_code="$?"
   now=$(date -u +%s)
-  last_execution_time=$(HISTTIMEFORMAT='%s '; history 1)
+  last_execution_time=$(HISTTIMEFORMAT='%s '; history 1 | head -1)
   last_execution_time=$(awk '{print $2}' <<<"$last_execution_time");
   last_execution_duration=$(( now - last_execution_time ))
   prompt_start_time=$(nanodate)
