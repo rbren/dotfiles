@@ -27,7 +27,7 @@ style="$(tput setaf 40)"
 [git_status]
 ahead = "🚀 "
 beind = "✨ "
-diverged = "☢️ "
+diverged = "📥 "
 staged = "📁 "
 untracked = "👀 "
 modified = "📝 "
