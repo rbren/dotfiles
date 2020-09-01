@@ -76,13 +76,13 @@ function maybe_refresh_git_fetch () {
 clean_color="$(tput setaf $TPUT_GREEN)"
 changes_color="$(tput setaf $TPUT_YELLOW)"
 dirty_color="$(tput setaf $TPUT_RED)"
-unknown_indicator="$changes_color?"
+unknown_indicator="$changes_color🤔"
 behind_master_indicator="$dirty_color↓"
 conflict_indicator="$dirty_color↕"
 behind_indicator="$clean_color↓"
 ahead_indicator="$clean_color↑"
 new_branch_indicator="$changes_color↑"
-clean_indicator="$clean_color✓"
+clean_indicator="$clean_color✨"
 
 function parse_git_status () {
   git_status="$(quiet_git status 2> /dev/null)"
