@@ -28,10 +28,12 @@ function tput_colors() {
     printf -v msg '  <%03d>  ' $i
     echo -n "$(tput setab $i)$msg"
   done
+  echo -n "$(tput sgr0)"
   for ((i=0; i<=256; i++)) do
     printf -v msg '  <%03d>  ' $i
-    echo -n "$(tput setab 0)$(tput setaf $i)$msg"
+    echo -n "$(tput setaf $i)$msg"
   done
+  echo
 }
 
 function nanodate() {
