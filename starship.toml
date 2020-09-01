@@ -89,6 +89,5 @@ disabled = false
 [custom.git]
 when = "git status"
 command = "source ~/bashrc.d/110.git.sh && parse_git_status"
-prefix = "gs"
 shell = ["bash"]
 
