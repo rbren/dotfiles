@@ -16,11 +16,17 @@ prompt_order = [
     "character",
 ]
 
+[username]
+disabled = true
+[hostname]
+disabled = true
+
 [directory]
 prefix = ""
 truncate_to_repo = false
 
 [git_branch]
+format = "[$symbol$branch]($style)"
 symbol = ""
 style="$(tput setaf 40)"
 
@@ -31,11 +37,13 @@ diverged = "📥 "
 staged = "📁 "
 untracked = "👀 "
 modified = "📝 "
+format = " ($all_status$ahead_behind )"
 prefix = ""
 suffix = ""
 
 [kubernetes]
 prefix = ""
 symbol = ""
+format = "[$symbol$context( \\($namespace\\))]($style) "
 style = "fg:#326DE6"
 disabled = false
