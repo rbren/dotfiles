@@ -11,17 +11,7 @@ if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
 
-if [ -f ~/.cuddlefish/config ]; then
-        . ~/.cuddlefish/config
-fi
-
 for FN in $HOME/bashrc.d/*.sh ; do
     source "$FN"
 done
 
-if [ -f ~/.local-bashrc ]; then
-  source ~/.local-bashrc
-fi
-
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

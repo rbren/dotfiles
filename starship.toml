@@ -1,0 +1,41 @@
+prompt_order = [
+    "cmd_duration",
+    "directory",
+    "python",
+    "golang",
+    "ruby",
+    "rust",
+    "memory_usage",
+    "kubernetes",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "line_break",
+    "jobs",
+    "character",
+]
+
+[directory]
+prefix = ""
+truncate_to_repo = false
+
+[git_branch]
+symbol = ""
+style="$(tput setaf 40)"
+
+[git_status]
+ahead = "🚀 "
+beind = "✨ "
+diverged = "📥 "
+staged = "📁 "
+untracked = "👀 "
+modified = "📝 "
+prefix = ""
+suffix = ""
+
+[kubernetes]
+prefix = ""
+symbol = ""
+style = "fg:#326DE6"
+disabled = false

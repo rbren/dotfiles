@@ -53,4 +53,4 @@ export KUBE_PS1_CTX_COLOR=$TPUT_CYAN
 export KUBE_PS1_NS_COLOR=$TPUT_CYAN
 export KUBE_PS1_DIVIDER=" "
 
-export PROMPT_COMMAND="grab_exit_code;_direnv_hook;set_prompt"
+export PROMPT_COMMAND="_direnv_hook"

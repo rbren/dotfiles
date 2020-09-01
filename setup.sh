@@ -6,6 +6,7 @@ cp .vimrc ~/
 cp .tmux.conf ~/
 mkdir -p ~/.config/nvim
 cp init.vim ~/.config/nvim/
+cp starship.toml ~/.config/
 
 crontab -l > ./cron-tmp || true
 cat ./cron >> ./cron-tmp
@@ -17,6 +18,9 @@ sudo apt-get install -y vim curl build-essential git python3.7 python3-pip php7.
 
 echo "installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+echo "installing Starship"
+brew install starship
 
 echo "installing AWS CLI"
 pip3 install awscli --upgrade --user
