@@ -1,59 +1,25 @@
 format = """\
-$username\
-$hostname\
-$kubernetes\
-$directory\
-$custom\
-$git_branch\
-$git_commit\
-$git_state\
-$git_status\
-$hg_branch\
-$docker_context\
-$package\
-$cmake\
-$dart\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$golang\
-$helm\
-$java\
-$julia\
-$nim\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$purescript\
-$python\
-$ruby\
-$rust\
-$swift\
-$terraform\
-$zig\
-$nix_shell\
-$conda\
-$memory_usage\
-$aws\
-$gcloud\
-$env_var\
-$crystal\
+$username$hostname $kubernetes $directory ${custom.git} $git_state\
+$hg_branch$docker_context$package$cmake$dart$dotnet$elixir$elm$erlang$golang$helm$java$julia\
+$nim$nodejs$ocaml$perl$php$purescript$python$ruby$rust$swift$terraform$zig$nix_shell$conda\
+$aws$gcloud\
 $cmd_duration\
 $line_break\
-$jobs\
-$battery\
-$time\
-$shlvl\
-$character\
+$jobs$shlvl$character\
 """
+
+add_newline = false
 
 [username]
 disabled = true
 
 [hostname]
-disabled = true
+disabled = false
+format = "[@$hostname]($style)"
+style = "bold yellow"
+
+[cmd_duration]
+format = "[$duration]($style)"
 
 [shlvl]
 disabled=false
@@ -63,6 +29,7 @@ format="$symbol"
 [directory]
 prefix = ""
 truncate_to_repo = false
+format = "[$path]($style)[$lock_symbol]($lock_style)"
 
 [git_branch]
 disabled = true
@@ -80,7 +47,7 @@ format = " ($all_status$ahead_behind )"
 
 [kubernetes]
 disabled = false
-format = "[$context( \\($namespace\\))]($style) "
+format = "[$context( \\($namespace\\))]($style)"
 style = "fg:#326DE6"
 
 [custom.git]
@@ -88,3 +55,8 @@ when = "git status"
 command = "source ~/bashrc.d/110.git.sh && parse_git_status"
 shell = ["bash"]
 
+[golang]
+format = "$symbol"
+
+[python]
+format = "$symbol"
