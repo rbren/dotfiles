@@ -65,10 +65,20 @@ function gitcheck() {
   done
 }
 
+function maybe_refresh_git_fetch () {
+  last_fetch=$(unistat .git/FETCH_HEAD)
+  time_now=$(date +%s)
+  timeout=60
+  if [[ $((time_now - timeout)) -gt $((last_fetch)) ]]; then
+    quiet_git fetch &
+  fi
+}
+
 function parse_git_status () {
   if ! [ -d ".git" ]; then
     return
   fi
+  maybe_refresh_git_fetch
   gitdebug "\nstart  "
   quiet_git rev-parse --git-dir &> /dev/null
   gitdebug "gps1    "
@@ -84,12 +94,6 @@ function parse_git_status () {
     branch_color="$(tput setaf $TPUT_YELLOW)"
   fi
   gitdebug "unistat"
-  last_fetch=$(unistat .git/FETCH_HEAD)
-  time_now=$(date +%s)
-  timeout=60
-  if [[ $((time_now - timeout)) -gt $((last_fetch)) ]]; then
-    quiet_git fetch
-  fi
   gitdebug "bstatus"
   if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
     status_indicator="$(tput setaf $TPUT_YELLOW)?"

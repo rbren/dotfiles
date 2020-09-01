@@ -1,36 +1,76 @@
-prompt_order = [
-    "cmd_duration",
-    "directory",
-    "python",
-    "golang",
-    "ruby",
-    "rust",
-    "memory_usage",
-    "kubernetes",
-    "git_branch",
-    "git_commit",
-    "git_state",
-    "git_status",
-    "line_break",
-    "jobs",
-    "character",
-]
+format = """\
+$username\
+$hostname\
+$kubernetes\
+$directory\
+$custom\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$env_var\
+$crystal\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$shlvl\
+$character\
+"""
 
 [username]
 disabled = true
+
 [hostname]
 disabled = true
+
+[shlvl]
+disabled=false
+symbol="🐚 "
+format="$symbol"
 
 [directory]
 prefix = ""
 truncate_to_repo = false
 
 [git_branch]
+disabled = true
 format = "[$symbol$branch]($style)"
 symbol = ""
-style="$(tput setaf 40)"
 
 [git_status]
+disabled = true
 ahead = "🚀 "
 beind = "✨ "
 diverged = "📥 "
@@ -45,3 +85,10 @@ symbol = ""
 format = "[$symbol$context( \\($namespace\\))]($style) "
 style = "fg:#326DE6"
 disabled = false
+
+[custom.git]
+when = "git status"
+command = "source ~/bashrc.d/110.git.sh && parse_git_status"
+prefix = "gs"
+shell = ["bash"]
+
