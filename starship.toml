@@ -38,8 +38,6 @@ staged = "📁 "
 untracked = "👀 "
 modified = "📝 "
 format = " ($all_status$ahead_behind )"
-prefix = ""
-suffix = ""
 
 [kubernetes]
 prefix = ""
