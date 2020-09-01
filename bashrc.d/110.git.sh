@@ -38,7 +38,6 @@ function gitdebug() {
 }
 
 function quiet_git() {
-  gitdebug $1
   GIT_TERMINAL_PROMPT=0 git "$@" 2> /dev/null
 }
 
@@ -75,15 +74,13 @@ function maybe_refresh_git_fetch () {
 }
 
 function parse_git_status () {
-  if ! [ -d ".git" ]; then
+  git_status="$(quiet_git status 2> /dev/null)"
+  if [ $? -ne 0 ]; then
     return
   fi
   maybe_refresh_git_fetch
-  gitdebug "\nstart  "
   quiet_git rev-parse --git-dir &> /dev/null
-  gitdebug "gps1    "
   branch="$(parse_git_branch 2> /dev/null)"
-  git_status="$(quiet_git status 2> /dev/null)"
   dirty_status="Changes not staged"
   clean_status="working (.*) clean"
   if [[ ${git_status} =~ ${clean_status} ]]; then
@@ -93,8 +90,6 @@ function parse_git_status () {
   else
     branch_color="$(tput setaf $TPUT_YELLOW)"
   fi
-  gitdebug "unistat"
-  gitdebug "bstatus"
   if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
     status_indicator="$(tput setaf $TPUT_YELLOW)?"
   else

@@ -66,8 +66,7 @@ truncate_to_repo = false
 
 [git_branch]
 disabled = true
-format = "[$symbol$branch]($style)"
-symbol = ""
+format = "[$branch]($style)"
 
 [git_status]
 disabled = true
@@ -80,11 +79,9 @@ modified = "📝 "
 format = " ($all_status$ahead_behind )"
 
 [kubernetes]
-prefix = ""
-symbol = ""
-format = "[$symbol$context( \\($namespace\\))]($style) "
-style = "fg:#326DE6"
 disabled = false
+format = "[$context( \\($namespace\\))]($style) "
+style = "fg:#326DE6"
 
 [custom.git]
 when = "git status"
