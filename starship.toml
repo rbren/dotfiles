@@ -1,8 +1,8 @@
 format = """\
-$username$hostname $kubernetes $directory ${custom.git} $git_state\
+$username$hostname$kubernetes$aws$gcloud$directory\
 $hg_branch$docker_context$package$cmake$dart$dotnet$elixir$elm$erlang$golang$helm$java$julia\
 $nim$nodejs$ocaml$perl$php$purescript$python$ruby$rust$swift$terraform$zig$nix_shell$conda\
-$aws$gcloud\
+${custom.git} $git_state\
 $cmd_duration\
 $line_break\
 $jobs$shlvl$character\
@@ -15,7 +15,7 @@ disabled = true
 
 [hostname]
 disabled = false
-format = "[@$hostname]($style)"
+format = "[@$hostname]($style) "
 style = "bold yellow"
 
 [cmd_duration]
@@ -27,9 +27,8 @@ symbol="🐚 "
 format="$symbol"
 
 [directory]
-prefix = ""
 truncate_to_repo = false
-format = "[$path]($style)[$lock_symbol]($lock_style)"
+format = "[$path]($style)[$lock_symbol]($lock_style) "
 style="fg:#01C5BB"
 
 [git_branch]
@@ -48,7 +47,7 @@ format = " ($all_status$ahead_behind )"
 
 [kubernetes]
 disabled = false
-format = "[$context( \\($namespace\\))]($style)"
+format = "[$context( \\($namespace\\))]($style) "
 style = "fg:#05E9FF"
 
 [custom.git]
