@@ -2,14 +2,24 @@ export GIT_STATUS_DEBUG=0
 git config --global credential.helper 'cache --timeout=3000'
 
 alias gits='git status'
-alias gitc='git commit -m'
-alias gitca='git commit -a -m'
 alias gitp='git push'
 alias gitaddall='git add . && git commit -m'
 alias gitamend='git commit -a --amend --no-edit'
 alias gitempty='git commit --allow-empty -m "empty commit"'
 alias gitop='git push -u origin  $(parse_git_branch 2> /dev/null)'
 alias gitfp='git push -u origin +$(parse_git_branch 2> /dev/null)'
+unalias gitc
+unalias gitca
+
+function gitc () {
+  quoted_args=$(printf "${1+ %q}" "$@")
+  git commit -m "$quoted_args"
+}
+
+function gitca () {
+  quoted_args=$(printf "${1+ %q}" "$@")
+  git commit -a -m "$quoted_args"
+}
 
 function gitbd() {
   git branch -D `git branch | grep -E $1`
