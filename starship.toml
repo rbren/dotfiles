@@ -60,3 +60,9 @@ format = "$symbol"
 
 [python]
 format = "$symbol"
+
+[nodejs]
+format = "[$symbol]($style)"
+
+[package]
+disabled = true
