@@ -51,8 +51,7 @@ function gitcheck() {
 }
 
 function maybe_git_fetch () {
-  git_status="$(quiet_git status 2> /dev/null)"
-  if [ $? -ne 0 ]; then
+  if ! [ -d ".git" ]; then
     return
   fi
   last_fetch=$(unistat .git/FETCH_HEAD)
