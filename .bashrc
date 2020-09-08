@@ -12,6 +12,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 for FN in $HOME/bashrc.d/*.sh ; do
+    echo "sourcing $FN"
     source "$FN"
 done
 
