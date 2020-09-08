@@ -7,7 +7,6 @@ set autoindent
 set termguicolors
 
 :set hlsearch
-highlight Search guibg='Purple' guifg='NONE'
 
 nmap <silent> <C-Up> :wincmd k<CR>
 nmap <silent> <C-Down> :wincmd j<CR>
@@ -216,8 +215,9 @@ hi StatusLine guifg=#f8f8f8 guibg=#292c2f guisp=#292c2f gui=bold ctermfg=15 cter
 hi Label guifg=#f6f6f6 guibg=NONE guisp=NONE gui=NONE ctermfg=255 ctermbg=NONE cterm=NONE
 "hi CTagsImport -- no settings --
 hi PMenuSel guifg=#ffffff guibg=#3498DB guisp=#3498DB gui=bold ctermfg=15 ctermbg=74 cterm=bold
-hi Search guifg=#16191c guibg=#fffebe guisp=#fffebe gui=NONE ctermfg=234 ctermbg=229 cterm=NONE
-hi IncSearch guifg=#cccccc guibg=#cccccc guisp=#cccccc gui=NONE ctermfg=15 ctermbg=74 cterm=NONE
+" hi Search guifg=#16191c guibg=#fffebe guisp=#fffebe gui=NONE ctermfg=234 ctermbg=229 cterm=NONE
+hi Search guifg=NONE guibg=#000000 cterm=NONE ctermfg=grey ctermbg=blue
+hi IncSearch guifg=NONE guibg=#ffffff guisp=#cccccc gui=NONE ctermfg=15 ctermbg=74 cterm=NONE
 "hi CTagsGlobalVariable -- no settings --
 hi Delimiter guifg=#f8f8f8 guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
 "hi SpellRare -- no settings --
