@@ -8,8 +8,8 @@ alias gitamend='git commit -a --amend --no-edit'
 alias gitempty='git commit --allow-empty -m "empty commit"'
 alias gitop='git push -u origin  $(parse_git_branch 2> /dev/null)'
 alias gitfp='git push -u origin +$(parse_git_branch 2> /dev/null)'
-unalias gitc
-unalias gitca
+alias gitnb='git checkout -b'
+alias gitb='git checkout'
 
 function gitc () {
   quoted_args=$(printf "${1+ %q}" "$@")
