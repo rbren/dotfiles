@@ -4,6 +4,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
+set termguicolors
 
 :set hlsearch
 highlight Search guibg='Purple' guifg='NONE'
@@ -152,8 +153,8 @@ hi VertSplit guifg=#444444 guibg=#444444 guisp=#444444 gui=NONE ctermfg=238 cter
 hi NonText guifg=#949494 guibg=NONE guisp=NONE gui=NONE ctermfg=246 ctermbg=NONE cterm=NONE
 
 hi LineNr guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=239 ctermbg=236 cterm=NONE
-hi Comment guifg=#60666b guibg=NONE guisp=NONE gui=NONE ctermfg=242 ctermbg=NONE cterm=NONE
-hi Todo guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=66 ctermbg=NONE cterm=bold
+hi Comment guifg=#FFB6C1 guibg=NONE guisp=NONE gui=NONE ctermfg=242 ctermbg=NONE cterm=NONE
+hi Todo guifg=#FFB6C1 guibg=NONE guisp=NONE gui=bold ctermfg=66 ctermbg=NONE cterm=bold
 
 hi Function guifg=#af87d7 guibg=NONE guisp=NONE gui=NONE ctermfg=140 ctermbg=NONE cterm=NONE
 hi Identifier guifg=#96cdeb guibg=NONE guisp=NONE gui=NONE ctermfg=81 ctermbg=NONE cterm=NONE
@@ -197,7 +198,7 @@ hi pythonBuiltin guifg=#5f87d7 guibg=NONE guisp=NONE gui=NONE ctermfg=68 ctermbg
 
 hi WildMenu guifg=#1c1c1c guibg=#ffff99 guisp=#ffff99 gui=NONE ctermfg=234 ctermbg=228 cterm=NONE
 "hi SignColumn -- no settings --
-hi SpecialComment guifg=#f8f8f8 guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
+hi SpecialComment guifg=#FFB6C1 guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
 hi Typedef guifg=#72aaca guibg=NONE guisp=NONE gui=NONE ctermfg=110 ctermbg=NONE cterm=NONE
 hi Title guifg=#f8f8f8 guibg=NONE guisp=NONE gui=bold ctermfg=15 ctermbg=NONE cterm=bold
 hi Folded guifg=#798188 guibg=#26292c guisp=#26292c gui=NONE ctermfg=66 ctermbg=236 cterm=NONE
@@ -248,7 +249,7 @@ hi SpecialKey guifg=#7a8288 guibg=#3b3e40 guisp=#3b3e40 gui=NONE ctermfg=66 cter
 "hi DefinedName -- no settings --
 hi Tag guifg=#72aaca guibg=NONE guisp=NONE gui=NONE ctermfg=110 ctermbg=NONE cterm=NONE
 hi PMenuThumb guifg=#82898f guibg=#4c4f54 guisp=#4c4f54 gui=NONE ctermfg=245 ctermbg=240 cterm=NONE
-hi MatchParen guifg=#26292c guibg=#fa9a4b guisp=#fa9a4b gui=underline ctermfg=236 ctermbg=215 cterm=underline
+hi MatchParen guifg=#ffffff guibg=#fa9a4b guisp=#fa9a4b gui=underline ctermfg=236 ctermbg=215 cterm=underline
 "hi LocalVariable -- no settings --
 "hi SpellBad -- no settings --
 "hi CTagsClass -- no settings --
