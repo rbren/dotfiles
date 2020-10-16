@@ -57,6 +57,6 @@ function showpath() {
 }
 
 function seek() {
-  grep --color=always -re "${1}" "${2}" | cut -c 1-250
+  grep --color=always -re "${1}" "${2}" "${@:3}" | cut -c 1-250
 }
 
