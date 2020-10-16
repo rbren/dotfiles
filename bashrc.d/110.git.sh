@@ -18,7 +18,7 @@ function gitc () {
 
 function gitca () {
   msg=$(printf "${1+ %q}" "$@")
-  msg="${msg##*( )}"
+  msg=$(echo $msg | sed -e 's/^\s*//')
   git commit -a -m "$quoted_args"
 }
 
