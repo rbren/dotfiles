@@ -47,7 +47,8 @@ function gitup () {
   git checkout master && git pull && git checkout $branch && git rebase master
 }
 
-function ghc() {
+unset ghc # fix for haskell
+function ghclone() {
   git clone "ssh://git@github.com/$1" $2
 }
 
