@@ -2,7 +2,7 @@ clean_color="$(tput setaf $TPUT_GREEN)"
 changes_color="$(tput setaf $TPUT_YELLOW)"
 dirty_color="$(tput setaf $TPUT_RED)"
 unknown_indicator="$changes_color🤔"
-behind_master_indicator="$dirty_color↓"
+behind_main_indicator="$dirty_color↓"
 conflict_indicator="$dirty_color↕"
 behind_indicator="$clean_color↓"
 ahead_indicator="$clean_color↑"
@@ -26,6 +26,7 @@ function parse_git_status () {
   if [ $? -ne 0 ]; then
     return
   fi
+  main_branch=${GIT_MAIN_BRANCH:-"master"}
 
   quiet_git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"
@@ -39,12 +40,12 @@ function parse_git_status () {
     branch_color=$changes_color
   fi
 
-  if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list master)" ]]; then
+  if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list $GIT_MAIN_BRANCH)" ]]; then
     status_indicator=$unknown_indicator
   else
     branch_exists="0"
-    branch_status="$(quiet_git rev-list --left-right --count origin/master...$branch)"
-    behind_master="$(echo $branch_status | sed '$s/  *.*//')"
+    branch_status="$(quiet_git rev-list --left-right --count origin/$GIT_MAIN_BRANCH...$branch)"
+    behind_main="$(echo $branch_status | sed '$s/  *.*//')"
     if [[ -n "$(quiet_git branch --format='%(upstream)' --list $branch)" ]]; then
       branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
       branch_exists="1"
@@ -53,8 +54,8 @@ function parse_git_status () {
     behind_branch="$(echo $branch_status | sed '$s/  *.*//')"
     ahead_branch="$(echo $branch_status | sed '$s/.*  *//')"
 
-    if [[ ${behind_master} -ne 0 && ${branch} != "master" ]]; then
-      status_indicator=$behind_master_indicator
+    if [[ ${behind_main} -ne 0 && ${branch} != "$GIT_MAIN_BRANCH" ]]; then
+      status_indicator=$behind_main_indicator
     elif [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
       status_indicator=$conflict_indicator
     elif [[ ${behind_branch} -ne 0 ]]; then
