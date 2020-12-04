@@ -36,6 +36,10 @@ curl -LO "https://github.com/neovim/neovim/releases/download/v0.4.2/nvim.appimag
 chmod +x nvim.appimage
 sudo mv nvim.appimage /usr/bin/nvim
 
+echo "installing Vim-Plug"
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 echo "installing NodeJS"
 curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs

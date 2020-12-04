@@ -1,3 +1,8 @@
+"Vim-plug section
+call plug#begin(stdpath('data') . '/plugged')
+Plug 'vim-test/vim-test'
+call plug#end()
+
 syntax enable
 set tabstop=4
 set softtabstop=2
