@@ -40,11 +40,11 @@ function parse_git_status () {
     branch_color=$changes_color
   fi
 
-  if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list $GIT_MAIN_BRANCH)" ]]; then
+  if [[ ${branch} =~ " detached " || ${branch} =~ "no branch" || -z "$(quiet_git remote -v)" || -z "$(quiet_git branch --format='%(upstream)' --list $main_branch)" ]]; then
     status_indicator=$unknown_indicator
   else
     branch_exists="0"
-    branch_status="$(quiet_git rev-list --left-right --count origin/$GIT_MAIN_BRANCH...$branch)"
+    branch_status="$(quiet_git rev-list --left-right --count origin/$main_branch...$branch)"
     behind_main="$(echo $branch_status | sed '$s/  *.*//')"
     if [[ -n "$(quiet_git branch --format='%(upstream)' --list $branch)" ]]; then
       branch_status="$(quiet_git rev-list --left-right --count origin/$branch...$branch)"
@@ -54,7 +54,7 @@ function parse_git_status () {
     behind_branch="$(echo $branch_status | sed '$s/  *.*//')"
     ahead_branch="$(echo $branch_status | sed '$s/.*  *//')"
 
-    if [[ ${behind_main} -ne 0 && ${branch} != "$GIT_MAIN_BRANCH" ]]; then
+    if [[ ${behind_main} -ne 0 && ${branch} != "$main_branch" ]]; then
       status_indicator=$behind_main_indicator
     elif [[ ${behind_branch} -ne 0 && ${ahead_branch} -ne 0 ]]; then
       status_indicator=$conflict_indicator
