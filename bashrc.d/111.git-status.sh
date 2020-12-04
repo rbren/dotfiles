@@ -26,7 +26,7 @@ function parse_git_status () {
   if [ $? -ne 0 ]; then
     return
   fi
-  main_branch=${GIT_MAIN_BRANCH:-"master"}
+  main_branch=${GIT_MAIN_BRANCH:-"main"}
 
   quiet_git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"

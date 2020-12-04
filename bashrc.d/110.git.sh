@@ -43,8 +43,9 @@ function gitcleanbranch() {
 }
 
 function gitup () {
+  main_branch=${GIT_MAIN_BRANCH:-"main"}
   branch="$(parse_git_branch 2> /dev/null)"
-  git checkout master && git pull && git checkout $branch && git rebase master
+  git checkout $main_branch && git pull && git checkout $branch && git rebase $main_branch
 }
 
 unset ghc # fix for haskell
