@@ -2,6 +2,8 @@
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-test/vim-test'
 call plug#end()
+"for scrolling vim-test output
+tmap <C-o> <C-\><C-n>
 
 syntax enable
 set tabstop=4
@@ -116,10 +118,10 @@ syntax on
 filetype plugin indent on
 
 " https://github.com/preservim/nerdtree
-autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd vimenter * NERDTree
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "command! -nargs=1 -complete=file | wincmd p
-autocmd VimEnter * wincmd l
+"autocmd VimEnter * wincmd l
 
 " https://github.com/Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
