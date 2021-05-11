@@ -17,6 +17,14 @@ function quiet_git() {
   GIT_TERMINAL_PROMPT=0 git "$@" 2> /dev/null
 }
 
+function gitmainbranch() {
+  if quiet_git rev-parse --verify main; then
+    echo "main"
+  else
+    echo "master"
+  fi
+}
+
 function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
@@ -26,7 +34,7 @@ function parse_git_status () {
   if [ $? -ne 0 ]; then
     return
   fi
-  main_branch=${GIT_MAIN_BRANCH:-"main"}
+  main_branch=$(git_main_branch)
 
   quiet_git rev-parse --git-dir &> /dev/null
   branch="$(parse_git_branch 2> /dev/null)"

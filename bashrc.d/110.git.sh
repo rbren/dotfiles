@@ -11,6 +11,10 @@ alias gitfp='git push -u origin +$(parse_git_branch 2> /dev/null)'
 alias gitnb='git checkout -b'
 alias gitb='git checkout'
 
+function quiet_git() {
+  GIT_TERMINAL_PROMPT=0 git "$@" 2> /dev/null
+}
+
 function gitc () {
   quoted_args=$(printf "${1+ %q}" "$@")
   git commit -m "$quoted_args"
@@ -24,6 +28,14 @@ function gitca () {
 
 function gitbd() {
   git branch -D `git branch | grep -E $1`
+}
+
+function gitmainbranch() {
+  if quiet_git rev-parse --verify main; then
+    echo "main"
+  else
+    echo "master"
+  fi
 }
 
 function gitcleanbranch() {
@@ -43,7 +55,7 @@ function gitcleanbranch() {
 }
 
 function gitup () {
-  main_branch=${GIT_MAIN_BRANCH:-"main"}
+  main_branch=$(git_main_branch)
   branch="$(parse_git_branch 2> /dev/null)"
   git checkout $main_branch && git pull && git checkout $branch && git rebase $main_branch
 }
