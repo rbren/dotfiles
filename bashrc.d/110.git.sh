@@ -31,7 +31,7 @@ function gitbd() {
 }
 
 function gitmainbranch() {
-  if quiet_git rev-parse --verify main; then
+  if git rev-parse --verify main >> /dev/null; then
     echo "main"
   else
     echo "master"
@@ -57,6 +57,7 @@ function gitcleanbranch() {
 function gitup () {
   main_branch=$(gitmainbranch)
   branch="$(parse_git_branch 2> /dev/null)"
+  echo "switching from $branch to $main_branch"
   git checkout $main_branch && git pull && git checkout $branch && git rebase $main_branch
 }
 
