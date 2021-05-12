@@ -55,7 +55,7 @@ function gitcleanbranch() {
 }
 
 function gitup () {
-  main_branch=$(git_main_branch)
+  main_branch=$(gitmainbranch)
   branch="$(parse_git_branch 2> /dev/null)"
   git checkout $main_branch && git pull && git checkout $branch && git rebase $main_branch
 }
