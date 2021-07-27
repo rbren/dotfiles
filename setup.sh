@@ -99,6 +99,7 @@ git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
 git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 git clone https://github.com/preservim/nerdtree.git ~/.vim/bundle/nerdtree
+git clone https://github.com/hashivim/vim-terraform.git ~/.vim/bundle/vim-terraform
 git clone https://github.com/shougo/deoplete.nvim ~/.vim/bundle/deoplete
 git clone https://github.com/roxma/nvim-yarp ~/.vim/bundle/nvim-yarp # for deoplete
 git clone https://github.com/roxma/vim-hug-neovim-rpc ~/.vim/bundle/vim-hug-neovim-rpc # for deoplete

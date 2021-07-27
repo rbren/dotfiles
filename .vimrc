@@ -1,6 +1,7 @@
 "Vim-plug section
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-test/vim-test'
+Plug 'itspriddle/vim-shellcheck'
 call plug#end()
 "for scrolling vim-test output
 tmap <C-o> <C-\><C-n>
