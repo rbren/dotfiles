@@ -8,25 +8,22 @@ mkdir -p ~/.config/nvim
 cp init.vim ~/.config/nvim/
 cp starship.toml ~/.config/
 
+sudo apt-get update
+sudo apt-get install -y sudo cron vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv unzip
+
 crontab -l > ./cron-tmp || true
 cat ./cron >> ./cron-tmp
 crontab ./cron-tmp
 rm ./cron-tmp
 
-sudo apt-get update
-sudo apt-get install -y vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv unzip
-
-echo "installing Homebrew"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
 echo "installing Starship"
-brew install starship
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
 echo "installing AWS CLI"
 pip3 install awscli --upgrade --user
 
 echo "installing Go"
-wget https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz
+curl -Lo "go1.13.1.linux-amd64.tar.gz" "https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz"
 sudo tar -xvf go1.13.1.linux-amd64.tar.gz
 sudo mv go /usr/local
 rm go1.13.1.linux-amd64.tar.gz
@@ -50,10 +47,9 @@ npm config set prefix '~/.npm-global'
 echo "installing docker"
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu `lsb_release -cs` stable"
 sudo apt update
-sudo apt install -y docker-ce
-sudo usermod -aG docker $USER
+sudo apt install -y docker.io
 
 echo "installing kubectl"
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
@@ -82,7 +78,9 @@ sudo mv ./kind /usr/local/bin/
 
 echo "installing jq and yq"
 sudo apt-get install -y jq
-sudo snap install yq
+curl -L "https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_amd64" > yq
+chmod +x yq
+sudo mv ./yq /usr/local/bin/
 
 git config --global user.name "Robert Brennan"
 git config --global user.email contact@rbren.io
@@ -90,6 +88,7 @@ git config --global user.email contact@rbren.io
 echo "installing vim bundles"
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 cd ~/.vim/bundle
+dir=$PWD
 git clone git://github.com/digitaltoad/vim-pug.git
 git clone https://github.com/Quramy/vim-js-pretty-template
 git clone https://github.com/plasticboy/vim-markdown.git
@@ -103,7 +102,7 @@ git clone https://github.com/hashivim/vim-terraform.git ~/.vim/bundle/vim-terraf
 git clone https://github.com/shougo/deoplete.nvim ~/.vim/bundle/deoplete
 git clone https://github.com/roxma/nvim-yarp ~/.vim/bundle/nvim-yarp # for deoplete
 git clone https://github.com/roxma/vim-hug-neovim-rpc ~/.vim/bundle/vim-hug-neovim-rpc # for deoplete
-cd ~/git/homedir
+cd $dir
 
 echo "installing Fairwinds tooling"
 
@@ -143,6 +142,7 @@ echo "to finish setup:"
 echo " * copy your AWS creds over"
 echo " * copy your github SSH key over"
 echo " * run:"
+echo "    sudo usermod -aG docker $USER"
 echo "    newgrp docker"
 echo "    source ~/.bashrc"
 echo -e "\n\n\n"
