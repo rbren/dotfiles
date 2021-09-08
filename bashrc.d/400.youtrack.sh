@@ -37,6 +37,10 @@ function yti() {
         "name": "Type",
         "\$type": "SingleUserIssueCustomField",
         "value": {"name":"${type}"}
+      }, {
+        "name": "State",
+        "\$type": "SingleUserIssueCustomField",
+        "value": {"name":"Needs Details"}
       }]
   }
 EOM
