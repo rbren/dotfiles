@@ -1,20 +1,20 @@
 set -e
 
-cp .bashrc ~/
-cp -r bashrc.d ~/
-cp .vimrc ~/
-cp .tmux.conf ~/
+cp dotfiles/.bashrc ~/
+cp -r dotfiles/bashrc.d ~/
+cp dotfiles/.vimrc ~/
+cp dotfiles/.tmux.conf ~/
 mkdir -p ~/.config/nvim
-cp init.vim ~/.config/nvim/
-cp starship.toml ~/.config/
+cp dotfiles/init.vim ~/.config/nvim/
+cp dotfiles/starship.toml ~/.config/
 
 sudo apt-get update
 sudo apt-get install -y sudo cron vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv unzip
 
 crontab -l > ./cron-tmp || true
-cat ./cron >> ./cron-tmp
-crontab ./cron-tmp
-rm ./cron-tmp
+cat ./dotfiles/cron >> ./dotfiles/cron-tmp
+crontab ./dotfiles/cron-tmp
+rm ./dotfiles/cron-tmp
 
 echo "installing Starship"
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
