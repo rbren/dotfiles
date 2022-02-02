@@ -32,7 +32,8 @@ colors:
     text: CellBackground
     cursor: CellForeground
 
-background_opacity: .9
+window:
+  opacity: .9
 
 live_config_reload: true
 
