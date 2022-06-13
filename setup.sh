@@ -11,6 +11,9 @@ cp dotfiles/starship.toml ~/.config/
 sudo apt-get update
 sudo apt-get install -y sudo cron vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv unzip
 
+# asdf
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
+
 crontab -l > ./cron-tmp || true
 cat ./dotfiles/cron >> ./dotfiles/cron-tmp
 crontab ./dotfiles/cron-tmp
@@ -23,10 +26,9 @@ echo "installing AWS CLI"
 pip3 install awscli --upgrade --user
 
 echo "installing Go"
-curl -Lo "go1.13.1.linux-amd64.tar.gz" "https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz"
-sudo tar -xvf go1.13.1.linux-amd64.tar.gz
-sudo mv go /usr/local
-rm go1.13.1.linux-amd64.tar.gz
+asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+asdf install golang 1.18.1
+asdf global golang 1.18.1
 
 echo "installing NeoVim"
 curl -LO "https://github.com/neovim/neovim/releases/download/v0.4.2/nvim.appimage"
@@ -117,9 +119,6 @@ sudo pip3 install virtualenv
 
 # runner
 npm install -g bash-task-runner
-
-# asdf
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
 
 # reckoner
 curl -L "https://github.com/FairwindsOps/reckoner/releases/download/v3.2.1/reckoner-linux-amd64" > reckoner
