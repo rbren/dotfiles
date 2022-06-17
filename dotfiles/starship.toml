@@ -2,9 +2,7 @@ format = """\
 $username$hostname$kubernetes$aws$gcloud$directory\
 $hg_branch$docker_context$package$cmake$dart$dotnet$elixir$elm$erlang$golang$helm$java$julia\
 $nim$nodejs$ocaml$perl$php$purescript$python$ruby$rust$swift$terraform$zig$nix_shell$conda\
-$git_branch\
-$git_state\
-$git_status\
+${custom.git} $git_state\
 $cmd_duration\
 $line_break\
 $jobs$shlvl$character\
@@ -34,24 +32,29 @@ format = "[$path]($style)[$lock_symbol]($lock_style) "
 style="fg:#01C5BB"
 
 [git_branch]
+disabled = true
 format = "[$branch]($style)"
-#format = "o000n [$symbol$branch(:$remote_branch)]($style) "
 
 [git_status]
-modified = "📝"
-untracked = "👀"
-ahead = "🚀"
-up_to_date = "✨"
-diverged = "📥"
-staged = "📁"
-
-[git_state]
-format = "([$state( $progress_current/$progress_total)]($style))"
+disabled = true
+ahead = "🚀 "
+beind = "✨ "
+diverged = "📥 "
+staged = "📁 "
+untracked = "👀 "
+modified = "📝 "
+format = " ($all_status$ahead_behind )"
 
 [kubernetes]
 disabled = false
 format = "[$context( \\($namespace\\))]($style) "
 style = "fg:#05E9FF"
+
+[custom.git]
+when = "git status"
+command = "source ~/bashrc.d/111.git-status.sh && parse_git_status"
+#command = "echo hi"
+shell = ["bash"]
 
 [golang]
 format = "$symbol"
