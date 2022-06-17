@@ -26,9 +26,8 @@ rm ./dotfiles/cron-tmp
 
 echo "installing Starship"
 asdf plugin add starship
-asdf install starship 0.44.0
-asdf global starship 0.44.0
-sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
+asdf install starship latest
+asdf global starship latest
 
 echo "installing AWS CLI"
 pip3 install awscli --upgrade --user
