@@ -9,18 +9,21 @@ cp dotfiles/init.vim ~/.config/nvim/
 cp dotfiles/starship.toml ~/.config/
 
 sudo apt-get update
-sudo apt-get install -y sudo cron vim curl build-essential git python3.7 python3-pip php7.0 tmux direnv unzip
+sudo apt-get install -y sudo cron vim curl build-essential git python3.10 python3-pip php7.0 tmux direnv unzip
 
 # asdf
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
+export PATH="$PATH:$HOME/.asdf/bin/"
 
+pwd
+ls -lah /setup
 crontab -l > ./cron-tmp || true
 cat ./dotfiles/cron >> ./dotfiles/cron-tmp
 crontab ./dotfiles/cron-tmp
 rm ./dotfiles/cron-tmp
 
 echo "installing Starship"
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
+sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
 echo "installing AWS CLI"
 pip3 install awscli --upgrade --user
@@ -40,7 +43,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo "installing NodeJS"
-curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
 sudo apt-get install -y nodejs
 mkdir -p ~/.npm-global
 npm config set prefix '~/.npm-global'
@@ -91,7 +94,7 @@ echo "installing vim bundles"
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 cd ~/.vim/bundle
 dir=$PWD
-git clone git://github.com/digitaltoad/vim-pug.git
+git clone https://github.com/digitaltoad/vim-pug.git
 git clone https://github.com/Quramy/vim-js-pretty-template
 git clone https://github.com/plasticboy/vim-markdown.git
 git clone https://github.com/leafgarland/typescript-vim.git

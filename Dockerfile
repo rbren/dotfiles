@@ -12,11 +12,14 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN apt-get install -y sudo
 
 RUN useradd -ms /bin/bash rbren
+RUN usermod -aG sudo rbren
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-USER rbren
+RUN mkdir /setup
+RUN chown rbren /setup
 
-COPY ./dotfiles /setup/dotfiles
-COPY ./setup.sh /setup/setup.sh
+USER rbren
+COPY --chown=rbren ./dotfiles /setup/dotfiles
+COPY --chown=rbren ./setup.sh /setup/setup.sh
 WORKDIR /setup
 RUN /setup/setup.sh
 
