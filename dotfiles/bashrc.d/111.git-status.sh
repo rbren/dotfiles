@@ -18,7 +18,7 @@ function quiet_git() {
 }
 
 function gitmainbranch() {
-  if git rev-parse --verify main >> /dev/null; then
+  if git rev-parse --verify main &> /dev/null; then
     echo "main"
   else
     echo "master"
