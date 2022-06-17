@@ -22,5 +22,7 @@ docker run -it \
   -v $HOME/git/:/home/rbren/git/ \
   -v $HOME/dockerstate/.bash_history:/home/rbren/.bash_history \
   -v $HOME/.ssh/:/home/rbren/.ssh/ \
+  -v $HOME/dockerstate/tmux-ressurect:/home/rbren/.tmux/ressurect \
+  -p 3000-4000:3000-4000 \
   devstation
 ```

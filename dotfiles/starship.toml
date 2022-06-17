@@ -9,6 +9,7 @@ $jobs$shlvl$character\
 """
 
 add_newline = false
+command_timeout = 1000
 
 [username]
 disabled = true
