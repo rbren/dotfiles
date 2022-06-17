@@ -14,3 +14,7 @@ Useful setups for
 * Copy your `~/.aws/credentials`
 * Copy your `~/.ssh/github` and `~/.ssh/github.pub`
 
+## Running in Docker on Mac M1
+```
+docker build --platform linux/amd64 -t devstation .
+```

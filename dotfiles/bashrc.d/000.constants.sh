@@ -30,6 +30,7 @@ export COLOR_BG_PURPLE='\033[45m'
 export COLOR_BG_CYAN='\033[46m'
 export COLOR_BG_WHITE='\033[47m'
 
+export TERM=xterm-256color
 export TPUT_COLORS=$(printf '\e[0m\e[48;5;%dm  %03d  ' {0..255}; printf '\e[0m \n')
 export TPUT_BLACK="0"
 export TPUT_RED="203"

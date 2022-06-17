@@ -23,6 +23,9 @@ crontab ./dotfiles/cron-tmp
 rm ./dotfiles/cron-tmp
 
 echo "installing Starship"
+asdf plugin add starship
+asdf install starship 0.44.0
+asdf global starship 0.44.0
 sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
 echo "installing AWS CLI"
