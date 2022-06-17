@@ -24,3 +24,4 @@ WORKDIR /setup
 RUN /setup/setup.sh
 
 WORKDIR /home/rbren
+CMD tmux -u
