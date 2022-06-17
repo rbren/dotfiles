@@ -4,6 +4,11 @@ Plug 'vim-test/vim-test'
 Plug 'itspriddle/vim-shellcheck'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+
+" autocomplete
+Plug 'Shougo/ddc.vim'
+Plug 'vim-denops/denops.vim'
+
 call plug#end()
 "for scrolling vim-test output
 tmap <C-o> <C-\><C-n>

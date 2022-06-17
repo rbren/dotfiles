@@ -23,4 +23,4 @@ COPY --chown=rbren ./setup.sh /setup/setup.sh
 WORKDIR /setup
 RUN /setup/setup.sh
 
-
+WORKDIR ~/

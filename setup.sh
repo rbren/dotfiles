@@ -34,9 +34,9 @@ asdf install golang 1.18.1
 asdf global golang 1.18.1
 
 echo "installing NeoVim"
-curl -LO "https://github.com/neovim/neovim/releases/download/v0.4.2/nvim.appimage"
-chmod +x nvim.appimage
-sudo mv nvim.appimage /usr/bin/nvim
+curl -L "https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.tar.gz" > nvim.tar.gz
+tar -xzvf nvim.tar.gz
+sudo mv ./nvim-linux64/bin/nvim /usr/bin/nvim
 
 echo "installing Vim-Plug"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -99,14 +99,9 @@ git clone https://github.com/Quramy/vim-js-pretty-template
 git clone https://github.com/plasticboy/vim-markdown.git
 git clone https://github.com/leafgarland/typescript-vim.git
 git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
-git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
-git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
 git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
 git clone https://github.com/preservim/nerdtree.git ~/.vim/bundle/nerdtree
 git clone https://github.com/hashivim/vim-terraform.git ~/.vim/bundle/vim-terraform
-git clone https://github.com/shougo/deoplete.nvim ~/.vim/bundle/deoplete
-git clone https://github.com/roxma/nvim-yarp ~/.vim/bundle/nvim-yarp # for deoplete
-git clone https://github.com/roxma/vim-hug-neovim-rpc ~/.vim/bundle/vim-hug-neovim-rpc # for deoplete
 cd $dir
 
 echo "installing Fairwinds tooling"
