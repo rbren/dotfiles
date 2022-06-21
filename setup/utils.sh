@@ -1,6 +1,10 @@
 #!/bin/bash
 set -eo pipefail
 
+echo "installing basic utils from apt"
+sudo apt-get update
+sudo apt-get install -y sudo cron vim curl build-essential git tmux direnv unzip
+
 echo "installing asdf"
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
 export PATH="$PATH:$HOME/.asdf/bin/"
@@ -28,3 +32,5 @@ curl -L "https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_amd6
 chmod +x yq
 sudo mv ./yq /usr/local/bin/
 
+echo "installing tpm"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins

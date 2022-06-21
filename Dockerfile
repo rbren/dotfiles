@@ -33,14 +33,12 @@ WORKDIR /devbox-init
 COPY --chown=rbren ./dotfiles ./dotfiles
 COPY --chown=rbren ./setup/dotfiles.sh ./setup/dotfiles.sh
 RUN ./setup/dotfiles.sh
-COPY --chown=rbren ./setup/apt.sh ./setup/apt.sh
-RUN ./setup/apt.sh
+COPY --chown=rbren ./setup/utils.sh ./setup/utils.sh
+RUN ./setup/utils.sh
 COPY --chown=rbren ./setup/git.sh ./setup/git.sh
 RUN ./setup/git.sh
 COPY --chown=rbren ./setup/cron.sh ./setup/cron.sh
 RUN ./setup/cron.sh
-COPY --chown=rbren ./setup/utils.sh ./setup/utils.sh
-RUN ./setup/utils.sh
 COPY --chown=rbren ./setup/languages.sh ./setup/languages.sh
 RUN ./setup/languages.sh
 COPY --chown=rbren ./setup/vim.sh ./setup/vim.sh

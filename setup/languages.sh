@@ -2,6 +2,13 @@
 set -eo pipefail
 
 export PATH="$PATH:$HOME/.asdf/bin/"
+sudo apt-get update
+
+echo "installing python"
+sudo apt-get install -y python3.10 python3-pip
+
+echo "installing PHP"
+sudo apt-get install -y php7.0
 
 echo "installing Go"
 asdf plugin-add golang https://github.com/kennyp/asdf-golang.git

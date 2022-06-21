@@ -2,10 +2,9 @@
 set -eo pipefail
 
 ./setup/dotfiles.sh
-./setup/apt.sh
+./setup/utils.sh
 ./setup/git.sh
 ./setup/cron.sh
-./setup/utils.sh
 ./setup/languages.sh
 ./setup/vim.sh
 ./setup/ops.sh
