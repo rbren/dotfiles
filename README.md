@@ -27,7 +27,7 @@ docker run -it \
   -v $HOME/dockerstate/.bash_history:/home/rbren/.bash_history \
   -v $HOME/dockerstate/.local-bashrc:/home/rbren/.local-bashrc \
   -v $HOME/dockerstate/tmux-ressurect:/home/rbren/.tmux/ressurect \
-  -v $HOME/.awsvault:/home/rbren/.awsvault
+  -v $HOME/.awsvault:/home/rbren/.awsvault \
   -v $HOME/.ssh/:/home/rbren/.ssh/ \
   -p 3000-4000:3000-4000 \
   --memory=100g --cpus=4 \
