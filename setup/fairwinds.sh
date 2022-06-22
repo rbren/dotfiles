@@ -44,5 +44,16 @@ cd ~/git/cuddlefish
 ./bin/configure.sh
 cd
 
-eval $(cthulhucuddle asdf export)
+. ~/.cuddlefish/config
+
+cthulhucuddle asdf export > .tool-versions-raw
+tr '[:upper:]' '[:lower:]' < .tool-versions-raw > .tool-versions
+sed -i 's/export asdf_//' .tool-versions
+sed -i 's/_version//' .tool-versions
+sed -i 's/=/ /' .tool-versions
+sed -i 's/_/-/' .tool-versions
+cat .tool-versions | cut -d' ' -f1 | grep "^[^\#]" | xargs -i asdf plugin add  {}
 asdf install
+rm .tool-versions
+rm .tool-versions-raw
+
