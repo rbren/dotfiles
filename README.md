@@ -16,13 +16,13 @@ Useful setups for
 
 ## Running in Docker on Mac M1
 ```
-docker build --platform linux/amd64 \
+docker build --platform linux/arm64 \
   --build-arg GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN \
   --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/github)" \
   -t devstation .
 
 docker run -it \
-  --platform linux/amd64 \
+  --platform linux/arm64 \
   -v $HOME/git/:/home/rbren/git/ \
   -v $HOME/dockerstate/.bash_history:/home/rbren/.bash_history \
   -v $HOME/dockerstate/.local-bashrc:/home/rbren/.local-bashrc \

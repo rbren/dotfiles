@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eo pipefail
 
+export ARCH_STRING="amd64"
+
 ./setup/dotfiles.sh
 ./setup/utils.sh
 ./setup/git.sh

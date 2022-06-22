@@ -15,10 +15,16 @@ asdf install starship latest
 asdf global starship latest
 
 echo "installing AWS CLI"
-pip3 install awscli --upgrade --user
+if [[ $ARCH_STRING -eq "amd64" ]]; then
+  curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+else
+  curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
+fi
+unzip awscliv2.zip
+sudo ./aws/install
 
 echo "installing NeoVim"
-curl -L "https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.tar.gz" > nvim.tar.gz
+curl -fL "https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.tar.gz" > nvim.tar.gz
 tar -xzvf nvim.tar.gz
 sudo mv ./nvim-linux64/bin/nvim /usr/bin/nvim
 
@@ -28,7 +34,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 echo "installing jq and yq"
 sudo apt-get install -y jq
-curl -L "https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_amd64" > yq
+curl -fL "https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_$ARCH_STRING" > yq
 chmod +x yq
 sudo mv ./yq /usr/local/bin/
 

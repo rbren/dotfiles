@@ -7,6 +7,7 @@ ARG GITHUB_ACCESS_TOKEN="none"
 ARG SSH_PRIVATE_KEY
 ENV USER=rbren
 ENV SHELL=/bin/bash
+ENV ARCH_STRING="arm64"
 
 RUN apt-get update
 RUN apt-get install -y tzdata
