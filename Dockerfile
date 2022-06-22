@@ -8,6 +8,7 @@ ARG SSH_PRIVATE_KEY
 ENV USER=rbren
 ENV SHELL=/bin/bash
 ENV ARCH_STRING="arm64"
+ENV TERM=xterm-256color
 
 RUN apt-get update
 RUN apt-get install -y tzdata
