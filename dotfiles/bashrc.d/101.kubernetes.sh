@@ -10,7 +10,6 @@ alias klog='stern --output raw'
 alias kindpause='docker ps | grep kindest | cut -d" " -f 1 | xargs docker pause'
 alias kindunpause='docker ps | grep kindest | cut -d" " -f 1 | xargs docker unpause'
 
-unalias kkind
 function kkind() {
   cluster=${1:-kind}
   kind get kubeconfig --name=${cluster} > $HOME/.kube/kind-config-kind
