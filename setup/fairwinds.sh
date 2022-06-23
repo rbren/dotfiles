@@ -3,7 +3,10 @@ set -eo pipefail
 
 echo "installing Fairwinds tooling"
 export PATH="$PATH:$HOME/.asdf/bin/"
-export PATH="$PATH:`npm config get prefix`/bin"
+asdf global nodejs 18.4.0 # TODO: make this automatic
+export PATH="$PATH:`asdf where nodejs`/bin/"
+
+echo "PATH: $PATH"
 
 # terraform
 curl -fL "https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_$ARCH_STRING.zip" > terraform.zip
@@ -33,9 +36,8 @@ sudo apt-add-repository "deb [arch=$ARCH_STRING] https://apt.releases.hashicorp.
 sudo apt-get update && sudo apt-get install vault
 
 # SOPS
-curl -fL "https://github.com/mozilla/sops/releases/download/v3.5.0/sops-v3.5.0.linux" > sops
-chmod +x sops
-sudo mv sops /usr/local/bin/
+asdf plugin-add sops https://github.com/feniix/asdf-sops.git
+asdf install sops 3.7.3
 
 # Cuddlefish
 export CUDDLEFISH_NO_INTERACTIVE=1

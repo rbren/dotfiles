@@ -33,6 +33,8 @@ RUN ssh-keyscan github.com >> /home/rbren/.ssh/known_hosts
 
 WORKDIR /devbox-init
 
+COPY --chown=rbren ./dotfiles/.tool-versions ./dotfiles/.tool-versions
+
 COPY --chown=rbren ./setup/utils.sh ./setup/utils.sh
 RUN ./setup/utils.sh
 COPY --chown=rbren ./setup/git.sh ./setup/git.sh

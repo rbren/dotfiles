@@ -1,6 +1,6 @@
 starship 1.8.0
 
-python 3.6.12
 golang 1.18.1
 nodejs 18.4.0
-php 8.1.7
+
+sops 3.7.3
