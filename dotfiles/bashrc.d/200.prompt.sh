@@ -24,10 +24,6 @@ function set_prompt() {
   fi
 
   CUR_DIR=`pwd`
-  if [[ $CUR_DIR == $GO_MAIN_DIR* ]]; then
-    CUR_DIR=${CUR_DIR#"$GO_MAIN_DIR"}
-    CUR_DIR="~GO$CUR_DIR"
-  fi
   if [[ $CUR_DIR == $HOME* ]]; then
     CUR_DIR=${CUR_DIR#"$HOME"}
     CUR_DIR="~$CUR_DIR"
