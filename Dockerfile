@@ -32,15 +32,11 @@ RUN eval `ssh-agent -s` && ssh-add /home/rbren/.ssh/id_rsa
 RUN ssh-keyscan github.com >> /home/rbren/.ssh/known_hosts
 
 WORKDIR /devbox-init
-COPY --chown=rbren ./dotfiles ./dotfiles
-COPY --chown=rbren ./setup/dotfiles.sh ./setup/dotfiles.sh
-RUN ./setup/dotfiles.sh
+
 COPY --chown=rbren ./setup/utils.sh ./setup/utils.sh
 RUN ./setup/utils.sh
 COPY --chown=rbren ./setup/git.sh ./setup/git.sh
 RUN ./setup/git.sh
-COPY --chown=rbren ./setup/cron.sh ./setup/cron.sh
-RUN ./setup/cron.sh
 COPY --chown=rbren ./setup/languages.sh ./setup/languages.sh
 RUN ./setup/languages.sh
 COPY --chown=rbren ./setup/vim.sh ./setup/vim.sh
@@ -49,6 +45,10 @@ COPY --chown=rbren ./setup/ops.sh ./setup/ops.sh
 RUN ./setup/ops.sh
 COPY --chown=rbren ./setup/fairwinds.sh ./setup/fairwinds.sh
 RUN ./setup/fairwinds.sh
+
+COPY --chown=rbren ./dotfiles ./dotfiles
+COPY --chown=rbren ./setup/dotfiles.sh ./setup/dotfiles.sh
+RUN ./setup/dotfiles.sh
 
 RUN rm /home/rbren/.ssh/id_rsa
 

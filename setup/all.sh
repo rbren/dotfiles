@@ -3,14 +3,13 @@ set -eo pipefail
 
 export ARCH_STRING="amd64"
 
-./setup/dotfiles.sh
 ./setup/utils.sh
 ./setup/git.sh
-./setup/cron.sh
 ./setup/languages.sh
 ./setup/vim.sh
 ./setup/ops.sh
 ./setup/fairwinds.sh
+./setup/dotfiles.sh
 
 echo -e "\n\n\n"
 echo "to finish setup:"

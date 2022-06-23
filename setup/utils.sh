@@ -36,5 +36,3 @@ curl -fL "https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_$AR
 chmod +x yq
 sudo mv ./yq /usr/local/bin/
 
-echo "installing tpm"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins

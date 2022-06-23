@@ -51,4 +51,4 @@ export KUBE_PS1_DIVIDER=" "
 
 export FIGNORE=".hi"
 
-export PROMPT_COMMAND="_direnv_hook;maybe_git_fetch"
+export PROMPT_COMMAND="_direnv_hook;maybe_git_fetch;history -a"

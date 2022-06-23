@@ -24,9 +24,10 @@ docker build --platform linux/arm64 \
 docker run -it \
   --platform linux/arm64 \
   -v $HOME/git/:/home/rbren/git/ \
-  -v $HOME/dockerstate/.bash_history:/home/rbren/.bash_history \
+  -v $HOME/dockerstate/.bash_history.d:/home/rbren/.bash_history.d \
   -v $HOME/dockerstate/.local-bashrc:/home/rbren/.local-bashrc \
-  -v $HOME/dockerstate/tmux-ressurect:/home/rbren/.tmux/ressurect \
+  -v $HOME/dockerstate/tmux-resurrect:/home/rbren/.tmux/resurrect \
+  -v $HOME/dockerstate/direnv-allow:/home/rbren/.local/share/direnv/allow/ \
   -v $HOME/.awsvault:/home/rbren/.awsvault \
   -v $HOME/.ssh/:/home/rbren/.ssh/ \
   -p 3000-4000:3000-4000 \

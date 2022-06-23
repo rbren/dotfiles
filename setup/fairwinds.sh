@@ -2,8 +2,8 @@
 set -eo pipefail
 
 echo "installing Fairwinds tooling"
-. dotfiles/bashrc.d/001.path.sh
 export PATH="$PATH:$HOME/.asdf/bin/"
+export PATH="$PATH:`npm config get prefix`/bin"
 
 # terraform
 curl -fL "https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_$ARCH_STRING.zip" > terraform.zip
