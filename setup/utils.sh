@@ -11,8 +11,7 @@ export PATH="$PATH:$HOME/.asdf/bin/"
 
 echo "installing Starship"
 asdf plugin add starship
-asdf install starship latest
-asdf global starship latest
+asdf install starship 1.8.0
 
 echo "installing AWS CLI"
 if [[ $ARCH_STRING -eq "amd64" ]]; then
