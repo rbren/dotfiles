@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eo pipefail
 
+asdf global nodejs 18.4.0 # TODO: make this automatic
+export PATH="$PATH:`asdf where nodejs`/bin/"
+
 echo "installing basic utils from apt"
 sudo apt-get update
 sudo apt-get install -y sudo cron vim curl build-essential git tmux direnv unzip
@@ -35,3 +38,4 @@ curl -fL "https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_$AR
 chmod +x yq
 sudo mv ./yq /usr/local/bin/
 
+npm i -g http-server

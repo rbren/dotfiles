@@ -35,12 +35,12 @@ WORKDIR /devbox-init
 
 COPY --chown=rbren ./dotfiles/.tool-versions ./dotfiles/.tool-versions
 
+COPY --chown=rbren ./setup/languages.sh ./setup/languages.sh
+RUN ./setup/languages.sh
 COPY --chown=rbren ./setup/utils.sh ./setup/utils.sh
 RUN ./setup/utils.sh
 COPY --chown=rbren ./setup/git.sh ./setup/git.sh
 RUN ./setup/git.sh
-COPY --chown=rbren ./setup/languages.sh ./setup/languages.sh
-RUN ./setup/languages.sh
 COPY --chown=rbren ./setup/vim.sh ./setup/vim.sh
 RUN ./setup/vim.sh
 COPY --chown=rbren ./setup/ops.sh ./setup/ops.sh
