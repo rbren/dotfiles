@@ -3,9 +3,10 @@ set -eo pipefail
 
 export ARCH_STRING="amd64"
 
+./setup/installers.sh
+./setup/languages.sh
 ./setup/utils.sh
 ./setup/git.sh
-./setup/languages.sh
 ./setup/vim.sh
 ./setup/ops.sh
 ./setup/fairwinds.sh

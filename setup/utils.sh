@@ -1,16 +1,9 @@
 #!/bin/bash
 set -eo pipefail
 
+export PATH="$PATH:$HOME/.asdf/bin/"
 asdf global nodejs 18.4.0 # TODO: make this automatic
 export PATH="$PATH:`asdf where nodejs`/bin/"
-
-echo "installing basic utils from apt"
-sudo apt-get update
-sudo apt-get install -y sudo cron vim curl build-essential git tmux direnv unzip
-
-echo "installing asdf"
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
-export PATH="$PATH:$HOME/.asdf/bin/"
 
 echo "installing Starship"
 asdf plugin add starship

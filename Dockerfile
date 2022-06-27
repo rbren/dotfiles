@@ -21,6 +21,7 @@ RUN useradd -ms /bin/bash rbren
 RUN usermod -aG sudo rbren
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+RUN groupadd docker
 RUN sudo usermod -aG docker rbren
 RUN newgrp docker
 
@@ -38,6 +39,8 @@ WORKDIR /devbox-init
 
 COPY --chown=rbren ./dotfiles/.tool-versions ./dotfiles/.tool-versions
 
+COPY --chown=rbren ./setup/installers.sh ./setup/installers.sh
+RUN ./setup/installers.sh
 COPY --chown=rbren ./setup/languages.sh ./setup/languages.sh
 RUN ./setup/languages.sh
 COPY --chown=rbren ./setup/utils.sh ./setup/utils.sh
@@ -58,4 +61,4 @@ RUN ./setup/dotfiles.sh
 RUN rm /home/rbren/.ssh/id_rsa
 
 WORKDIR /home/rbren
-CMD tmux -u
+CMD sudo service docker start && tmux -u
