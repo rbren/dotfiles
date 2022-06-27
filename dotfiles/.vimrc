@@ -4,6 +4,7 @@ Plug 'vim-test/vim-test'
 Plug 'itspriddle/vim-shellcheck'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " autocomplete
 Plug 'Shougo/ddc.vim'
