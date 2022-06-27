@@ -21,6 +21,9 @@ RUN useradd -ms /bin/bash rbren
 RUN usermod -aG sudo rbren
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+RUN sudo usermod -aG docker rbren
+RUN newgrp docker
+
 RUN mkdir /setup && chown rbren /setup
 RUN mkdir /home/rbren/.tmux && chown rbren /home/rbren/.tmux
 
