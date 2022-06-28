@@ -4,3 +4,6 @@ golang 1.18.1
 nodejs 18.4.0
 
 sops 3.7.3
+kind 0.14.0
+helm 3.9.0
+kubectl 1.24.2

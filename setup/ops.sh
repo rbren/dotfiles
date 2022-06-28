@@ -1,8 +1,13 @@
 #!/bin/bash
 set -eo pipefail
-sudo apt-get update
 
-# Install docker: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+sudo apt-get update
+export PATH="$PATH:$HOME/.asdf/bin/"
+asdf_install() {
+  asdf plugin-add $1 $2
+  asdf install $1 `cat ./dotfiles/.tool-versions  | grep $1 | cut -d" " -f2`
+}
+
 echo "installing docker"
 sudo apt-get install -y \
     ca-certificates \
@@ -18,20 +23,11 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 echo "installing kubectl"
-curl -fLs https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-sudo apt-get update
-sudo apt-get install -y kubectl
+asdf_install kubectl https://github.com/asdf-community/asdf-kubectl.git
 
 echo "installing helm"
-curl -fL "https://get.helm.sh/helm-v3.0.2-linux-$ARCH_STRING.tar.gz" > helm.tar.gz
-tar -xvf helm.tar.gz
-sudo mv linux-$ARCH_STRING/helm /usr/local/bin/
-rm helm.tar.gz
-rm -rf linux-$ARCH_STRING
+asdf_install helm https://github.com/Antiarchitect/asdf-helm.git
 
 echo "installing KIND"
-curl -fLo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-$ARCH_STRING
-chmod +x ./kind
-sudo mv ./kind /usr/local/bin/
+asdf_install kind https://github.com/johnlayton/asdf-kind
 
