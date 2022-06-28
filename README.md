@@ -19,6 +19,8 @@ Useful setups for
 docker build --platform linux/arm64 \
   --build-arg GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN \
   --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/github)" \
+  --build-arg USER_NAME=$USER \
+  --build-arg USER_ID=$UID \
   -t devstation .
 
 docker run -it \
@@ -31,6 +33,7 @@ docker run -it \
   -v $HOME/dockerstate/direnv-allow:/home/rbren/.local/share/direnv/allow/ \
   -v $HOME/.awsvault:/home/rbren/.awsvault \
   -v $HOME/.ssh/:/home/rbren/.ssh/ \
+  -v /var/run/docker.sock:/var/run/docker.sock \
   -p 3000-4000:3000-4000 \
   --memory=100g --cpus=4 \
   devstation
