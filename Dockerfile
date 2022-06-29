@@ -62,4 +62,4 @@ RUN ./setup/dotfiles.sh
 RUN rm /home/$USER_NAME/.ssh/id_rsa
 
 WORKDIR /home/$USER_NAME
-CMD sudo chown rbren /var/run/docker.sock && tmux -u
+CMD sudo chown $USER_NAME /var/run/docker.sock && tmux -u

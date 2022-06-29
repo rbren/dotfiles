@@ -19,8 +19,9 @@ alias npind='npm install --save-dev';
 
 DEVSTATION_OPTIONS="--privileged"
 DEVSTATION_PLATFORM="--platform linux/arm64"
-DEVSTATION_PORTS="-p 3000-4000:3000-4000"
-DEVSTATION_RESOURCES="--memory=100g --cpus=4 devstation"
+DEVSTATION_PORTS="-p 3000-4000:3000-4000 -p 9000-9999:9000-9999"
+DEVSTATION_RESOURCES="--memory=100g --cpus=4"
+DEVSTATION_DOCKER_OPTS="-v /var/run/docker.sock:/var/run/docker.sock --add-host=host.docker.internal:host-gateway"
 DEVSTATION_DIRS="-v $HOME/git/:/home/rbren/git/ -v $HOME/dockerstate/.bash_history.d:/home/rbren/.bash_history.d -v $HOME/dockerstate/.local-bashrc:/home/rbren/.local-bashrc -v $HOME/dockerstate/tmux-resurrect:/home/rbren/.tmux/resurrect -v $HOME/dockerstate/direnv-allow:/home/rbren/.local/share/direnv/allow/ -v $HOME/.awsvault:/home/rbren/.awsvault -v $HOME/.ssh/:/home/rbren/.ssh/"
-DEVSTATION_FLAGS="$DEVSTATION_OPTIONS $DEVSTATION_PLATFORM $DEVSTATION_PORTS $DEVSTATION_RESOURCES $DEVSTATION_DIRS"
+DEVSTATION_FLAGS="$DEVSTATION_OPTIONS $DEVSTATION_PLATFORM $DEVSTATION_PORTS $DEVSTATION_RESOURCES $DEVSTATION_DIRS $DEVSTATION_DOCKER_OPTS"
 alias devstation="docker run -it $DEVSTATION_FLAGS devstation"

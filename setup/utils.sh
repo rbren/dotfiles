@@ -31,4 +31,8 @@ curl -fL "https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_$AR
 chmod +x yq
 sudo mv ./yq /usr/local/bin/
 
+echo "installing http-server"
 npm i -g http-server
+
+echo "installing ping"
+sudo apt-get install iputils-ping

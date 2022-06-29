@@ -26,11 +26,13 @@ docker build --platform linux/arm64 \
 docker run -it \
   --platform linux/arm64 \
   --privileged \
+  --add-host=host.docker.internal:host-gateway \
   -v $HOME/git/:/home/rbren/git/ \
   -v $HOME/dockerstate/.bash_history.d:/home/rbren/.bash_history.d \
   -v $HOME/dockerstate/.local-bashrc:/home/rbren/.local-bashrc \
   -v $HOME/dockerstate/tmux-resurrect:/home/rbren/.tmux/resurrect \
   -v $HOME/dockerstate/direnv-allow:/home/rbren/.local/share/direnv/allow/ \
+  -v $HOME/dockerstate/kind-config-kind:/home/rbren/.kube/kind-config-kind \
   -v $HOME/.awsvault:/home/rbren/.awsvault \
   -v $HOME/.ssh/:/home/rbren/.ssh/ \
   -v /var/run/docker.sock:/var/run/docker.sock \
