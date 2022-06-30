@@ -4,10 +4,13 @@ set -eo pipefail
 export PATH="$PATH:$HOME/.asdf/bin/"
 asdf global nodejs 18.4.0 # TODO: make this automatic
 export PATH="$PATH:`asdf where nodejs`/bin/"
+asdf_install() {
+  asdf plugin-add $1 $2
+  asdf install $1 `cat ./dotfiles/.tool-versions  | grep $1 | cut -d" " -f2`
+}
 
 echo "installing Starship"
-asdf plugin add starship
-asdf install starship 1.8.0
+asdf_install starship
 
 echo "installing AWS CLI"
 if [[ $ARCH_STRING -eq "amd64" ]]; then
@@ -36,3 +39,7 @@ npm i -g http-server
 
 echo "installing ping"
 sudo apt-get install iputils-ping
+
+echo "installing gpg"
+sudo apt-get install gnupg2 -y
+

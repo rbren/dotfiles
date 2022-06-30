@@ -35,6 +35,7 @@ docker run -it \
   -v $HOME/dockerstate/kind-config-kind:/home/rbren/.kube/kind-config-kind \
   -v $HOME/.awsvault:/home/rbren/.awsvault \
   -v $HOME/.ssh/:/home/rbren/.ssh/ \
+  -v $HOME/.gnupg:/home/rbren/.gnupg \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -p 3000-4000:3000-4000 \
   --memory=100g --cpus=4 \
