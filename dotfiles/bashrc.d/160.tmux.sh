@@ -9,9 +9,13 @@ mkdir -p "${HISTS_DIR}"
 
 if [ -n "${TMUX_PANE}" ]; then
   pane_id=$(tmux display-message -p '#{pane_title}')
+  echo "found pane id $pane_id"
   if [[ $pane_id != "$pane_id_prefix"* ]]; then
     printf "\033]2;$pane_id_prefix`randstr 16`\033\\"
     pane_id=$(tmux display-message -p '#{pane_title}')
+    echo "  changed to $pane_id"
+  else
+    echo "  already valid"
   fi
   export HISTFILE="${HISTS_DIR}/bash_history_tmux_${pane_id}"
 else
