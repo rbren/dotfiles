@@ -30,6 +30,7 @@ RUN mkdir /setup && chown $USER_NAME /setup
 RUN mkdir /home/$USER_NAME/.tmux && chown $USER_NAME /home/$USER_NAME/.tmux
 
 USER $USER_NAME
+ENV USER=$USER_NAME
 RUN mkdir /home/$USER_NAME/.ssh/
 RUN echo "${SSH_PRIVATE_KEY}" > /home/$USER_NAME/.ssh/id_rsa
 RUN chmod 600 /home/$USER_NAME/.ssh/id_rsa
@@ -62,4 +63,4 @@ RUN ./setup/dotfiles.sh
 RUN rm /home/$USER_NAME/.ssh/id_rsa
 
 WORKDIR /home/$USER_NAME
-CMD sudo chown rbren /var/run/docker.sock && tmux -u # TODO: replace username here, $USER and $USER_NAME don't seem to work
+CMD sudo chown $USER /var/run/docker.sock && tmux -u

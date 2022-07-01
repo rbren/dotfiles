@@ -21,7 +21,7 @@ docker build --platform linux/arm64 \
   --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/github)" \
   --build-arg USER_NAME=$USER \
   --build-arg USER_ID=$UID \
-  -t devstation .
+  -t devbox .
 
 docker run -it \
   --platform linux/arm64 \
@@ -39,5 +39,5 @@ docker run -it \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -p 3000-4000:3000-4000 \
   --memory=100g --cpus=4 \
-  devstation
+  devbox
 ```
