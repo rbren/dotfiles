@@ -31,3 +31,5 @@ asdf_install helm https://github.com/Antiarchitect/asdf-helm.git
 echo "installing KIND"
 asdf_install kind https://github.com/johnlayton/asdf-kind
 
+echo "installing Stern"
+asdf_install stern https://github.com/looztra/asdf-stern
