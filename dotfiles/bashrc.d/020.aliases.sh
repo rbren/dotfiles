@@ -28,6 +28,7 @@ DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/dockerstate/.bash_history.d:/home/rbren/.bash
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/dockerstate/.local-bashrc:/home/rbren/.local-bashrc"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/dockerstate/tmux-resurrect:/home/rbren/.tmux/resurrect"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/dockerstate/direnv-allow:/home/rbren/.local/share/direnv/allow/"
+DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/dockerstate/.vault-token:/home/rbren/.vault-token"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.awsvault:/home/rbren/.awsvault"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.ssh/:/home/rbren/.ssh/"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.gnupg:/home/rbren/.gnupg"
