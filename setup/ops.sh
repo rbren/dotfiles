@@ -33,3 +33,6 @@ asdf_install kind https://github.com/johnlayton/asdf-kind
 
 echo "installing Stern"
 asdf_install stern https://github.com/looztra/asdf-stern
+
+echo "installing helm-docs"
+asdf_install helm-docs https://github.com/sudermanjr/asdf-helm-docs.git

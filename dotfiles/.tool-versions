@@ -8,3 +8,5 @@ kind 0.14.0
 helm 3.9.0
 kubectl 1.24.2
 stern 1.21.0
+
+helm-docs 1.5.0
