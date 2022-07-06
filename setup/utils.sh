@@ -2,7 +2,7 @@
 set -eo pipefail
 
 export PATH="$PATH:$HOME/.asdf/bin/"
-asdf global nodejs 18.4.0 # TODO: make this automatic
+asdf global `cat ./dotfiles/.tool-versions  | grep nodejs`
 export PATH="$PATH:`asdf where nodejs`/bin/"
 asdf_install() {
   asdf plugin-add $1 $2
@@ -43,3 +43,5 @@ sudo apt-get install iputils-ping
 echo "installing gpg"
 sudo apt-get install gnupg2 -y
 
+echo "installing postgres"
+sudo apt-get install libpq-dev

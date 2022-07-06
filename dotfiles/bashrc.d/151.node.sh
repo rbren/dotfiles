@@ -7,3 +7,5 @@ export NVM_DIR="$HOME/.nvm"
 mkdir -p ~/.npm-global
 npm config set prefix '~/.npm-global'
 
+export NODE_OPTIONS=--openssl-legacy-provider # TODO: vuepress fails without this...
+

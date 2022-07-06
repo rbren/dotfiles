@@ -42,6 +42,7 @@ RUN ssh-keyscan github.com >> /home/$USER_NAME/.ssh/known_hosts
 WORKDIR /devbox-init
 
 COPY --chown=$USER_NAME ./dotfiles/.tool-versions ./dotfiles/.tool-versions
+COPY --chown=$USER_NAME ./dotfiles/bashrc.d/151.node.sh ./dotfiles/bashrc.d/151.node.sh
 
 COPY --chown=$USER_NAME ./setup/installers.sh ./setup/installers.sh
 RUN ./setup/installers.sh
