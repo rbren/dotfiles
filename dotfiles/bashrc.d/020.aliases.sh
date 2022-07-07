@@ -17,9 +17,9 @@ alias bowin='bower install --save';
 alias npin='npm install --save';
 alias npind='npm install --save-dev';
 
-DEVBOX_OPTIONS="--privileged"
+DEVBOX_OPTIONS="--privileged --network host"
 DEVBOX_PLATFORM="--platform linux/arm64"
-DEVBOX_PORTS="-p 3000-4000:3000-4000 -p 9000-9999:9000-9999"
+DEVBOX_PORTS="" #-p 3000-4000:3000-4000 -p 9000-9999:9000-9999"
 DEVBOX_RESOURCES="--memory=100g --cpus=4"
 DEVBOX_DOCKER_OPTS="-v /var/run/docker.sock:/var/run/docker.sock --add-host=host.docker.internal:host-gateway"
 DEVBOX_DIRS=""
