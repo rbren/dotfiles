@@ -14,6 +14,11 @@ echo "installing NodeJS"
 asdf_install nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
 echo "installing Python"
-# TODO: use asdf. https://github.com/danhper/asdf-python/issues/117
+# TODO: asdf doesn't do headers, so we hack this in. https://github.com/danhper/asdf-python/issues/117
 sudo apt-get install -y python3.10 python3-pip
+asdf_install python
 
+echo "installing Anaconda"
+curl -L "https://github.com/conda-forge/miniforge/releases/download/4.12.0-3/Miniforge3-4.12.0-3-Linux-aarch64.sh" > miniforge.sh
+bash ./miniforge.sh -b -u -p $HOME/miniforge
+$HOME/miniforge/bin/conda init bash

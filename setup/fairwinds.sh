@@ -3,10 +3,13 @@ set -eo pipefail
 
 echo "installing Fairwinds tooling"
 export PATH="$PATH:$HOME/.asdf/bin/"
-asdf global nodejs 18.4.0 # TODO: make this automatic
-export PATH="$PATH:`asdf where nodejs`/bin/"
 
-echo "PATH: $PATH"
+# TODO: dedupe this with other files
+asdf global `cat ./dotfiles/.tool-versions  | grep nodejs`
+export PATH="$PATH:`asdf where nodejs`/bin/"
+mkdir -p ~/.npm-global
+npm config set prefix '~/.npm-global'
+export PATH="$PATH:~/.npm-global/bin"
 
 # terraform
 curl -fL "https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_$ARCH_STRING.zip" > terraform.zip

@@ -1,9 +1,12 @@
 #!/bin/bash
 set -eo pipefail
 
+# TODO: dedupe this, also in fairwinds.sh, and npm-global is defined a few places
 export PATH="$PATH:$HOME/.asdf/bin/"
 asdf global `cat ./dotfiles/.tool-versions  | grep nodejs`
 export PATH="$PATH:`asdf where nodejs`/bin/"
+mkdir -p ~/.npm-global
+npm config set prefix '~/.npm-global'
 asdf_install() {
   asdf plugin-add $1 $2
   asdf install $1 `cat ./dotfiles/.tool-versions  | grep $1 | cut -d" " -f2`
@@ -37,11 +40,20 @@ sudo mv ./yq /usr/local/bin/
 echo "installing http-server"
 npm i -g http-server
 
+echo "installing ssh"
+sudo apt-get install -y ssh
+
 echo "installing ping"
-sudo apt-get install iputils-ping
+sudo apt-get install -y iputils-ping
 
 echo "installing gpg"
-sudo apt-get install gnupg2 -y
+sudo apt-get install -y gnupg2
 
 echo "installing postgres"
-sudo apt-get install libpq-dev
+sudo apt-get install -y libpq-dev
+
+echo "installing sshuttle"
+sudo apt-get install -y sshuttle
+
+echo "installing postgres-client"
+sudo apt-get install -y postgresql-client
