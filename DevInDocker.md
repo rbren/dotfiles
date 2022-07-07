@@ -25,6 +25,10 @@ This develoment setup is mostly working inside of Docker.
 * installing a new app takes much longer - needs a docker rebuild
 * there's a layer in the `docker build` which has my SSH key - important not to publish
     * this is for cloning cuddlefish
+* go modules have to download fresh after restart
+  * can probably add $GOROOT to saved state?
+* conda is not persisted
+  * can probably add this to state
 
 ## Learnings
 * UTF-8 is hard
@@ -35,6 +39,7 @@ This develoment setup is mostly working inside of Docker.
 * factoring your Dockerfile properly is important
 * still don't know what cgroups are
 * `asdf` is the best
+* arm64 == aarch64?
 
 ## Running in Docker on Mac M1
 ```
