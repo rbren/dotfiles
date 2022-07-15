@@ -53,6 +53,7 @@ docker build --platform linux/arm64 \
 docker run -it \
   --platform linux/arm64 \
   --privileged \
+  --network=host \
   --add-host=host.docker.internal:host-gateway \
   -v $HOME/dockerstate/.bash_history.d:/home/rbren/.bash_history.d \
   -v $HOME/dockerstate/.local-bashrc:/home/rbren/.local-bashrc \
