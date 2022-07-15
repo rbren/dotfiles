@@ -55,12 +55,12 @@ docker run -it \
   --privileged \
   --network=host \
   --add-host=host.docker.internal:host-gateway \
-  -v $HOME/dockerstate/.bash_history.d:/home/rbren/.bash_history.d \
-  -v $HOME/dockerstate/.local-bashrc:/home/rbren/.local-bashrc \
-  -v $HOME/dockerstate/tmux-resurrect:/home/rbren/.tmux/resurrect \
-  -v $HOME/dockerstate/direnv-allow:/home/rbren/.local/share/direnv/allow/ \
-  -v $HOME/dockerstate/kind-config-kind:/home/rbren/.kube/kind-config-kind \
-  -v $HOME/dockerstate/.vault-token:/home/rbren/.vault-token \
+  -v $HOME/devbox/.bash_history.d:/home/rbren/.bash_history.d \
+  -v $HOME/devbox/.local-bashrc:/home/rbren/.local-bashrc \
+  -v $HOME/devbox/tmux-resurrect:/home/rbren/.tmux/resurrect \
+  -v $HOME/devbox/direnv-allow:/home/rbren/.local/share/direnv/allow/ \
+  -v $HOME/devbox/kind-config-kind:/home/rbren/.kube/kind-config-kind \
+  -v $HOME/devbox/.vault-token:/home/rbren/.vault-token \
   -v $HOME/git/:/home/rbren/git/ \
   -v $HOME/.awsvault:/home/rbren/.awsvault \
   -v $HOME/.ssh/:/home/rbren/.ssh/ \
