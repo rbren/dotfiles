@@ -36,3 +36,6 @@ asdf_install stern https://github.com/looztra/asdf-stern
 
 echo "installing helm-docs"
 asdf_install helm-docs https://github.com/sudermanjr/asdf-helm-docs.git
+
+echo "installing Trivy"
+asdf_install trivy https://github.com/zufardhiyaulhaq/asdf-trivy.git
