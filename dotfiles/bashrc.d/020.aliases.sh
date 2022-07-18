@@ -17,9 +17,9 @@ alias bowin='bower install --save';
 alias npin='npm install --save';
 alias npind='npm install --save-dev';
 
-DEVBOX_OPTIONS="--privileged --network host"
+DEVBOX_OPTIONS="--privileged"
 DEVBOX_PLATFORM="--platform linux/arm64"
-DEVBOX_PORTS="" #-p 3000-4000:3000-4000 -p 9000-9999:9000-9999"
+DEVBOX_PORTS="-p 3000-4000:3000-4000 -p 9000-9999:9000-9999"
 DEVBOX_RESOURCES="--memory=100g --cpus=4"
 DEVBOX_DOCKER_OPTS="-v /var/run/docker.sock:/var/run/docker.sock --add-host=host.docker.internal:host-gateway"
 DEVBOX_DIRS=""
@@ -33,6 +33,7 @@ DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.awsvault:/home/rbren/.awsvault"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.ssh/:/home/rbren/.ssh/"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.gnupg:/home/rbren/.gnupg"
 DEVBOX_FLAGS="$DEVBOX_OPTIONS $DEVBOX_PLATFORM $DEVBOX_PORTS $DEVBOX_RESOURCES $DEVBOX_DIRS $DEVBOX_DOCKER_OPTS"
+alias devboxnet="docker run --rm -it --network=host $DEVBOX_FLAGS devbox"
 alias devbox="docker run --rm -it $DEVBOX_FLAGS devbox"
 
 DEVBOX_BUILD_ARGS='--build-arg GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/github)"  --build-arg USER_NAME=$USER   --build-arg USER_ID=$UID'
