@@ -4,6 +4,7 @@ set -eo pipefail
 # TODO: dedupe this, also in fairwinds.sh, and npm-global is defined a few places
 export PATH="$PATH:$HOME/.asdf/bin/"
 asdf global `cat ./dotfiles/.tool-versions  | grep nodejs`
+asdf global `cat ./dotfiles/.tool-versions  | grep golang`
 export PATH="$PATH:`asdf where nodejs`/bin/"
 mkdir -p ~/.npm-global
 npm config set prefix '~/.npm-global'
@@ -11,6 +12,7 @@ asdf_install() {
   asdf plugin-add $1 $2
   asdf install $1 `cat ./dotfiles/.tool-versions  | grep $1 | cut -d" " -f2`
 }
+export PATH="$PATH:$(asdf where golang)/go/bin/"
 
 echo "installing Starship"
 asdf_install starship
