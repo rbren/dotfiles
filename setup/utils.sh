@@ -57,3 +57,7 @@ sudo apt-get install -y sshuttle
 
 echo "installing postgres-client"
 sudo apt-get install -y postgresql-client
+
+echo "installing pup"
+go install github.com/ericchiang/pup@latest
+
