@@ -5,11 +5,17 @@ $nim$nodejs$ocaml$perl$php$purescript$python$ruby$rust$swift$terraform$zig$nix_s
 $git_branch$git_status$git_state\
 $cmd_duration\
 $line_break\
-$jobs$shlvl$character\
+$jobs$shlvl${custom.curtime}$character\
 """
 
 add_newline = false
 command_timeout = 1000
+
+[custom.curtime]
+command = "date +'%H:%M'"
+when = true
+style = "yellow"
+format = "[$output]($style)"
 
 [character]
 success_symbol="[❯](bold green)"
