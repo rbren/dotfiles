@@ -18,11 +18,7 @@ echo "installing Starship"
 asdf_install starship
 
 echo "installing AWS CLI"
-if [[ $ARCH_STRING -eq "amd64" ]]; then
-  curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-else
-  curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
-fi
+curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-$ARCH_STRING_SECONDARY.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
 

@@ -19,6 +19,6 @@ sudo apt-get install -y python3.10 python3-pip
 asdf_install python
 
 echo "installing Anaconda"
-curl -L "https://github.com/conda-forge/miniforge/releases/download/4.12.0-3/Miniforge3-4.12.0-3-Linux-aarch64.sh" > miniforge.sh
+curl -L "https://github.com/conda-forge/miniforge/releases/download/4.12.0-3/Miniforge3-4.12.0-3-Linux-$ARCH_STRING_SECONDARY.sh" > miniforge.sh
 bash ./miniforge.sh -b -u -p $HOME/miniforge
 $HOME/miniforge/bin/conda init bash
