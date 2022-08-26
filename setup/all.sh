@@ -1,10 +1,11 @@
 #!/bin/bash
 set -eo pipefail
 
+export DEBIAN_FRONTEND=noninteractive
 export ARCH_STRING="amd64"
 
-./setup/installers.sh
-./setup/languages.sh
+#./setup/installers.sh
+#./setup/languages.sh
 ./setup/utils.sh
 ./setup/git.sh
 ./setup/vim.sh
