@@ -12,7 +12,11 @@ alias kindunpause='docker ps | grep kindest | cut -d" " -f 1 | xargs docker unpa
 
 function kkind() {
   cluster=${1:-kind}
+  mkdir -p $HOME/.kube
   kind get kubeconfig --name=${cluster} > $HOME/.kube/kind-config-kind
+  if [[ $2 == "docker" ]]; then
+    sed -i 's/127.0.0.1/host.docker.internal/g' $HOME/.kube/kind-config-kind
+  fi
   export KUBECONFIG=$HOME/.kube/kind-config-kind
 }
 
