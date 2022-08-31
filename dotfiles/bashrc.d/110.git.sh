@@ -1,6 +1,7 @@
 export GIT_STATUS_DEBUG=0
 git config --global credential.helper 'cache --timeout=3000'
 git config --global core.excludesFile '~/.gitignore'
+git config --global pull.rebase false
 
 alias gits='git status'
 alias gitp='git push'
