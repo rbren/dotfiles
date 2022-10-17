@@ -17,6 +17,9 @@ export PATH="$PATH:$(asdf where golang)/go/bin/"
 echo "installing Starship"
 asdf_install starship
 
+echo "installing yq"
+asdf_install yq
+
 echo "installing AWS CLI"
 curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-$ARCH_STRING_SECONDARY.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
