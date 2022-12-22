@@ -2,6 +2,7 @@ export GIT_STATUS_DEBUG=0
 git config --global credential.helper 'cache --timeout=3000'
 git config --global core.excludesFile '~/.gitignore'
 git config --global pull.rebase false
+git config --global remote.origin.prune true
 git config --global --add safe.directory /home/rbren/git
 
 alias gits='git status'
