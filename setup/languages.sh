@@ -17,6 +17,7 @@ echo "installing Python"
 # TODO: asdf doesn't do headers, so we hack this in. https://github.com/danhper/asdf-python/issues/117
 sudo apt-get install -y python3.10 python3-pip
 asdf_install python
+python -m pip install tensorflow
 
 echo "installing Anaconda"
 curl -L "https://github.com/conda-forge/miniforge/releases/download/4.12.0-3/Miniforge3-4.12.0-3-Linux-$ARCH_STRING_SECONDARY.sh" > miniforge.sh
