@@ -19,6 +19,12 @@ cp -r dotfiles/.* ~/
 cp -r dotfiles/* ~/
 echo ". ~/.bashrc" >> ~/.bash_profile
 
-# Copy github keys
+source ~/.bashrc
+
+# Copy github keys, add GITHUB_ACCESS_TOKEN to ~/.bash_profile
 git remote set-url origin ssh://git@github.com/rbren/homedir
+
+./scripts/vim.sh
+
+build_devbox
 ```
