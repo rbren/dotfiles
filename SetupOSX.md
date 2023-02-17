@@ -19,4 +19,6 @@ cp -r dotfiles/.* ~/
 cp -r dotfiles/* ~/
 echo ". ~/.bashrc" >> ~/.bash_profile
 
+# Copy github keys
+git remote set-url origin ssh://git@github.com/rbren/homedir
 ```
