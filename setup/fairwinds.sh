@@ -3,6 +3,10 @@ set -eo pipefail
 
 echo "installing Fairwinds tooling"
 export PATH="$PATH:$HOME/.asdf/bin/"
+asdf_install() {
+  asdf plugin-add $1 $2
+  asdf install $1 `cat ./dotfiles/.tool-versions  | grep $1 | cut -d" " -f2`
+}
 
 # TODO: dedupe this with other files
 asdf global `cat ./dotfiles/.tool-versions  | grep nodejs`
@@ -12,9 +16,7 @@ npm config set prefix '~/.npm-global'
 export PATH="$PATH:~/.npm-global/bin"
 
 # terraform
-curl -fL "https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_$ARCH_STRING.zip" > terraform.zip
-unzip terraform.zip
-sudo mv ./terraform /usr/local/bin/
+asdf_install terraform https://github.com/Banno/asdf-hashicorp.git
 
 #venv
 sudo apt-get update
@@ -29,18 +31,13 @@ tar -xvf reckoner.tar.gz
 sudo mv reckoner /usr/local/bin/
 
 # aws-vault
-curl -fL "https://github.com/99designs/aws-vault/releases/download/v5.4.4/aws-vault-linux-$ARCH_STRING" > aws-vault
-chmod +x aws-vault
-sudo mv aws-vault /usr/local/bin/
+asdf_install aws-vault https://github.com/virtualstaticvoid/asdf-aws-vault.git
 
 # HashiCorp Vault
-curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-sudo apt-add-repository "deb [arch=$ARCH_STRING] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-sudo apt-get update && sudo apt-get install vault
+asdf_install vault
 
 # SOPS
-asdf plugin-add sops https://github.com/feniix/asdf-sops.git
-asdf install sops 3.7.3
+asdf_install sops https://github.com/feniix/asdf-sops.git
 
 # Cuddlefish
 export CUDDLEFISH_NO_INTERACTIVE=1
