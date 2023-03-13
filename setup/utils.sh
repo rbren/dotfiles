@@ -26,6 +26,19 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 echo "installing NeoVim"
+sudo apt-get install -y ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
+git clone https://github.com/neovim/neovim
+cd neovim
+git checkout v0.8.3
+make CMAKE_BUILD_TYPE=Release
+sudo make install
+cd ..
+rm -rf neovim
+
+echo "installing AstroVim"
+git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone https://github.com/rbren/astrovim-customization.git ~/.config/nvim/lua/user
+
 sudo apt-get install -y neovim
 
 echo "installing Vim-Plug"
