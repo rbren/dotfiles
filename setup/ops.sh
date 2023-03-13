@@ -5,7 +5,7 @@ sudo apt-get update
 export PATH="$PATH:$HOME/.asdf/bin/"
 asdf_install() {
   asdf plugin-add $1 $2
-  asdf install $1 `cat ./dotfiles/.tool-versions  | grep $1 | cut -d" " -f2`
+  asdf install $1 `cat ./dotfiles/.tool-versions  | grep "^$1\s" | cut -d" " -f2`
 }
 
 echo "installing docker"
