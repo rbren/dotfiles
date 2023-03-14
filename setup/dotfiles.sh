@@ -9,7 +9,6 @@ cp dotfiles/.gitignore ~/
 cp dotfiles/.tool-versions ~/
 
 mkdir -p ~/.config/nvim
-cp dotfiles/init.vim ~/.config/nvim/
 cp dotfiles/starship.toml ~/.config/
 
 echo "installing tpm"
