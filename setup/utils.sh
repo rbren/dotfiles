@@ -37,9 +37,6 @@ rm -rf neovim
 
 echo "installing AstroVim"
 git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-git clone https://github.com/rbren/astrovim-customization.git ~/.config/nvim/lua/user
-
-sudo apt-get install -y neovim
 
 echo "installing Vim-Plug"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \

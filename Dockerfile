@@ -64,6 +64,8 @@ COPY --chown=$USER_NAME ./dotfiles ./dotfiles
 COPY --chown=$USER_NAME ./setup/dotfiles.sh ./setup/dotfiles.sh
 RUN ./setup/dotfiles.sh
 
+COPY --chown=$USER_NAME ./astronvim /home/$USER_NAME/.config/nvim/lua/user
+
 RUN rm /home/$USER_NAME/.ssh/id_rsa
 
 WORKDIR /home/$USER_NAME
