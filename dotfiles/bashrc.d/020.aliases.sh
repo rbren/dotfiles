@@ -17,6 +17,8 @@ alias bowin='bower install --save';
 alias npin='npm install --save';
 alias npind='npm install --save-dev';
 
+alias serve='http-server -c-1'
+
 DEVBOX_OPTIONS="--privileged"
 DEVBOX_PLATFORM="--platform linux/arm64"
 DEVBOX_PORTS="-p 3000-4000:3000-4000 -p 9000-9999:9000-9999"
