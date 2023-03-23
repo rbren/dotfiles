@@ -33,6 +33,7 @@ DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/devbox/.local-bashrc:/home/rbren/.local-bashr
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/devbox/tmux-resurrect:/home/rbren/.tmux/resurrect"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/devbox/direnv-allow:/home/rbren/.local/share/direnv/allow/"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/devbox/.terraform.d/:/home/rbren/.terraform.d/"
+DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/devbox/.config/github-copilot/:/home/rbren/.config/github-copilot/"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.awsvault:/home/rbren/.awsvault"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.ssh/:/home/rbren/.ssh/"
 DEVBOX_DIRS="$DEVBOX_DIRS -v $HOME/.gnupg:/home/rbren/.gnupg"
