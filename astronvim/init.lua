@@ -69,6 +69,7 @@ return {
     vim.cmd(":set iskeyword-=_")
     vim.cmd("hi ExtraWhitespace ctermbg=red guibg=red")
     vim.cmd("match ExtraWhitespace /\\s\\+$/")
+    vim.cmd("au FileType go setl autoindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab")
 
     -- Set up custom filetypes
     -- vim.filetype.add {
