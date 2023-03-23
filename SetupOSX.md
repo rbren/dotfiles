@@ -9,6 +9,8 @@ brew install nvim
 brew install asdf
 brew install git
 
+cp -r astronvim/ ~/.config/nvim/lua/user
+
 asdf plugin add nodejs
 asdf install nodejs latest
 
