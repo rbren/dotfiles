@@ -42,6 +42,8 @@ This develoment setup is mostly working inside of Docker.
 * arm64 == aarch64?
 
 ## Running in Docker on Mac M1
+See [aliases](https://github.com/rbren/dotfiles/blob/master/dotfiles/bashrc.d/020.aliases.sh) for the most up-to-date build and run commands
+
 ```
 docker build --platform linux/arm64 \
   --build-arg GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN \
