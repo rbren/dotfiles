@@ -10,6 +10,8 @@ return {
 		end,
 		config = function()
 			vim.keymap.set("i", "<C-f>", 'copilot#Accept("<CR>")', { expr = true })
+			vim.keymap.set("i", "<C-d>", 'copilot#Next()', { expr = true })
+			vim.keymap.set("i", "<C-s>", 'copilot#Previous()', { expr = true })
 		end,
 	},
 }
