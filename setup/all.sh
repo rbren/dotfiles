@@ -5,8 +5,11 @@ export DEBIAN_FRONTEND=noninteractive
 export ARCH_STRING="amd64"
 export ARCH_STRING_SECONDARY="x86_64"
 
-#./setup/installers.sh
-#./setup/languages.sh
+# Disable interactive prompts during install
+sed -i "/#\$nrconf{restart} = 'i';/s/.*/\$nrconf{restart} = 'a';/" /etc/needrestart/needrestart.conf
+
+./setup/installers.sh
+./setup/languages.sh
 ./setup/utils.sh
 ./setup/git.sh
 ./setup/vim.sh
