@@ -12,6 +12,7 @@ echo "installing Python"
 sudo apt-get install -y build-essential zlib1g-dev libffi-dev libssl-dev libbz2-dev libreadline-dev libsqlite3-dev liblzma-dev
 sudo apt-get install -y python3.11 python3-pip
 asdf_install python
+curl -sSL https://install.python-poetry.org | python3 -
 
 echo "installing Go"
 asdf_install golang https://github.com/kennyp/asdf-golang.git

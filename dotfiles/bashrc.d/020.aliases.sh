@@ -41,5 +41,5 @@ DEVBOX_FLAGS="$DEVBOX_OPTIONS $DEVBOX_PLATFORM $DEVBOX_PORTS $DEVBOX_RESOURCES $
 alias devboxnet="docker run --rm -it --network=host $DEVBOX_FLAGS devbox"
 alias devbox="docker run --rm -it $DEVBOX_FLAGS devbox"
 
-DEVBOX_BUILD_ARGS='--build-arg GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/github)"  --build-arg USER_NAME=$USER   --build-arg USER_ID=$UID'
+DEVBOX_BUILD_ARGS='--build-arg GITHUB_ACCESS_TOKEN="${GITHUB_ACCESS_TOKEN}" --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/github)"  --build-arg USER_NAME=$USER   --build-arg USER_ID=$UID'
 alias build_devbox="docker build $DEVBOX_PLATFORM $DEVBOX_BUILD_ARGS -t devbox ~/git/homedir"
