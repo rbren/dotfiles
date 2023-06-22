@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eo pipefail
 
+echo "installing bash-completion"
+sudo apt-get install -y bash-completion
+
 # TODO: dedupe this, also in fairwinds.sh, and npm-global is defined a few places
 export PATH="$PATH:$HOME/.asdf/bin/"
 asdf global `cat ./dotfiles/.tool-versions  | grep nodejs`

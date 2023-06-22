@@ -1,7 +1,7 @@
 source <(kubectl completion bash)
 source /etc/bash_completion
 alias k='kubectl';
-complete -F __start_kubectl k
+complete -o default -F __start_kubectl k
 
 alias kw='watch kubectl';
 alias kns='kubectl config set-context --current --namespace '
