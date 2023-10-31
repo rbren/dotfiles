@@ -16,28 +16,37 @@ npm config set prefix '~/.npm-global'
 export PATH="$PATH:~/.npm-global/bin"
 
 # terraform
+echo "installing terraform"
 asdf_install terraform https://github.com/Banno/asdf-hashicorp.git
 
 #venv
+echo "installing venv"
 sudo apt-get update
 sudo apt-get install -y python3-venv
 
 # runner
+echo "installing bash-task-runner"
 npm install -g bash-task-runner
 
 # reckoner
+echo "installing reckoner"
 curl -fL "https://github.com/FairwindsOps/reckoner/releases/download/v6.0.0/reckoner_6.0.0_linux_$ARCH_STRING.tar.gz" > reckoner.tar.gz
 tar -xvf reckoner.tar.gz
 sudo mv reckoner /usr/local/bin/
 
+
 # aws-vault
+echo "installing aws-vault"
 asdf_install aws-vault https://github.com/virtualstaticvoid/asdf-aws-vault.git
 
 # HashiCorp Vault
+echo "installing hashi vault"
 asdf_install vault
 
+echo "installing SOPS"
 # SOPS
 asdf_install sops https://github.com/feniix/asdf-sops.git
+echo "cloning cuddlefish"
 
 # Cuddlefish
 export CUDDLEFISH_NO_INTERACTIVE=1
@@ -46,6 +55,7 @@ cd ~/git/cuddlefish
 ./bin/configure.sh
 cd
 
+echo "configuring cuddlefish"
 . ~/.cuddlefish/config
 
 cthulhucuddle asdf export > .tool-versions-raw
@@ -55,6 +65,7 @@ sed -i 's/_version//' .tool-versions
 sed -i 's/=/ /' .tool-versions
 sed -i 's/_/-/' .tool-versions
 cat .tool-versions | cut -d' ' -f1 | grep "^[^\#]" | xargs -i asdf plugin add  {} || true
+echo "installing via asdf"
 asdf install
 rm .tool-versions
 rm .tool-versions-raw
