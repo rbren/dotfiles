@@ -5,14 +5,14 @@ echo "installing NeoVim"
 sudo apt-get install -y ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
 git clone https://github.com/neovim/neovim
 cd neovim
-git checkout v0.8.3
+git checkout v0.9.4
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 cd ..
 rm -rf neovim
 
 echo "installing AstroVim"
-git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone --branch v3.30.7 --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 
 echo "installing Vim-Plug"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
