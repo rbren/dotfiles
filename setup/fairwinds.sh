@@ -19,6 +19,10 @@ export PATH="$PATH:~/.npm-global/bin"
 echo "installing terraform"
 asdf_install terraform https://github.com/Banno/asdf-hashicorp.git
 
+# for cypress
+sudo apt-get install -y libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev xvfb libasound2
+
+
 #venv
 echo "installing venv"
 sudo apt-get update
@@ -39,16 +43,13 @@ sudo mv reckoner /usr/local/bin/
 echo "installing aws-vault"
 asdf_install aws-vault https://github.com/virtualstaticvoid/asdf-aws-vault.git
 
-# HashiCorp Vault
 echo "installing hashi vault"
 asdf_install vault
 
 echo "installing SOPS"
-# SOPS
 asdf_install sops https://github.com/feniix/asdf-sops.git
-echo "cloning cuddlefish"
 
-# Cuddlefish
+echo "cloning cuddlefish"
 export CUDDLEFISH_NO_INTERACTIVE=1
 git clone git@github.com:FairwindsOps/cuddlefish.git ~/git/cuddlefish
 cd ~/git/cuddlefish
@@ -58,6 +59,13 @@ cd
 echo "configuring cuddlefish"
 . ~/.cuddlefish/config
 
+echo "Building custom cthulhucuddle"
+git clone git@github.com:fairwindsops/cthulhucuddle ~/git/cthulhucuddle/
+cd ~/git/cthulhucuddle/
+git checkout rb/install-err
+go build main.go && mv main ~/.cuddlefish/bin/cthulhucuddle
+cd
+
 cthulhucuddle asdf export > .tool-versions-raw
 tr '[:upper:]' '[:lower:]' < .tool-versions-raw > .tool-versions
 sed -i 's/export asdf_//' .tool-versions
@@ -66,7 +74,8 @@ sed -i 's/=/ /' .tool-versions
 sed -i 's/_/-/' .tool-versions
 cat .tool-versions | cut -d' ' -f1 | grep "^[^\#]" | xargs -i asdf plugin add  {} || true
 echo "installing via asdf"
-asdf install
+cat .tool-versions
+#asdf install || true # TODO: why does this fail?
 rm .tool-versions
 rm .tool-versions-raw
 
