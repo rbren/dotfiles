@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eo pipefail
 
+echo "apt-get update"
+sudo apt-get update
+
 echo "installing bash-completion"
 sudo apt-get install -y bash-completion
 
@@ -52,8 +55,11 @@ sudo apt-get install -y libpq-dev
 echo "installing sshuttle"
 sudo apt-get install -y sshuttle
 
-echo "installing postgres-client"
+echo "installing postgresql-client"
 sudo apt-get install -y postgresql-client
+
+echo "installing mysql-client"
+sudo apt-get install -y mysql-client
 
 echo "installing pup"
 go install github.com/ericchiang/pup@latest
