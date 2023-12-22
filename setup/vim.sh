@@ -12,7 +12,7 @@ cd ..
 rm -rf neovim
 
 echo "installing AstroVim"
-git clone --branch v3.30.7 --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone --branch v3.40.3 --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 
 echo "installing Vim-Plug"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -28,7 +28,5 @@ git clone https://github.com/digitaltoad/vim-pug.git
 git clone https://github.com/Quramy/vim-js-pretty-template
 git clone https://github.com/plasticboy/vim-markdown.git
 git clone https://github.com/leafgarland/typescript-vim.git
-git clone https://github.com/zivyangll/git-blame.vim ~/.vim/bundle/git-blame.vim
-git clone https://github.com/preservim/nerdtree.git ~/.vim/bundle/nerdtree
 git clone https://github.com/hashivim/vim-terraform.git ~/.vim/bundle/vim-terraform
 cd $dir

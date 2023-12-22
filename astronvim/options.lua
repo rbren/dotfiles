@@ -42,6 +42,7 @@ return function(local_vim)
     ui_notifications_enabled = true, -- disable notifications when toggling UI elements
     signcolumn = "no",
     copilot_assume_mapped = true, -- GitHub copilot
+    max_file = { size = 1024 * 100, lines = 10000 }, -- copied from https://github.com/AstroNvim/AstroNvim/blob/271c9c3f71c2e315cb16c31276dec81ddca6a5a6/lua/astronvim/options.lua#L53
   }
   return local_vim
 end
