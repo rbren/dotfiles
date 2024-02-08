@@ -1,12 +1,12 @@
 return function(local_vim)
   vim.api.nvim_create_user_command(
     'StartCopy',
-    ":set norelativenumber | :set nonumber | :set wrap | :set signcolumn=no | :only",
+    ":set norelativenumber | :set nonumber | :set wrap | :set signcolumn=no | :only | :IBLDisable",
     {bang = true}
   )
   vim.api.nvim_create_user_command(
     'EndCopy',
-    "set relativenumber | :set number | :set nowrap",
+    "set relativenumber | :set number | :set nowrap | :set signcolumn=yes | :IBLEnable",
     {bang = true}
   )
 
