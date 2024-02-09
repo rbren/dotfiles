@@ -66,3 +66,7 @@ go install github.com/ericchiang/pup@latest
 
 echo "installing git-lfs"
 sudo apt-get install -y git-lfs
+
+echo "installing tools for VCV rack"
+sudo apt-get install -y unzip git gdb curl cmake libx11-dev libglu1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev zlib1g-dev libasound2-dev libgtk2.0-dev libgtk-3-dev libjack-jackd2-dev jq zstd libpulse-dev pkg-config
+

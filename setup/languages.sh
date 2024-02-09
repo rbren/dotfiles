@@ -14,13 +14,16 @@ sudo apt-get install -y python3.11 python3-pip
 asdf_install python
 curl -sSL https://install.python-poetry.org | python3 -
 
+echo "installing Anaconda"
+curl -L "https://github.com/conda-forge/miniforge/releases/download/4.12.0-3/Miniforge3-4.12.0-3-Linux-$ARCH_STRING_SECONDARY.sh" > miniforge.sh
+bash ./miniforge.sh -b -u -p $HOME/miniforge
+$HOME/miniforge/bin/conda init bash
+
 echo "installing Go"
 asdf_install golang https://github.com/kennyp/asdf-golang.git
 
 echo "installing NodeJS"
 asdf_install nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
-echo "installing Anaconda"
-curl -L "https://github.com/conda-forge/miniforge/releases/download/4.12.0-3/Miniforge3-4.12.0-3-Linux-$ARCH_STRING_SECONDARY.sh" > miniforge.sh
-bash ./miniforge.sh -b -u -p $HOME/miniforge
-$HOME/miniforge/bin/conda init bash
+echo "installing Rust"
+curl https://sh.rustup.rs -sSf | sh

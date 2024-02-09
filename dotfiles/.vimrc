@@ -87,8 +87,8 @@ nnoremap <Down> :echo "No Down for you!"<CR>
 :set foldmethod=indent
 :set foldlevel=99
 
-command! StartCopy :set norelativenumber | :set nonumber | :set wrap | :only
-command! EndCopy :set relativenumber | :set number | :set nowrap
+command! StartCopy :set norelativenumber | :set nonumber | :set wrap | :only | :IBLDisable
+command! EndCopy :set relativenumber | :set number | :set nowrap | :IBLEnable
 
 "show blame via https://github.com/zivyangll/git-blame.vim
 :function Myblame()
