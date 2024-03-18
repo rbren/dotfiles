@@ -63,7 +63,7 @@ echo "Building custom cthulhucuddle"
 git clone git@github.com:fairwindsops/cthulhucuddle ~/git/cthulhucuddle/
 cd ~/git/cthulhucuddle/
 git checkout rb/install-err
-go build main.go
+/home/rbren/.asdf/shims/go build main.go
 mv main ~/.cuddlefish/bin/cthulhucuddle
 cd
 
