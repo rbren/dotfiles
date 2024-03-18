@@ -63,7 +63,8 @@ echo "Building custom cthulhucuddle"
 git clone git@github.com:fairwindsops/cthulhucuddle ~/git/cthulhucuddle/
 cd ~/git/cthulhucuddle/
 git checkout rb/install-err
-go build main.go && mv main ~/.cuddlefish/bin/cthulhucuddle
+go build main.go
+mv main ~/.cuddlefish/bin/cthulhucuddle
 cd
 
 cthulhucuddle asdf export > .tool-versions-raw
