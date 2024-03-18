@@ -26,4 +26,4 @@ echo "installing NodeJS"
 asdf_install nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
 echo "installing Rust"
-curl https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh -s -- -y
