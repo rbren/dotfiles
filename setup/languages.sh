@@ -29,6 +29,9 @@ sudo apt install -y \
     zlib1g-dev
 asdf_install python https://github.com/danhper/asdf-python.git
 
+echo "installing Poetry"
+curl -sSL https://install.python-poetry.org | python3 -
+
 echo "installing Go"
 asdf_install golang https://github.com/kennyp/asdf-golang.git
 
