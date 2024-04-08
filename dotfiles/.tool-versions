@@ -1,7 +1,7 @@
 starship 1.9.1
 
 golang 1.22.0
-nodejs 18.4.0
+nodejs 21.7.2
 python 3.12.2
 
 aws-vault 5.4.4
