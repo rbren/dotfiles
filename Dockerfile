@@ -42,6 +42,8 @@ RUN ssh-keyscan github.com >> /home/$USER_NAME/.ssh/known_hosts
 
 WORKDIR /devbox-init
 
+ARG FAIRWINDS_SETUP
+
 COPY --chown=$USER_NAME ./dotfiles/.tool-versions ./dotfiles/.tool-versions
 COPY --chown=$USER_NAME ./dotfiles/bashrc.d/151.node.sh ./dotfiles/bashrc.d/151.node.sh
 
@@ -57,8 +59,9 @@ COPY --chown=$USER_NAME ./setup/vim.sh ./setup/vim.sh
 RUN ./setup/vim.sh
 COPY --chown=$USER_NAME ./setup/ops.sh ./setup/ops.sh
 RUN ./setup/ops.sh
+
 COPY --chown=$USER_NAME ./setup/fairwinds.sh ./setup/fairwinds.sh
-RUN ./setup/fairwinds.sh
+RUN if [[ -n "$FAIRWINDS_SETUP" ]] ; ./setup/fairwinds.sh; fi
 
 COPY --chown=$USER_NAME ./dotfiles ./dotfiles
 COPY --chown=$USER_NAME ./setup/dotfiles.sh ./setup/dotfiles.sh
