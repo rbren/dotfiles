@@ -1,5 +1,5 @@
 function replaceall() {
-  find "${1}" -type f -exec sed -i -e "${2}" {} \;
+  find "${1}" -type f -not -path "./.git/*" -not -path "*/node_modules/*" -exec sed -i -e "${2}" {} \;
 }
 
 function prettyjson() {
