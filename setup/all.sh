@@ -14,7 +14,6 @@ sed -i "/#\$nrconf{restart} = 'i';/s/.*/\$nrconf{restart} = 'a';/" /etc/needrest
 ./setup/git.sh
 ./setup/vim.sh
 ./setup/ops.sh
-./setup/fairwinds.sh
 ./setup/dotfiles.sh
 
 echo -e "\n\n\n"

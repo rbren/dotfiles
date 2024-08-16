@@ -22,6 +22,9 @@ echo \
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+echo "installing terraform"
+asdf_install terraform https://github.com/Banno/asdf-hashicorp.git
+
 echo "installing kubectl"
 asdf_install kubectl https://github.com/asdf-community/asdf-kubectl.git
 
@@ -45,7 +48,20 @@ sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates gnupg curl
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-sudo apt-get install -y google-cloud-cli-app-engine-java
+sudo apt-get update && sudo apt-get install -y google-cloud-cli
 
+echo "installing reckoner"
+curl -fL "https://github.com/FairwindsOps/reckoner/releases/download/v6.0.0/reckoner_6.0.0_linux_$ARCH_STRING.tar.gz" > reckoner.tar.gz
+tar -xvf reckoner.tar.gz
+sudo mv reckoner /usr/local/bin/
+
+echo "installing aws-vault"
+asdf_install aws-vault https://github.com/virtualstaticvoid/asdf-aws-vault.git
+
+echo "installing hashi vault"
+asdf_install vault
+
+echo "installing SOPS"
+asdf_install sops https://github.com/feniix/asdf-sops.git
 
 

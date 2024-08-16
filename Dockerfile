@@ -60,9 +60,6 @@ RUN ./setup/vim.sh
 COPY --chown=$USER_NAME ./setup/ops.sh ./setup/ops.sh
 RUN ./setup/ops.sh
 
-COPY --chown=$USER_NAME ./setup/fairwinds.sh ./setup/fairwinds.sh
-RUN if [[ -n "$FAIRWINDS_SETUP" ]] ; then ./setup/fairwinds.sh; fi
-
 COPY --chown=$USER_NAME ./dotfiles ./dotfiles
 COPY --chown=$USER_NAME ./setup/dotfiles.sh ./setup/dotfiles.sh
 RUN ./setup/dotfiles.sh
