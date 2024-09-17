@@ -48,7 +48,9 @@ sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates gnupg curl
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-sudo apt-get update && sudo apt-get install -y google-cloud-cli
+sudo apt-get update
+sudo apt-get install -y google-cloud-cli
+sudo apt-get install -y google-cloud-cli-gke-gcloud-auth-plugin
 
 echo "installing reckoner"
 curl -fL "https://github.com/FairwindsOps/reckoner/releases/download/v6.0.0/reckoner_6.0.0_linux_$ARCH_STRING.tar.gz" > reckoner.tar.gz
