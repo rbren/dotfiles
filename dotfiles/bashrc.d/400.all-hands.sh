@@ -6,8 +6,8 @@ function gke() {
 
 alias gke-prod-app='gke prod-core-application production-092024'
 alias gke-prod-run='gke prod-runtime production-092024'
-alias gke-stag-app='gke staging-core-application staging-092024'
-alias gke-stag-run='gke staging-runtime staging-092024'
-alias gke-eval-app='gke eval-core-application evaluation-092024'
-alias gke-eval-run='gke eval-runtime evaluation-092024'
+alias gke-stag-app='gke staging-core-application staging-092324'
+alias gke-stag-run='gke staging-runtime staging-092324'
+alias gke-eval-app='gke eval-core-application evaluation-092424'
+alias gke-eval-run='gke eval-runtime evaluation-092424'
 

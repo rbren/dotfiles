@@ -58,6 +58,28 @@ format = '[$all_status$ahead_behind]($style) '
 disabled = false
 format = "[$context( \\($namespace\\))]($style) "
 style = "fg:#05E9FF"
+[[kubernetes.contexts]]
+context_alias = "GKE PROD APP ❗❗❗"
+context_pattern = "gke_production-092024_us-central1_prod-core-application"
+[[kubernetes.contexts]]
+context_alias = "GKE PROD RUN ❗❗❗"
+context_pattern = "gke_production-092024_us-central1_prod-runtime"
+[[kubernetes.contexts]]
+context_alias = "GKE staging app"
+context_pattern = "gke_staging-092324_us-central1_staging-core-application"
+[[kubernetes.contexts]]
+context_alias = "GKE staging run"
+context_pattern = "gke_staging-092324_us-central1_staging-runtime"
+[[kubernetes.contexts]]
+context_alias = "GKE eval app"
+context_pattern = "gke_evaluation-092424_us-central1_eval-core-application"
+[[kubernetes.contexts]]
+context_alias = "GKE eval run"
+context_pattern = "gke_evaluation-092424_us-central1_eval-runtime"
+[[kubernetes.contexts]]
+context_alias = "kind-kind 👨‍🔬"
+context_pattern = "kind-kind"
+
 
 [golang]
 format = "[$symbol]($style)"
