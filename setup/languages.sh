@@ -26,6 +26,7 @@ sudo apt install -y \
     tk-dev \
     wget \
     xz-utils \
+    python3-dev \
     zlib1g-dev
 asdf_install python https://github.com/danhper/asdf-python.git
 
