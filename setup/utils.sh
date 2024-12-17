@@ -40,6 +40,9 @@ sudo mv ./yq /usr/local/bin/
 echo "installing http-server"
 npm i -g http-server
 
+echo "installing lsof"
+sudo apt-get install -y lsof
+
 echo "installing ssh"
 sudo apt-get install -y ssh
 
