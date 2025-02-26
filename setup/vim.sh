@@ -23,6 +23,7 @@ echo "installing vim bundles"
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 cd ~/.vim/bundle
 dir=$PWD
+
 git clone https://github.com/github/copilot.vim ~/.config/nvim/pack/github/start/copilot.vim
 git clone https://github.com/digitaltoad/vim-pug.git
 git clone https://github.com/Quramy/vim-js-pretty-template
