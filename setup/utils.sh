@@ -26,16 +26,13 @@ asdf_install starship
 echo "installing yq"
 asdf_install yq
 
-echo "installing AWS CLI"
-curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-$ARCH_STRING_SECONDARY.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
+#echo "installing AWS CLI"
+#curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-$ARCH_STRING_SECONDARY.zip" -o "awscliv2.zip"
+#unzip awscliv2.zip
+#sudo ./aws/install
 
-echo "installing jq and yq"
+echo "installing jq"
 sudo apt-get install -y jq
-curl -fL "https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_$ARCH_STRING" > yq
-chmod +x yq
-sudo mv ./yq /usr/local/bin/
 
 echo "installing http-server"
 npm i -g http-server

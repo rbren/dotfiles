@@ -53,9 +53,12 @@ sudo apt-get install -y google-cloud-cli
 sudo apt-get install -y google-cloud-cli-gke-gcloud-auth-plugin
 
 echo "installing reckoner"
-curl -fL "https://github.com/FairwindsOps/reckoner/releases/download/v6.0.0/reckoner_6.0.0_linux_$ARCH_STRING.tar.gz" > reckoner.tar.gz
+mkdir -p /tmp/reckoner
+curl -fL "https://github.com/FairwindsOps/reckoner/releases/download/v6.0.0/reckoner_6.0.0_linux_$ARCH_STRING.tar.gz" > /tmp/reckoner/reckoner.tar.gz
+cd /tmp/reckoner
 tar -xvf reckoner.tar.gz
 sudo mv reckoner /usr/local/bin/
+cd -
 
 echo "installing aws-vault"
 asdf_install aws-vault https://github.com/virtualstaticvoid/asdf-aws-vault.git
