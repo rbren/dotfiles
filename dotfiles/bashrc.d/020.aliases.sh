@@ -11,7 +11,7 @@ alias psa='ps aux';
 alias diskdirs='du --max-depth=1 -c -h | sort -h'
 alias vi='nvim';
 alias src='source ~/.bashrc';
-alias resrc='rm -r ~/bashrc.d && cp -r ~/git/homedir/dotfiles/bashrc.d ~/bashrc.d && cp ~/git/homedir/dotfiles/.bashrc ~/'
+alias resrc='rm -r ~/bashrc.d && cp -r ~/git/dotfiles/dotfiles/bashrc.d ~/bashrc.d && cp ~/git/dotfiles/dotfiles/.bashrc ~/'
 
 alias bowin='bower install --save';
 alias npin='npm install --save';
@@ -42,4 +42,4 @@ alias devboxnet="docker run --rm -it --network=host $DEVBOX_FLAGS devbox"
 alias devbox="docker run --rm -it $DEVBOX_FLAGS devbox"
 
 DEVBOX_BUILD_ARGS='--build-arg GITHUB_ACCESS_TOKEN="${GITHUB_ACCESS_TOKEN}" --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/github)"  --build-arg USER_NAME=$USER   --build-arg USER_ID=$UID'
-alias build_devbox="docker build $DEVBOX_PLATFORM $DEVBOX_BUILD_ARGS -t devbox ~/git/homedir"
+alias build_devbox="docker build $DEVBOX_PLATFORM $DEVBOX_BUILD_ARGS -t devbox ~/git/dotfiles"
