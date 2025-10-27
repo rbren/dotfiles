@@ -14,7 +14,9 @@
     
 ```
 mkdir -p ~/Screenshots && defaults write com.apple.screencapture location ~/Screenshots
+mkdir ~/git
 ```
+* move Screenshots and git to Finder sidebar
 
 ## Terminal setup
 
