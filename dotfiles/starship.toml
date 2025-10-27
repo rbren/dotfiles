@@ -1,5 +1,5 @@
 format = """\
-$username$hostname$kubernetes$aws$gcloud$directory\
+$username$hostname$kubernetes$directory\
 $hg_branch$docker_context$package$cmake$dart$dotnet$elixir$elm$erlang$golang$helm$java$julia\
 $nim$nodejs$ocaml$perl$php$purescript$python$ruby$rust$swift$terraform$zig$nix_shell$conda\
 $git_branch$git_status$git_state\
