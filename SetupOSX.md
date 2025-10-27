@@ -1,3 +1,20 @@
+# New mac setup
+
+* Install:
+  * Chrome
+  * Slack
+* Settings:
+  * Enable FileVault
+  * Make dock autohide
+  * Stop spaces from rearranging automatically
+  * Change modifier keys
+    * caps -> esc
+    * globe -> ctrl
+    * ctrl -> globe
+
+## Terminal setup
+
+
 ```
 # homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
