@@ -11,6 +11,10 @@
     * caps -> esc
     * globe -> ctrl
     * ctrl -> globe
+    
+```
+mkdir -p ~/Screenshots && defaults write com.apple.screencapture location ~/Screenshots
+```
 
 ## Terminal setup
 
