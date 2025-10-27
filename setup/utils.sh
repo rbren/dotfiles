@@ -61,9 +61,6 @@ sudo apt-get install -y postgresql-client
 echo "installing mysql-client"
 sudo apt-get install -y mysql-client
 
-echo "installing pup"
-go install github.com/ericchiang/pup@latest
-
 echo "installing git-lfs"
 sudo apt-get install -y git-lfs
 
