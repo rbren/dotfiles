@@ -18,6 +18,10 @@ mkdir ~/git
 ```
 * move Screenshots and git to Finder sidebar
 
+## Chrome setup
+* https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm
+* https://chromewebstore.google.com/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp
+
 ## Terminal setup
 
 
