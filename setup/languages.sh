@@ -30,6 +30,9 @@ sudo apt install -y \
     zlib1g-dev
 asdf_install python https://github.com/danhper/asdf-python.git
 
+echo "installing uv"
+asdf_install uv https://github.com/asdf-community/asdf-uv.git
+
 echo "installing Poetry"
 curl -sSL https://install.python-poetry.org | python3 -
 
